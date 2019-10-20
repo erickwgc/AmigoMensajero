@@ -1,0 +1,119 @@
+
+nav{
+    margin:0 50px;
+    border-style: solid;    
+}
+li{
+    font-size: 20px;
+    font-weight: bold;
+
+}
+.contenedor{
+                position: relative;
+                
+                /*text-align: center;*/
+                margin-left: 260px;
+            }
+
+            .centrado{
+                position: absolute;
+                top: 70%;
+                left: 30%;
+                transform: translate(-50%, -50%);
+            }
+            .centrado2{
+                position: absolute;
+                top: 25%;
+                left: 60%;
+                transform: translate(-50%, -50%);
+                color: white;
+                font-weight: bold;
+            }
+            #imagenGlobito{
+                 position: relative;
+                top: 10px;
+                left: 10%;
+                transform: translate(-50%, -50%);
+            }
+            #imagenPerrito{
+            	margin-left: 150px;
+            }
+            textarea{
+                border-width: medium;
+                border-color: black;
+                border-style: solid ;
+                resize: none;
+
+            }
+            #texto{
+            	margin-top: -18px;
+                margin-left: 350px;
+            }
+            #cajaPerrito{
+                font-weight: bold;
+                margin-left: 20px;
+            }
+
+    
+#cajaimagen{
+    position : relative;
+    float:left;
+    width: 210px;
+    height: 250px;
+    margin: 20px;
+    margin-top: -300px;
+    border-color: black;
+    border-style: solid ;
+    background: white;
+    top : 80px;
+    left: 5%;   
+    overflow: auto;
+    overflow: scroll;
+    overflow-x: hidden; 
+}
+img.imagen{
+    width: 120px;
+    height: 120px;
+    margin-left: 20px;
+}
+
+#clonado{
+    position: absolute; 
+    border-color: black;
+    border-style: solid ;
+    background: white;
+    left: 350px;
+    top: 540px ;
+    width: 535px;
+    height: 250px;
+
+}
+#insertado{
+    position:relative;
+}
+
+
+
+ .papelera {
+              background-image: url('{{asset('assets/img/basurero.png')}}');
+              -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+              background-size: cover;
+              float: left;
+              width: 120px;
+              height: 120px;
+              padding: 20px;
+              
+              left: 160px;
+            top: 50px ;
+            border-style: solid ;
+            border-style: solid ;
+            position : relative;
+
+           }
+            .eligir_archivos{
+                position: absolute;
+                top: 280px;
+                left: 100px;
+            }
