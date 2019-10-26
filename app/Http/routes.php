@@ -9,7 +9,7 @@ Route::group(['middleware' => 'guest'], function () {
    // Route::get('/', "PaginasController@inicio");
    // Route::get('/inicio', "PaginasController@inicio");
 //Route::get('/', "PaginasController@inicio");
-
+Route::get('/inicio', "PaginasController@inicio");
 Route::get('/boletin', "PaginasController@boletin");
 Route::resource('/carta', "CartasController");
 Route::get('/login',"loginController@index");
@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'],function () {
 Route::get('logout', ['as' => 'logout', 'uses' => 'loginController@cerrarSesion']);
 Route::get('/usuarioGeneral',"UsuarioGeneral@Inicio");
 Route::get('/', "PaginasController@inicio");
-    Route::get('/inicio', "PaginasController@inicio");
+  
 
 });
 
