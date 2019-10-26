@@ -3,10 +3,10 @@
 use App\User;
 use App\Role;
 
-Route::get('/inicio', "PaginasController@inicio");
 Route::group(['middleware' => 'guest'], function () {
-
-Route::get('/', "PaginasController@inicio");
+   // Route::get('/', "PaginasController@inicio");
+   // Route::get('/inicio', "PaginasController@inicio");
+//Route::get('/', "PaginasController@inicio");
 Route::get('/boletin', "PaginasController@boletin");
 Route::resource('/carta', "CartasController");
 Route::get('/login',"loginController@index");
@@ -34,6 +34,9 @@ Route::get('/AdminInicio',"AdminController@Inicio");
 Route::group(['middleware' => 'auth'],function () {
 Route::get('logout', ['as' => 'logout', 'uses' => 'loginController@cerrarSesion']);
 Route::get('/usuarioGeneral',"UsuarioGeneral@Inicio");
+Route::get('/', "PaginasController@inicio");
+    Route::get('/inicio', "PaginasController@inicio");
+
 });
 
 Route::get('/prueba', function () {
@@ -43,7 +46,7 @@ Route::get('/prueba', function () {
    // $rol = Role::find($id)->nom_rol;
     
     //$user = App\User::find(1);
-
+    Auth::user()->roles; 
     foreach ($user->roles as $role) {
         $rol  = $role->nom_rol ;
     }

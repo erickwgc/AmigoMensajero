@@ -20,7 +20,7 @@
             </div>
 
             <h1>{{Auth::user()->id}}</h1>
-            <h2>{{Auth::user()->nom_usu}}</h2>
+            <h2>{{Auth::user()->roles}}</h2>
             <h3>{{Auth::user()->ape_usu}}</h3>
             
 @endsection
