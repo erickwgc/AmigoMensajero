@@ -22,12 +22,29 @@
                       <li class="nav-item active">
                         <a class="nav-link" href="http://localhost:8000/inicio" style="text-decoration: underline;">Inicio<span class="sr-only">(current)</span></a>
                       </li>
+                      @if (Auth::guest())
+                      
                       <li class="nav-item ">
                         <a class="nav-link" href="http://localhost:8000/carta">Escribe tu Carta</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8000/boletin">Boletín</a>
                       </li>
+                      @else  
+                        
+                       
+                        <li class="nav-item">
+                          <a class="nav-link" href="http://localhost:8000/correo">Cartas de niños</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="http://localhost:8000/usuarios">Usuarios</a>
+                        </li>
+                        <li class="nav-item ">
+                          <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
+                        </li>
+                       
+                      
+                        @endif
                     </ul>
                   </div>
                 </nav>

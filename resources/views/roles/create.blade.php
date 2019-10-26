@@ -8,15 +8,23 @@
               
                   <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
+                      
                       <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/AdminInicio" >Inicio</a>
+                        <a class="nav-link" href="http://localhost:8000/inicio" >Inicio</a>
                       </li>
+                      
+                      <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8000/correo">Cartas de niños</a>
+                      </li>     
+                      
                       <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8000/usuarios">Usuarios</a>
                       </li>
-                       <li class="nav-item active">
+                      
+                      <li class="nav-item active">
                         <a class="nav-link" href="http://localhost:8000/roles" style="text-decoration: underline;">Roles</a>
                       </li>
+                    
                     </ul>
                   </div>
                 </nav>
