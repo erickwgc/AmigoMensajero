@@ -31,21 +31,20 @@
                         <a class="nav-link" href="http://localhost:8000/boletin">Boletín</a>
                       </li>
                       @else  
-                                
-                  <li class="nav-item">
-                      <a class="nav-link" href="http://localhost:8000/correo">Cartas de niños</a>
-                  </li>
-                                
-                  <li class="nav-item">
-                      <a class="nav-link" href="http://localhost:8000/usuarios">Usuarios</a>
-                  </li>
-                                
-                  <li class="nav-item ">
-                      <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
-                  </li>
-                            
-                @endif
-
+                        
+                       
+                        <li class="nav-item">
+                          <a class="nav-link" href="http://localhost:8000/correo">Cartas de niños</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="http://localhost:8000/usuarios">Usuarios</a>
+                        </li>
+                        <li class="nav-item ">
+                          <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
+                        </li>
+                       
+                      
+                        @endif
                     </ul>
                   </div>
                 </nav>

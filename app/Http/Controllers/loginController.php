@@ -69,11 +69,12 @@ class loginController extends Controller
         
         if (Auth::attempt($whitMail) || Auth::attempt($whitUser)) {
             $user = Auth::user();
+            $rol = "";
             foreach ($user->roles as $role) {
                 $rol  = $role->nom_rol ;
             }
             if( $rol = 'administrador'){
-            return view('administrador.inicio',compact("user","rol"));
+            return view('welcome',compact("user","rol"));
             } 
             if($rol != 'administrador'){
             return view('usuarioGeneral.perfil' , compact("user","rol"));
