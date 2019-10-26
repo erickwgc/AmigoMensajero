@@ -18,6 +18,7 @@ class CreateCartasTable extends Migration
             $table->string('contenido');
             $table->string('fecha');
             $table->string('hora');
+            $table->string('color_car');
             $table->timestamps();
         });
     }

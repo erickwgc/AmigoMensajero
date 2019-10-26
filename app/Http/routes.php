@@ -3,8 +3,9 @@
 use App\User;
 use App\Role;
 
-Route::group(['middleware' => 'guest'], function () {
 Route::get('/inicio', "PaginasController@inicio");
+Route::group(['middleware' => 'guest'], function () {
+
 Route::get('/', "PaginasController@inicio");
 Route::get('/boletin', "PaginasController@boletin");
 Route::resource('/carta', "CartasController");
@@ -49,5 +50,8 @@ Route::get('/prueba', function () {
    
     return  $rol;
 });
+
+//CORREO
+Route::resource('correo', "CorreoController");
 
 

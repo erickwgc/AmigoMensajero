@@ -50,7 +50,50 @@ class CartasController extends Controller
         $carta->fecha=Carbon::now()->format('Y-m-d');
         
         $carta->hora=Carbon::now()->format('H:i:s');
-        $carta->save();
+                     
+
+    //CLASIFICAR CARTA 
+     $contenido=strtoupper($request->contenido);
+     $palabra_texto=explode(" ", $contenido);
+     
+     $array_peligrosas = array("MATAR", "MUERTE", "MORIRME", "SANGRE","MATANZA","ASESINAR","APUÃ‘ALAR");
+     $array_correctas = array("ESTUDIO","LEER","CANTAR","REZAR","AGRADECER","DIOS","AMOR");
+     
+     //$array_normales = array("familia","casa","padre","madre","hermanos","navidad");
+     $resultado="";
+
+     for($i=0;$i<count($palabra_texto);$i++){
+     
+           $palabra=$palabra_texto[$i];
+     
+         for($j=0;$j<count($array_peligrosas);$j++){
+        
+            if($palabra==$array_peligrosas[$j]){
+        
+                 $resultado="Rojo";
+                 $j=count($array_peligrosas);
+                 $i=count($palabra_texto);      
+             }
+         }
+        
+        if($resultado==""){
+            for($j=0;$j<count($array_correctas);$j++){
+                if($palabra==$array_correctas[$j]){
+                    $resultado="Verde";
+                    $j=count($array_peligrosas);
+                    $i=count($palabra_texto);
+                }
+            }
+        } 
+     }
+     
+     if($resultado==""){
+        $resultado="Amarillo";
+     }
+
+//FIN
+    $carta->color_car=$resultado;
+    $carta->save();
         
         if($name = $_FILES["mi_imagen"]["name"][0] != null ){
             $total = count($_FILES["mi_imagen"]["name"]);
