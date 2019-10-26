@@ -15,8 +15,15 @@ class CorreoController extends Controller
      */
     public function index()
     {
-        $cartas=Carta::all();
-        return view("correo.index",compact("cartas"));
+        $cartas_todas=Carta::Cartas("Rojo")->paginate(10);
+
+        $cartas_rojas=Carta::Cartas("Rojo")->paginate(10);
+        
+        $cartas_amarillas=Carta::Cartas("Amarillo")->paginate(10);
+        
+        $cartas_verdes=Carta::Cartas("Verde")->paginate(10);
+
+        return view("correo.index",compact("cartas_todas","cartas_rojas","cartas_amarillas","cartas_verdes"));
     }
 
     /**

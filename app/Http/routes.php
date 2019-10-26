@@ -3,6 +3,7 @@
 use App\User;
 use App\Role;
 
+
 Route::group(['middleware' => 'guest'], function () {
    // Route::get('/', "PaginasController@inicio");
    // Route::get('/inicio', "PaginasController@inicio");
