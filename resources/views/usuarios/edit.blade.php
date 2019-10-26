@@ -9,7 +9,11 @@
                   <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                       <li class="nav-item">
+<<<<<<< HEAD
                         <a class="nav-link" href="http://localhost:8000/inicio" >Inicio</a>
+=======
+                        <a class="nav-link" href="http://localhost:8000/AdminInicio" >Inicio</a>
+>>>>>>> 8898a0fbd319b4d830fd0112b96742e3705ffd6e
                       </li>
 
                       <li class="nav-item">
