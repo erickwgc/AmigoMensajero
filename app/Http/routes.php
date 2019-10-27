@@ -5,14 +5,7 @@ use App\Role;
 
 
 Route::group(['middleware' => 'guest'], function () {
-<<<<<<< HEAD
-=======
-
-    Route::get('/roles/asignacion',"RolesController@asignar");
-    Route::post('/roles/asignacion/unir',"RolesController@role_user");
-
->>>>>>> 5843b28536385c59a8036266d7ef45d1912b718c
-   // Route::get('/', "PaginasController@inicio");
+// Route::get('/', "PaginasController@inicio");
    // Route::get('/inicio', "PaginasController@inicio");
 //Route::get('/', "PaginasController@inicio");
 
@@ -36,14 +29,11 @@ Route::group(['middleware' => 'admin'], function () {
 Route::resource('/usuarios',"UsersController");
 Route::get('delete/{id}', 'UsersController@destroy')->name('usuario.delete');
 Route::get('/usuarios/buscador',"UsuariosController@buscador");
-
 Route::resource('/roles',"RolesController");
-
-
-Route::get('/AdminInicio',"AdminController@Inicio");
-Route::resource('/permisos',"PermisosController"); 
+Route::get('/roles/asignacion',"RolesController@asignar");
+Route::post('/roles/asignacion/unir',"RolesController@role_user");
 });
-
+Route::resource('/permisos',"PermisosController"); 
 
 Route::group(['middleware' => 'auth'],function () {
 Route::get('logout', ['as' => 'logout', 'uses' => 'loginController@cerrarSesion']);
