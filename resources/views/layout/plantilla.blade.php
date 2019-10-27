@@ -9,7 +9,7 @@
     #campos{
         width: 30%;
     }
-    .contenido form, table{
+    .contenido table{
         width:50%;
         margin: 0 auto;
         background:#FFFFFF;
@@ -45,11 +45,12 @@ cursor: pointer;
 font-size: 15px;  /* Tamaño del texto de las pestañas */
 line-height: 40px;
 height: 40px;
+width: 150px;
 padding: 0 20px;
 display: block;
 color: #888;  /* Color del texto de las pestañas */
 text-align: center;
-border-radius: 5px 5px 0 0;
+/*border-radius: 5px 5px 0 0;*/
 background: #eee;  /* Fondo de las pestañas */
 margin-right: 5px;
 }
@@ -79,9 +80,9 @@ background: #FFFFFF;  /* Fondo del contenido */
 position: relative;
 width: 100%;
 height: 350px;  /* Alto del contenido */
-padding: 30px;
+padding: 0px 30px;
 z-index: 5;
-border-radius: 0 5px 5px 5px;
+/*border-radius: 0 5px 5px 5px;*/
 }
 
 .content div {
@@ -101,6 +102,7 @@ transition: all linear 0.1s;
 -moz-transition: all ease-out 0.2s 0.1s;
 -o-transition: all ease-out 0.2s 0.1s;
 -ms-transition: all ease-out 0.2s 0.1s;
+
 }
 
 /* FIN CSS PARA LA LLEGADA DE LOS CORREOS */

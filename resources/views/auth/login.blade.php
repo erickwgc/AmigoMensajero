@@ -19,6 +19,18 @@
                       <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8000/boletin">Boletín</a>
 					  </li>
+
+					  @if (Auth::guest())
+                        
+                    @else
+                       <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8000/usuarios">Usuarios</a>
+                      </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
+                      </li>
+                    @endif
+
                     </ul>
                   </div>
                 </nav>
@@ -27,7 +39,8 @@
 		 
 		    <img src="{{asset('assets/img/circuloUsuario.png')}}" style="width: 40%; margin-top: 20px;">
 		 </div>
-		 <div class="panel-body">
+		 <center>
+		 	<div class="panel-body">
 		  
 		      <form method="post" action ="{{ route('login')}}" style="background-color: transparent;" id="campos">
 			       {{ csrf_field()}}
@@ -36,7 +49,7 @@
 			       <div class="form-group {{ $errors->has('usuario')? 'has-error':''}}" style="margin-top: 5px;">
 				  
 				     <label for="usuario"></label>
-				      <img src="{{asset('assets/img/usr.jpg')}}" width="30px" height="30px" style="position: absolute; margin-top: 28px; margin-left: 10px;">
+				      <img src="{{asset('assets/img/usr.jpg')}}" width="30px" height="30px" style="position: absolute; margin-top: 28px; margin-left: -175px;">
 				     <input class="form-control" type="text" name="correo_name"
 							placeholder="Nombre de Usuario o Correo electrónico" style="-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px; text-align: center; text-rendering: auto;">
 					   {!! $errors->first('correo_name','<span class="help-block" style="color:#ffffff">Nombre de Usuario o Correo es requerido</span>')!!}
@@ -45,7 +58,7 @@
 				   <div class="form-group {{ $errors->has('contrasenia')? 'has-error':''}}">
 				  
 				     <label for="contrasenia"></label>
-				     <img src="{{asset('assets/img/candado.jpg')}}" width="30px" height="30px" style="position: absolute; margin-top: 28px; margin-left: 10px;">
+				     <img src="{{asset('assets/img/candado.jpg')}}" width="30px" height="30px" style="position: absolute; margin-top: 28px; margin-left: -175px;">
 				     <input class="form-control" type="password" name="contrasenia"
 							placeholder="Contraseña" style="-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px; text-align: center;">
 
@@ -64,6 +77,8 @@
 		 
 		 </div>
 	   
+		 </center>
+		 
 	
 	
 

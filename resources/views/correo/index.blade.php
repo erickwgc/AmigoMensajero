@@ -31,12 +31,18 @@
                 <h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA CORREO</h2> 
 @endsection
 @section("contenido")
-<form class="form-inline" style="width:18.7%" action="{{ route('usuarios.index') }}"  method="get">
-    <input class="form-control mr-sm-2" id="buscar" name="buscar" type="text" placeholder="Buscar carta" aria-describedby="buscador">
-    <button type="submit" class="btn btn-warning">Buscar</button>
-</form>
 
-<br>    
+    <form id="formularioBuscadorCartas" action="{{ route('usuarios.index') }}"  method="get">
+      <div style="margin-left: 55px; background-color: white; width: 220px;">  
+        <input id="buscar" name="buscar" type="text" placeholder="Buscar carta" aria-describedby="buscador" style="border: 0px;">
+        <button type="submit" style=" background-color: white;">
+          <img id="lupa" src="{{asset('assets/img/lupa.png')}}" height="25px" width="30px"/>
+        </button>
+      </div>
+  </form>  
+
+
+ 
 <div id="contenedor">
     <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked" />
     <label for="tab-1" class="tab-label-1"><b>PRINCIPAL</b></label>
@@ -66,25 +72,37 @@
       </div>
         
         <div class="content-2">
+          
           @foreach($cartas_rojas as $carta)
-             <p> {{$carta->contenido}} &nbsp {{$carta->fecha}} &nbsp {{$carta->hora}}<p>
-             <p>-------------------------------------------<p>      
+          <aside class="cartaCompleta">
+              <img src="{{asset('assets/img/rojo.png')}}" height="5px" width="280px">
+             <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a>
+             <p>-------------------------------------------<p>  
+          </aside>
+            
           @endforeach
           
         </div>
         
         <div class="content-3">
+          
           @foreach($cartas_amarillas as $carta)
-             <p> {{$carta->contenido}} &nbsp {{$carta->fecha}} &nbsp {{$carta->hora}}<p>
+          <aside class="cartaCompleta">  
+            <img src="{{asset('assets/img/amarillo.png')}}" height="5px" width="280px">
+             <aside id="contenidoCarta">{{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}} </a> 
              <p>-------------------------------------------<p>      
+          </aside>
           @endforeach
               
         </div>
        
         <div class="content-4">
           @foreach($cartas_verdes as $carta)
-             <p> {{$carta->contenido}} &nbsp {{$carta->fecha}} &nbsp {{$carta->hora}}<p>
-             <p>-------------------------------------------<p>      
+             <aside class="cartaCompleta">
+              <img src="{{asset('assets/img/verde.png')}}" height="5px" width="280px">
+             <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a>
+             <p>-------------------------------------------<p>  
+          </aside>      
           @endforeach
   
         </div>
