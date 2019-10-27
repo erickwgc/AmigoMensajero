@@ -9,7 +9,6 @@
                   <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                       <li class="nav-item">
-
                         <a class="nav-link" href="http://localhost:8000/inicio" >Inicio</a>
                       </li>
 
@@ -26,58 +25,45 @@
                     </ul>
                   </div>
                 </nav>
-<h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA USUARIOS/editarusuario</h2> 
+                <h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA USUARIOS/crearusuario</h2> 
 @endsection
 @section("contenido")
 
-<form action="/usuarios/{{$usuario->id}}" method="post">
+<form action="/roles/asignacion/unir" method="post">
+{{csrf_field()}}
 <table>
-
+ 
 <tr>
-<td>Nombre: </td>
-<td><input type="text" name="nom_usu" value="{{$usuario->nom_usu}}">
-    {{csrf_field()}}
-</td>
-</tr>
-<input type="hidden" name="_method" value="PUT">
-<tr>
-<td>Apellido: </td>
-<td><input type="text" name="ape_usu" value="{{$usuario->ape_usu}}">
-</td>
-</tr>
-
-<tr>
-<td>Correo: </td>
-<td><input type="text" name="correo" value="{{$usuario->email}}">
-</td>
-</tr>
-
-<tr>
-<td>Fecha nacimiento:: </td>
-<td><input type="text" name="fecha_nac" value="{{$usuario->fecha_nac}}">
-</td>
-</tr>
-
-<tr>
-<td>Telefono: </td>
-<td><input type="text" name="tel_usu" value="{{$usuario->tel_usu}}">
-</td>
-</tr>
-
-<tr>
-<td>Rol</td>
+<td>Usuario</td>
 <td>
-  <select name="role_id">
-    @foreach($roles as $role)
-      <option value="{{$role->id}}">{{$role->nom_rol}}</option>
+  <select name="user_id">
+    @foreach($usuarios as $usuario)
+      <option value="{{$usuario->id}}">{{$usuario->nom_usu}} {{$usuario->ape_usu}} </option>
     @endforeach
   </select>
 </td>
 </tr>
 
-<tr><td colspan="2" align="center">
-<input type="submit" name="enviar" value="Enviar">
-</td></tr>
+<tr>
+<td>Rol</td>
+  <td>
+    @foreach($roles as $role)
+    
+    <label for="rol">
+        <input type="checkbox" id="rol" name="roles[]" value="{{$role->id}}">{{$role->nom_rol}}
+    </label>
+    <br>
+    @endforeach
+  </td>
+</tr>
+  
+<th>
+    <td colspan="2" align="center">
+      <input type="submit" name="enviar" id="enviar" value=""style="background-image: url('{{asset('assets/img/botonRegistrarCuenta.png')}}'); 
+                  background-size: cover; height: 40px; width: 241px;margin-top: 50px; margin-left: 30px;">
+    </td>
+</th>
+
 </table>
 </form>
 

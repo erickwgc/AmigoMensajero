@@ -6,6 +6,9 @@ use App\Role;
 
 Route::group(['middleware' => 'guest'], function () {
 
+    Route::get('/roles/asignacion',"RolesController@asignar");
+    Route::post('/roles/asignacion/unir',"RolesController@role_user");
+
    // Route::get('/', "PaginasController@inicio");
    // Route::get('/inicio', "PaginasController@inicio");
 //Route::get('/', "PaginasController@inicio");
@@ -29,7 +32,10 @@ Route::group(['middleware' => 'admin'], function () {
 Route::resource('/usuarios',"UsersController");
 Route::get('delete/{id}', 'UsersController@destroy')->name('usuario.delete');
 Route::get('/usuarios/buscador',"UsuariosController@buscador");
+
 Route::resource('/roles',"RolesController");
+
+
 Route::get('/AdminInicio',"AdminController@Inicio");
 });
 

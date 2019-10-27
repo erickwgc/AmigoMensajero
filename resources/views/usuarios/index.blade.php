@@ -10,11 +10,7 @@
         <ul class="navbar-nav">
                       
           <li class="nav-item">
-<<<<<<< HEAD
               <a class="nav-link" href="http://localhost:8000/inicio" >Inicio</a>
-=======
-              <a class="nav-link" href="http://localhost:8000/AdminInicio" >Inicio</a>
->>>>>>> 8898a0fbd319b4d830fd0112b96742e3705ffd6e
           </li>
                         
           <li class="nav-item">
@@ -51,10 +47,13 @@
 </div>
 -->
     <br>
-    <input type="submit" value="" onclick = "location='/usuarios/create'" style="background-image: url('{{asset('assets/img/botonCrearCuenta.png')}}'); 
+    <input type="submit" value="" onclick = "location='/usuarios/create'" 
+    style="background-image: url('{{asset('assets/img/botonCrearCuenta.png')}}'); 
                 background-size: contain; height: 40px; width: 141px;" />
+    <br>
+    <input type="submit" value="Asignar rol" onclick = "location='/roles/asignacion'">
+    <br>
     
-
     <table border="1">
         <thead>
             <td>Código</td>
