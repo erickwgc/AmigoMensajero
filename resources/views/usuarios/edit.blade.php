@@ -64,16 +64,6 @@
 </td>
 </tr>
 
-<tr>
-<td>Rol</td>
-<td>
-  <select name="role_id">
-    @foreach($roles as $role)
-      <option value="{{$role->id}}">{{$role->nom_rol}}</option>
-    @endforeach
-  </select>
-</td>
-</tr>
 
 <tr><td colspan="2" align="center">
 <input type="submit" name="enviar" value="Enviar">

@@ -97,14 +97,7 @@ $(document).ready(function(){
 <td><input type="tel" name="tel_usu"  required  title="Solo numeros " >
 </td>
 
-<td id="idCampo">Rol</td>
-<td>
-  <select name="nom_rol">
-    @foreach($roles as $role)
-      <option value="{{$role->nom_rol}}">{{$role->nom_rol}}</option>
-    @endforeach
-  </select>
-</td>
+
 
 
 </tr>
