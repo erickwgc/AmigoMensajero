@@ -5,10 +5,13 @@ use App\Role;
 
 
 Route::group(['middleware' => 'guest'], function () {
+<<<<<<< HEAD
 // Route::get('/', "PaginasController@inicio");
    // Route::get('/inicio', "PaginasController@inicio");
 //Route::get('/', "PaginasController@inicio");
 
+=======
+>>>>>>> 72832a27331822af1016774b1cf46243d435f8b0
 Route::get('/inicio', "PaginasController@inicio");
 Route::get('/boletin', "PaginasController@boletin");
 Route::resource('/carta', "CartasController");
@@ -29,6 +32,11 @@ Route::group(['middleware' => 'admin'], function () {
 Route::resource('/usuarios',"UsersController");
 Route::get('delete/{id}', 'UsersController@destroy')->name('usuario.delete');
 Route::get('/usuarios/buscador',"UsuariosController@buscador");
+<<<<<<< HEAD
+=======
+Route::get('/roles/asignacion',"RolesController@asignar");
+Route::post('/roles/asignacion/unir',"RolesController@role_user");
+>>>>>>> 72832a27331822af1016774b1cf46243d435f8b0
 Route::resource('/roles',"RolesController");
 Route::get('/roles/asignacion',"RolesController@asignar");
 Route::post('/roles/asignacion/unir',"RolesController@role_user");
