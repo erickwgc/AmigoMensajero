@@ -71,6 +71,11 @@
             <td>{{$usuario->email}}</td>
 
             <td>
+              @php
+              foreach($usuario->roles as $role){
+              echo '<p>'. $role->nom_rol . '</p>';
+            }
+              @endphp
             </td>
             
             <td><a href="{{route('usuarios.edit',$usuario->id)}}">Editar</a> 
