@@ -109,7 +109,9 @@ class RolesController extends Controller
     
     public function role_user(Request $request){
         $usuario=User::findOrFail($request->user_id);
-        $usuario->roles()->attach($request->roles);
+        $usuario->roles()->sync($request->roles);
+        
+        return view("roles.index");
         
     }
 }
