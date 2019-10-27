@@ -24,7 +24,17 @@ class UsersController extends Controller
      public function index(Request $request)
     {
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
-        return view("usuarios.index",compact("usuarios"));
+        $rol=array();
+        $roles=array();
+        foreach($usuarios as $usuario){
+            foreach($usuario->roles as $role){
+                $rol[]=$role->nom_rol;
+            }
+            $roles[]=$rol;
+            unset($rol);
+        }
+        
+        return view("usuarios.index",compact("usuarios","roles"));
     }
 
     /**
@@ -91,12 +101,12 @@ class UsersController extends Controller
         $usuario=User::findOrFail($id);
         
         $roles=$usuario->roles;
-        $a="";
+        $roles_user=array();
         foreach($roles as $rol){
-            $a=$rol->nom_rol;
+            $roles_user[]=$rol->nom_rol;
         }
-        echo $a;
-        //return view("usuarios.show",compact("usuario","role"));
+
+        return view("usuarios.show",compact("usuario","roles_user"));
     }
 
     /**

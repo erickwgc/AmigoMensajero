@@ -60,6 +60,7 @@
             <td>Nombre</td>
             <td>Apellido</td>
             <td>Correo</td>
+            <td>Roles</td>
             <td>Modificar</td>
         </thead>
     @foreach($usuarios as $usuario)
@@ -68,6 +69,10 @@
             <td>{{$usuario->nom_usu}}</td>
             <td>{{$usuario->ape_usu}}</td>
             <td>{{$usuario->email}}</td>
+
+            <td>
+            </td>
+            
             <td><a href="{{route('usuarios.edit',$usuario->id)}}">Editar</a> 
                 
                 <!--<form method="post" action="/usuarios/{{$usuario->id}}">
@@ -101,4 +106,4 @@
       })
     </script>
     
-@endsection
+@endsection     
