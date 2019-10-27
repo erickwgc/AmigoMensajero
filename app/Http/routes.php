@@ -31,6 +31,7 @@ Route::get('delete/{id}', 'UsersController@destroy')->name('usuario.delete');
 Route::get('/usuarios/buscador',"UsuariosController@buscador");
 Route::resource('/roles',"RolesController");
 Route::get('/AdminInicio',"AdminController@Inicio");
+Route::resource('/permisos',"PermisosController"); 
 });
 
 
@@ -57,7 +58,5 @@ Route::get('/prueba', function () {
     return  $rol;
 });
 
-//CORREO
 Route::resource('correo', "CorreoController");
-
 
