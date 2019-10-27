@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Role;
-
+use App\User;
 class RolesController extends Controller
 {
     /**
@@ -98,5 +98,18 @@ class RolesController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function asignar(){
+        
+        $usuarios=User::all();
+        $roles=Role::all();
+        return view("roles.asignar",compact("usuarios","roles"));
+    
+    }
+    
+    public function role_user(Request $request){
+        $usuario=User::findOrFail($request->user_id);
+        $usuario->roles()->attach($request->roles);
+        
     }
 }

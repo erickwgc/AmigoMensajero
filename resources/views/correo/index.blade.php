@@ -36,9 +36,7 @@
     <button type="submit" class="btn btn-warning">Buscar</button>
 </form>
 
-
-<br>
-    
+<br>    
 <div id="contenedor">
     <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked" />
     <label for="tab-1" class="tab-label-1"><b>PRINCIPAL</b></label>

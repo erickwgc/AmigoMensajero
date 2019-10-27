@@ -52,10 +52,13 @@
 </div>
 -->
     <br>
-    <input type="submit" value="" onclick = "location='/usuarios/create'" style="background-image: url('{{asset('assets/img/botonCrearCuenta.png')}}'); 
+    <input type="submit" value="" onclick = "location='/usuarios/create'" 
+    style="background-image: url('{{asset('assets/img/botonCrearCuenta.png')}}'); 
                 background-size: contain; height: 40px; width: 141px;" />
+    <br>
+    <input type="submit" value="Asignar rol" onclick = "location='/roles/asignacion'">
+    <br>
     
-
     <table border="1">
         <thead>
             <td>Código</td>
