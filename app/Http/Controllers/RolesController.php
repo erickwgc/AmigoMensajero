@@ -111,7 +111,7 @@ class RolesController extends Controller
         $usuario=User::findOrFail($request->user_id);
         $usuario->roles()->sync($request->roles);
         
-        return view("roles.index");
-        
+        $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
+        return view("usuarios.index",compact("usuarios"));
     }
 }
