@@ -10,7 +10,7 @@
         width: 30%;
     }
     .contenido table{
-        width:50%;
+        width:70%;
         margin: 0 auto;
         background:#FFFFFF;
         }
@@ -22,13 +22,13 @@
         }
         #idCampo{
             color: white;
-
-
+            font-weight: bold;
+            
         }
 /*CSS PARA LA LLEGADA DE LOS CORREOS */
 
 #contenedor {
-    margin: 40px auto;
+    margin: 40px  auto 20px auto;
     width: 750px;  /* Ancho del contenedor */
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -45,7 +45,7 @@ cursor: pointer;
 font-size: 15px;  /* Tamaño del texto de las pestañas */
 line-height: 40px;
 height: 40px;
-width: 150px;
+width: 160px;
 padding: 0 20px;
 display: block;
 color: #888;  /* Color del texto de las pestañas */

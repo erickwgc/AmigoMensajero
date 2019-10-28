@@ -30,41 +30,41 @@
 @section("contenido")
 
 <form action="/roles/asignacion/unir" method="post">
-{{csrf_field()}}
-<table>
- 
-<tr>
-<td>Usuario</td>
-<td>
-  <select name="user_id">
-    @foreach($usuarios as $usuario)
-      <option value="{{$usuario->id}}">{{$usuario->nom_usu}} {{$usuario->ape_usu}} </option>
-    @endforeach
-  </select>
-</td>
-</tr>
+    {{csrf_field()}}
+    <table style="background-color: transparent; margin-top: 30px;">
+     
+        <tr>
+          <td id="idCampo">Usuario</td>
+          <td>
+            <select name="user_id">
+              @foreach($usuarios as $usuario)
+                <option value="{{$usuario->id}}">{{$usuario->nom_usu}} {{$usuario->ape_usu}} </option>
+              @endforeach
+            </select>
+          </td>
+        </tr>
+        
+        <tr>
+        <td id="idCampo">Rol</td>
+            <td>
+              @foreach($roles as $role)
+              
+              <label for="rol" id="idCampo">
+                  <input type="checkbox" id="rol" name="roles[]" value="{{$role->id}}" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px;">&nbsp{{$role->nom_rol}}
+              </label>
+              <br>
+              @endforeach
+            </td>
+        </tr>
+          
+        <th>
+            <td colspan="2" align="center">
+              <input type="submit" name="enviar" id="enviar" value=""style="background-image: url('{{asset('assets/img/botonGuardarAsignacion.png')}}'); 
+                          background-size: cover; height: 40px; width: 241px;margin-top: 50px; margin-left: 30px;">
+            </td>
+        </th>
 
-<tr>
-<td>Rol</td>
-  <td>
-    @foreach($roles as $role)
-    
-    <label for="rol">
-        <input type="checkbox" id="rol" name="roles[]" value="{{$role->id}}">{{$role->nom_rol}}
-    </label>
-    <br>
-    @endforeach
-  </td>
-</tr>
-  
-<th>
-    <td colspan="2" align="center">
-      <input type="submit" name="enviar" id="enviar" value=""style="background-image: url('{{asset('assets/img/botonRegistrarCuenta.png')}}'); 
-                  background-size: cover; height: 40px; width: 241px;margin-top: 50px; margin-left: 30px;">
-    </td>
-</th>
-
-</table>
+    </table>
 </form>
 
 @endsection

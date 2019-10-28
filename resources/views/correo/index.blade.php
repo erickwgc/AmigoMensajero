@@ -40,7 +40,19 @@
         </button>
       </div>
   </form>  
-
+<div class="btn-group" style="position: absolute; right:200px;">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="background-color: #A2F225; font-weight: bold; color: black; border-radius: 0px;">
+                          TEMÁTICA
+                        </button>
+                        <div class="dropdown-menu" style="background-color: white;border-radius: 0px;">
+                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;">Animales</a>
+                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;border-style: solid;">Familia</a>
+                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;border-style: solid;">Viaje</a>
+                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;">Colegio</a>
+                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;">Televisión</a>
+                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;">Amigos</a>
+                        </div>
+                      </div>
 
  
 <div id="contenedor">
@@ -76,7 +88,7 @@
           @foreach($cartas_rojas as $carta)
           <aside class="cartaCompleta">
               <img src="{{asset('assets/img/rojo.png')}}" height="5px" width="280px">
-             <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a>
+             <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a><input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px;">
              <p>-------------------------------------------<p>  
           </aside>
             
@@ -89,7 +101,7 @@
           @foreach($cartas_amarillas as $carta)
           <aside class="cartaCompleta">  
             <img src="{{asset('assets/img/amarillo.png')}}" height="5px" width="280px">
-             <aside id="contenidoCarta">{{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}} </a> 
+             <aside id="contenidoCarta">{{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}} </a> <input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px; ">
              <p>-------------------------------------------<p>      
           </aside>
           @endforeach
@@ -100,7 +112,7 @@
           @foreach($cartas_verdes as $carta)
              <aside class="cartaCompleta">
               <img src="{{asset('assets/img/verde.png')}}" height="5px" width="280px">
-             <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a>
+             <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a><input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px; ">
              <p>-------------------------------------------<p>  
           </aside>      
           @endforeach
@@ -110,6 +122,8 @@
     </div>
 </div>
 
+ <input type="submit" value="" onclick = "location='#'" style="background-image: url('{{asset('assets/img/botonCrearBoletin.png')}}'); 
+              background-size: contain; height: 40px; width: 143px; right: 300px; position: absolute;" />
 @endsection
 
 @endif

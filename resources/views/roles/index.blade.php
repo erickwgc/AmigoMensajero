@@ -32,7 +32,7 @@
 @endsection
 @section("contenido")
     <input type="submit" value="" onclick = "location='/roles/create'" style="background-image: url('{{asset('assets/img/botonCrearRol.png')}}'); 
-                background-size: contain; height: 40px; width: 141px;" />
+                background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px; margin-top: 30px;" />
     <table border="1">
         <thead>
             <td>Código</td>

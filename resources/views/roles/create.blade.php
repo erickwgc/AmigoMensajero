@@ -51,7 +51,7 @@
 <tr>
 <td colspan="2" align="center">
 <input type="submit" name="enviar" value="" style="background-image: url('{{asset('assets/img/botonGuardarRol.png')}}'); 
-                background-size: contain; height: 60px; width: 211px;margin-top: 50px; margin-left: 30px;">
+                background-size: contain; height: 40px; width: 189px;margin-top: 50px; margin-left: 30px;">
 </td>
 </tr>
 </table>
