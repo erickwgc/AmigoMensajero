@@ -5,29 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\Permiso;
 use App\Role;
-use App\User;
-class RolesController extends Controller
+class PermisosController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     * 
-     * 
      */
-    
-    public function __construct()
-    {
-      //  $this->middleware('admin');
-    }   
-
-
     public function index()
     {
-        $roles=Role::all();
-        return view("roles.index",compact("roles"));
+        $permisos=Permiso::all();
+        $roles = Role::all();
+        return view("permisos.index" , compact("permisos","roles"));
     }
 
     /**
@@ -37,7 +28,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view("roles.create");   
+        //
     }
 
     /**
@@ -48,11 +39,7 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $roles=new Role();
-        $roles->nom_rol=$request->nom_rol;
-        $roles->descripcion=$request->descripcion;  
-        $roles->save();
-        return redirect("/roles");
+        //
     }
 
     /**
@@ -100,18 +87,17 @@ class RolesController extends Controller
         //
     }
     public function asignar(){
-        
-        $usuarios=User::all();
-        $roles=Role::all();
-        return view("roles.asignar",compact("usuarios","roles"));
+       $permisos=Permiso::all();
+       $roles = Role::all();
+       return view("permisos.asignar",compact("permisos","roles"));
     
     }
-    
-    public function role_user(Request $request){
-        $usuario=User::findOrFail($request->user_id);
-        $usuario->roles()->sync($request->roles);
-       
-        $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
-        return view("usuarios.index",compact("usuarios"));
+    public function asignado(Request $request)
+    {
+        $rol=Role::findOrFail($request->role_id);
+        $rol->permisos()->sync($request->permisos);
+        
+        //$usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
+        return $rol;
     }
 }

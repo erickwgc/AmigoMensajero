@@ -5,6 +5,7 @@ use App\Role;
 
 
 Route::group(['middleware' => 'guest'], function () {
+
 Route::get('/inicio', "PaginasController@inicio");
 Route::get('/boletin', "PaginasController@boletin");
 Route::resource('/carta', "CartasController");
@@ -28,9 +29,12 @@ Route::get('/usuarios/buscador',"UsuariosController@buscador");
 Route::get('/roles/asignacion',"RolesController@asignar");
 Route::post('/roles/asignacion/unir',"RolesController@role_user");
 Route::resource('/roles',"RolesController");
-
-
-Route::get('/AdminInicio',"AdminController@Inicio");
+Route::get('/permisos/asignacion',"PermisosController@asignar");
+Route::post('/permisos/asignacion/ui',"PermisosController@asignado");
+Route::resource('/permisos',"PermisosController"); 
+//Route::get('/permisos/asignacion',"PermisosController@asignacion");
+//Route::get('/AdminInicio',"AdminController@Inicio");
+  
 });
 
 
@@ -38,23 +42,19 @@ Route::group(['middleware' => 'auth'],function () {
 Route::get('logout', ['as' => 'logout', 'uses' => 'loginController@cerrarSesion']);
 Route::get('/usuarioGeneral',"UsuarioGeneral@Inicio");
 Route::get('/', "PaginasController@inicio");
-  
 
-});
+  });
 
 Route::get('/prueba', function () {
-    $user = Auth::user();
-   // $usuario = User::find($user_id->id)->roles()->where('nom_rol','administrador')->first();  
-   // $id =  $usuario->pivot->role_id;
-   // $rol = Role::find($id)->nom_rol;
+    $user = Auth::user()->roles;
+    //$roles = $user->permisos;    
+    foreach(Auth::user()->roles as $role){
+       foreach($role->permisos as $permiso){
+          echo $permiso->nom_per;
+       } 
+    } 
     
-    //$user = App\User::find(1);
-    Auth::user()->roles; 
-    foreach ($user->roles as $role) {
-        $rol  = $role->nom_rol ;
-    }
-   
-    return  $rol;
+   // return  $user;
 });
 
 //CORREO

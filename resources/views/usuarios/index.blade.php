@@ -68,17 +68,29 @@
             <td>{{$usuario->nom_usu}}</td>
             <td>{{$usuario->ape_usu}}</td>
             <td>{{$usuario->email}}</td>
-            <td><a href="{{route('usuarios.edit',$usuario->id)}}">Editar</a> 
+            
+           
+            <td>
+                @foreach(Auth::user()->roles as $role)
                 
-                <!--<form method="post" action="/usuarios/{{$usuario->id}}">
-                    {{csrf_field()}}
-                    <input type="hidden" name="_method" Value="DELETE">
-                    <input type="submit" value="Eliminar">
-                </form>
-                -->
-                <a href="{{route('usuario.delete', $usuario->id)}}">Eliminar</a>
-                Permisos
-            </td>
+                    @foreach($role->permisos as $permiso)
+                    @if($permiso->nom_per  == 'editar usuario')
+                        <a href="{{route('usuarios.edit',$usuario->id)}}">Editar</a> 
+                    @endif
+                    <!--<form method="post" action="/usuarios/{{$usuario->id}}">
+                        {{csrf_field()}}
+                        <input type="hidden" name="_method" Value="DELETE">
+                        <input type="submit" value="Eliminar">
+                    </form>
+                    -->
+                    @if($permiso->nom_per  == 'eliminar usuario')
+                        <a href="{{route('usuario.delete', $usuario->id)}}">Eliminar</a>
+                    @endif
+                    
+                    @endforeach
+                
+                @endforeach
+             </td>
              
         </tr>
     @endforeach

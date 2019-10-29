@@ -8,8 +8,8 @@ class Permiso extends Model
 {
     protected $fillable = ["nom_permiso","descripcion"];
     
-    public function usuarios(){
-        //return $this->belongsToMany('App\User','role_user','role_id','user_id');
+    public function roles(){
+        //return $this->belongsToMany('App\Role','role_user','user_id','role_id');
         return $this->belongsToMany('App\Role');
 
     }
