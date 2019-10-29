@@ -11,6 +11,7 @@ use Illuminate\Contracts\Auth\Guard;
 use App\Http\Requests;
 use App\User;
 use App\Role;
+use App\Notificacion;
 use Validator;
 class loginController extends Controller
 {
@@ -57,6 +58,7 @@ class loginController extends Controller
      */
     public function store(Request $request)
     {
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $this->validate($request,[
 
             'correo_name'=>'required|string|min:3',
@@ -74,10 +76,10 @@ class loginController extends Controller
                 $rol  = $role->nom_rol ;
             }
             if( $rol = 'administrador'){
-            return view('welcome',compact("user","rol"));
+            return view('welcome',compact("user","rol","notificaciones"));
             } 
             if($rol != 'administrador'){
-            return view('usuarioGeneral.perfil' , compact("user","rol"));
+            return view('usuarioGeneral.perfil' , compact("user","rol","notificaciones"));
             } 
           
         } else {

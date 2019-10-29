@@ -37,6 +37,9 @@ Route::group(['middleware' => 'auth'],function () {
    Route::get('/inicio', "PaginasController@inicio");
 });
 
+//notificacion
+Route::get('/ir_notificacion','CorreoController@notificacion');
+
 
 
 

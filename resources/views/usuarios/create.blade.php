@@ -50,7 +50,7 @@ $(document).ready(function(){
 </td>
 
 <td id="idCampo">Usuario: </td>
-<td><input type="text" name="usuario" pattern="^([a-z]+[0-9]{0,5}){5,12}$" required title="solo letras minusculas y con un numero opcionalmente de hasta 5 digitos : Tamaño 5-12" >
+<td><input type="text" name="usuario" pattern="^([a-z]+[0-9]{0,5}){2,20}$" required title="solo letras minusculas y con un numero opcionalmente de hasta 5 digitos : Tamaño 2-20" >
 </td>
 
 </tr>
@@ -61,7 +61,7 @@ $(document).ready(function(){
 
 <td id="idCampo">Contraseña: </td>
 <td><input type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña"
-                  pattern="[A-Za-z0-9!?-]{8,12}" required title="letras Mayusculas,minusculas y caracteres  !?-. Tamaño  8-12" >
+                  pattern="[A-Za-z0-9!?-]{6,20}" required title="letras Mayusculas,minusculas y caracteres  !?-. Tamaño  6-20" >
 </td>
 
 

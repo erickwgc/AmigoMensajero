@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Role;
+use App\Notificacion;
 use App\User;
 class RolesController extends Controller
 {
@@ -26,8 +27,9 @@ class RolesController extends Controller
 
     public function index()
     {
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
         $roles=Role::all();
-        return view("roles.index",compact("roles"));
+        return view("roles.index",compact("roles","notificaciones"));
     }
 
     /**
@@ -37,7 +39,8 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view("roles.create");   
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
+        return view("roles.create","notificaciones");   
     }
 
     /**
@@ -63,8 +66,9 @@ class RolesController extends Controller
      */
     public function show($id)
     {
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $rol = Role::findOrFail($id);
-        return view("roles.show",compact("rol"));
+        return view("roles.show",compact("rol","notificaciones"));
     }
 
     /**
@@ -101,18 +105,20 @@ class RolesController extends Controller
         //
     }
     public function asignar(){
-        
+
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $usuarios=User::all();
         $roles=Role::all();
-        return view("roles.asignar",compact("usuarios","roles"));
+        return view("roles.asignar",compact("usuarios","roles","notificaciones"));
     
     }
     
     public function role_user(Request $request){
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $usuario=User::findOrFail($request->user_id);
         $usuario->roles()->sync($request->roles);
        
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
-        return view("usuarios.index",compact("usuarios"));
+        return view("usuarios.index",compact("usuarios","notificaciones"));
     }
 }

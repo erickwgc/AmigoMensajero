@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Carta;
+use App\Notificacion;
 class CorreoController extends Controller
 {
     /**
@@ -13,17 +14,41 @@ class CorreoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
+
+         $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $cartas_todas=Carta::Cartas("Rojo")->paginate(10);
 
         $cartas_rojas=Carta::Cartas("Rojo")->paginate(10);
+
         
         $cartas_amarillas=Carta::Cartas("Amarillo")->paginate(10);
         
         $cartas_verdes=Carta::Cartas("Verde")->paginate(10);
 
-        return view("correo.index",compact("cartas_todas","cartas_rojas","cartas_amarillas","cartas_verdes"));
+         
+
+        return view("correo.index",compact("cartas_todas","cartas_rojas","cartas_amarillas","cartas_verdes","notificaciones"));
+    }
+
+
+    public function notificacion()
+    {
+         $notificaciones =Notificacion::Notificacion("0")->paginate(10);
+        foreach($notificaciones as $notificacion){
+                               
+              $id=$notificacion->id;
+              Notificacion::find($id)->update(['leido'=>1]);
+
+        }  
+
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
+        $cartas_rojas=Carta::Cartas("Rojo")->paginate(10);
+
+        return view("correo.notificacion",compact("notificaciones","cartas_rojas"));
+       
     }
 
     /**

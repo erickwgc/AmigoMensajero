@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Permiso;
 use App\Role;
+use App\Notificacion;
 class PermisosController extends Controller
 {
     /**
@@ -16,9 +17,10 @@ class PermisosController extends Controller
      */
     public function index()
     {
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $permisos=Permiso::all();
         $roles = Role::all();
-        return view("permisos.index" , compact("permisos","roles"));
+        return view("permisos.index" , compact("permisos","roles","notificaciones"));
     }
 
     /**
@@ -86,16 +88,18 @@ class PermisosController extends Controller
         //
     }
     public function asignar(){
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
        $permisos=Permiso::all();
        $roles = Role::all();
-       return view("permisos.asignar",compact("permisos","roles"));
+       return view("permisos.asignar",compact("permisos","roles","notificaciones"));
     
     }
     public function asignado(Request $request)
     {
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $rol=Role::findOrFail($request->role_id);
         $rol->permisos()->sync($request->permisos);
         
-        return view("permisos.index");
+        return view("permisos.index",compact("notificaciones"));
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\User;
 
 use App\Role;
+use App\Notificacion;
 
 class UsersController extends Controller
 {
@@ -23,6 +24,7 @@ class UsersController extends Controller
    
      public function index(Request $request)
     {
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
         $rol=array();
         $roles=array();
@@ -34,7 +36,7 @@ class UsersController extends Controller
             unset($rol);
         }
         
-        return view("usuarios.index",compact("usuarios","roles"));
+        return view("usuarios.index",compact("usuarios","roles","notificaciones"));
     }
 
     /**
@@ -44,8 +46,9 @@ class UsersController extends Controller
      */
     public function create()
     {
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $roles=Role::all();
-        return view("usuarios.create",compact("roles"));
+        return view("usuarios.create",compact("roles","notificaciones"));
     }
 
     /**
@@ -97,7 +100,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $usuario=User::findOrFail($id);
         
         $roles=$usuario->roles;
@@ -106,7 +109,7 @@ class UsersController extends Controller
             $roles_user[]=$rol->nom_rol;
         }
 
-        return view("usuarios.show",compact("usuario","roles_user"));
+        return view("usuarios.show",compact("usuario","roles_user","notificaciones"));
     }
 
     /**
@@ -117,9 +120,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $roles=Role::all();
         $usuario=User::findOrFail($id);
-        return view("usuarios.edit",compact("usuario","roles"));
+        return view("usuarios.edit",compact("usuario","roles","notificaciones"));
     }
 
     /**
@@ -133,7 +137,7 @@ class UsersController extends Controller
     {   
         //$usuario=User::findOrFail($id);
         //$usuario->update(($request->all()));
-        
+       
          User::where('id',$id)->update([
         'nom_usu'=>$request->nom_usu,
         'ape_usu'=>$request->ape_usu,
@@ -161,7 +165,8 @@ class UsersController extends Controller
         return redirect("/usuarios");
     }
     public function buscador(Request $request){
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
-        return view("usuarios.index",compact("usuarios"));
+        return view("usuarios.index",compact("usuarios","notificaciones"));
     }
 }

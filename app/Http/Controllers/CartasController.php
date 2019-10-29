@@ -10,6 +10,7 @@ use Validator;
 use App\Carta;
 use App\Imagen;
 use Carbon\Carbon;
+use App\Notificacion;
 
 class CartasController extends Controller
 {
@@ -20,6 +21,7 @@ class CartasController extends Controller
      */
     public function index()
     {
+
         return view('carta', compact("carta"));
     }
 
@@ -41,6 +43,10 @@ class CartasController extends Controller
      */
     public function store(Request $request)
     {
+
+        $notificacion= new Notificacion();
+        $notificacion->contenido=$request->contenido;
+
         $carta= new Carta();
         $carta->autor=$request->campo_nombre;
         $carta->contenido=$request->contenido;
@@ -88,6 +94,9 @@ class CartasController extends Controller
     //FIN
         $carta->color_car=$resultado;
         $carta->save();
+        $notificacion->leido=0;
+        $notificacion->color=$resultado;
+        $notificacion->save();
         
         if($name = $_FILES["mi_imagen"]["name"][0] != null ){
             $total = count($_FILES["mi_imagen"]["name"]);

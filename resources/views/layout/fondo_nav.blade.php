@@ -53,7 +53,40 @@
                         <div class="dropdown-menu" style="background-color: #C0FFA4;border-radius: 0px; ">
                           <a class="dropdown-item" href="#" style="font-size: 15px;color: black;">Configuración de mi Cuenta</a>
                           <a class="dropdown-item" href="#" style="font-size: 15px;color: black;border-style: solid;">Información Personal</a>
-                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;border-style: solid;">Notificaciones</a>
+                          <a class="dropdown-item" href="/ir_notificacion" style="font-size: 15px;color: black;border-style: solid;">Notificaciones
+                        @php
+                            $conta=0;
+                            foreach($notificaciones as $notificacion){
+                               
+                               $k=$notificacion->leido;
+                               $color=$notificacion->color;
+                               
+                               if(($k=="0")&&($color=="Rojo"))
+                               {
+                                    $conta++;
+                               }
+
+                            }
+
+                           if($conta==0)
+                           {
+                              
+                             
+                           }else
+                           {
+                              echo("<p color:red;>$conta</p>");  
+                           }
+
+                         
+                        
+
+                       @endphp
+          
+                       
+
+                              
+                               
+                          </a>
                           <div class="dropdown-divider" style="border-style: solid;"></div>
                           <a class="dropdown-item" href="http://localhost:8000/logout" style="font-size: 15px;color: black;">Cerrar Sesión</a>
                         </div>
