@@ -7,6 +7,6 @@
     <h1>{{$usuario->email}}</h1>
     <h1>{{$usuario->fecha_nac}}</h1>
     <h1>{{$usuario->tel_usu}}</h1>
-    <h1>{{$role}}</h1>
+    
     
 @endsection

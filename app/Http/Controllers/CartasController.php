@@ -41,42 +41,36 @@ class CartasController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array( 
-
-        );
         $carta= new Carta();
         $carta->autor=$request->campo_nombre;
         $carta->contenido=$request->contenido;
         $carta->fecha=Carbon::now()->format('Y-m-d');
-        
         $carta->hora=Carbon::now()->format('H:i:s');
                      
-
-    //CLASIFICAR CARTA 
-     $contenido=strtoupper($request->contenido);
-     $palabra_texto=explode(" ", $contenido);
+ 
+        $contenido=strtoupper($request->contenido);
+        $palabra_texto=explode(" ", $contenido);
+        $array_peligrosas = array("MATAR", "MUERTE", "MORIRME", "SANGRE","MATANZA","ASESINAR","APUÃ‘ALAR");
+        $array_correctas = array("ESTUDIO","LEER","CANTAR","REZAR","AGRADECER","DIOS","AMOR");
      
-     $array_peligrosas = array("MATAR", "MUERTE", "MORIRME", "SANGRE","MATANZA","ASESINAR","APUÃ‘ALAR");
-     $array_correctas = array("ESTUDIO","LEER","CANTAR","REZAR","AGRADECER","DIOS","AMOR");
-     
-     //$array_normales = array("familia","casa","padre","madre","hermanos","navidad");
-     $resultado="";
+        //$array_normales = array("familia","casa","padre","madre","hermanos","navidad");
+        $resultado="";
 
-     for($i=0;$i<count($palabra_texto);$i++){
+        for($i=0;$i<count($palabra_texto);$i++){
      
            $palabra=$palabra_texto[$i];
      
-         for($j=0;$j<count($array_peligrosas);$j++){
+            for($j=0;$j<count($array_peligrosas);$j++){
         
-            if($palabra==$array_peligrosas[$j]){
+                if($palabra==$array_peligrosas[$j]){
         
-                 $resultado="Rojo";
-                 $j=count($array_peligrosas);
-                 $i=count($palabra_texto);      
-             }
-         }
+                    $resultado="Rojo";
+                    $j=count($array_peligrosas);
+                    $i=count($palabra_texto);      
+                }
+            }
         
-        if($resultado==""){
+            if($resultado==""){
             for($j=0;$j<count($array_correctas);$j++){
                 if($palabra==$array_correctas[$j]){
                     $resultado="Verde";
@@ -87,13 +81,13 @@ class CartasController extends Controller
         } 
      }
      
-     if($resultado==""){
-        $resultado="Amarillo";
-     }
+        if($resultado==""){
+            $resultado="Amarillo";
+        }
 
-//FIN
-    $carta->color_car=$resultado;
-    $carta->save();
+    //FIN
+        $carta->color_car=$resultado;
+        $carta->save();
         
         if($name = $_FILES["mi_imagen"]["name"][0] != null ){
             $total = count($_FILES["mi_imagen"]["name"]);

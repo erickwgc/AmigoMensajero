@@ -50,7 +50,6 @@ class PermisosController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -97,7 +96,6 @@ class PermisosController extends Controller
         $rol=Role::findOrFail($request->role_id);
         $rol->permisos()->sync($request->permisos);
         
-        //$usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
-        return $rol;
+        return view("permisos.index");
     }
 }

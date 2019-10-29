@@ -24,6 +24,9 @@
           <li class="nav-item ">
               <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="http://localhost:8000/permisos">Permiso</a>
+          </li>
                     
         </ul>
       </div>
@@ -33,10 +36,21 @@
 
 @endsection
 @section("contenido")
+<!--
 <form class="form-inline" style="width:18.7%" action="{{ route('usuarios.index') }}"  method="get">
     <input class="form-control mr-sm-2" id="buscar" name="buscar" type="text" placeholder="Buscar usuario" aria-describedby="buscador">
     <button type="submit" class="btn btn-warning">Buscar</button>
-</form>
+</form>   -->
+  <form id="formularioBuscadorCartas" action="{{ route('usuarios.index') }}"  method="get">
+      <div style="position: absolute;right: 200px; background-color: white; width: 220px;">  
+        <input id="buscar" name="buscar" type="text" placeholder="Buscar usuario" aria-describedby="buscador" style="border: 0px;">
+        <button type="submit" style=" background-color: white;">
+          <img id="lupa" src="{{asset('assets/img/lupa.png')}}" height="25px" width="30px"/>
+        </button>
+      </div>
+  </form>  
+
+
 
 <!--
 <div class="col-8" style="width:30%">
@@ -49,9 +63,10 @@
     <br>
     <input type="submit" value="" onclick = "location='/usuarios/create'" 
     style="background-image: url('{{asset('assets/img/botonCrearCuenta.png')}}'); 
-                background-size: contain; height: 40px; width: 141px;" />
-    <br>
-    <input type="submit" value="Asignar rol" onclick = "location='/roles/asignacion'">
+                background-size: contain; height: 40px; width: 143px; margin-top: 30px;margin-left: 200px; margin-bottom: 10px;" />
+   
+    <input type="submit" value="" onclick = "location='/roles/asignacion'" style="background-image: url('{{asset('assets/img/botonAsignarRoles.png')}}'); 
+                background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px;">
     <br>
     
     <table border="1">
@@ -60,40 +75,45 @@
             <td>Nombre</td>
             <td>Apellido</td>
             <td>Correo</td>
+            <td>Roles</td>
             <td>Modificar</td>
         </thead>
     @foreach($usuarios as $usuario)
         <tr>
-            <td><a href="{{route('usuarios.show',$usuario->id)}}">{{$usuario->id}}</a></td>
+            <td>{{$usuario->id}}</td>
             <td>{{$usuario->nom_usu}}</td>
             <td>{{$usuario->ape_usu}}</td>
             <td>{{$usuario->email}}</td>
+
+            <td>
+              @php
+              foreach($usuario->roles as $role){
+              echo '<p>'. $role->nom_rol . '</p>';
+               }
+              @endphp
+            </td>
             
-           
             <td>
                 @foreach(Auth::user()->roles as $role)
-                
-                    @foreach($role->permisos as $permiso)
+                  @foreach($role->permisos as $permiso)
                     @if($permiso->nom_per  == 'editar usuario')
                         <a href="{{route('usuarios.edit',$usuario->id)}}">Editar</a> 
                     @endif
-                    <!--<form method="post" action="/usuarios/{{$usuario->id}}">
-                        {{csrf_field()}}
-                        <input type="hidden" name="_method" Value="DELETE">
-                        <input type="submit" value="Eliminar">
-                    </form>
-                    -->
+                  
                     @if($permiso->nom_per  == 'eliminar usuario')
                         <a href="{{route('usuario.delete', $usuario->id)}}">Eliminar</a>
                     @endif
-                    
+                    @if($permiso->nom_per  == 'ver usuario')
+                    <a href="{{route('usuarios.show',$usuario->id)}}">Ver </a>
+                    @endif  
+
                     @endforeach
                 
                 @endforeach
              </td>
              
-        </tr>
-    @endforeach
+            </tr>
+      @endforeach
 
     {{!! $usuarios->links() !!}}    
 
@@ -113,4 +133,4 @@
       })
     </script>
     
-@endsection
+@endsection     

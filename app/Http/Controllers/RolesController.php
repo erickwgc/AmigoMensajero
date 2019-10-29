@@ -63,7 +63,8 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        //
+        $rol = Role::findOrFail($id);
+        return view("roles.show",compact("rol"));
     }
 
     /**
@@ -74,7 +75,7 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

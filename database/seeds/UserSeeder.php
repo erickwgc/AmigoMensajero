@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
         $user->tel_usu = '76483633';
         $user->username = 'admin';
 
-        $user->password = crypt('12345');
+        $user->password = crypt('12345','');
         
         $user->save();
         $user->roles()->attach($rol);
