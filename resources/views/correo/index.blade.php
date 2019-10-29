@@ -101,7 +101,7 @@
           @foreach($cartas_amarillas as $carta)
           <aside class="cartaCompleta">  
             <img src="{{asset('assets/img/amarillo.png')}}" height="5px" width="280px">
-             <aside id="contenidoCarta">{{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}} </a> <input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px; ">
+             <aside id="contenidoCarta" onclick="alert('LeyendoCarta');">{{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}} </a> <input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 40px; width: 20px; height: 20px; ">
              <p>-------------------------------------------<p>      
           </aside>
           @endforeach
