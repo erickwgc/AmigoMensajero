@@ -1,3 +1,4 @@
+
 @extends("../layout/plantilla")
 @section("cabecera")
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(255,192,0);">
@@ -20,40 +21,40 @@
                       <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8000/usuarios">Usuarios</a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
+                      </li>
                       
                       <li class="nav-item active">
-                        <a class="nav-link" href="http://localhost:8000/roles" style="text-decoration: underline;">Roles</a>
+                        <a class="nav-link" href="http://localhost:8000/permisos" style="text-decoration: underline;">Permisos</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/permisos">Usuarios</a>
-                      </li>
-                      
                     
                     </ul>
                   </div>
                 </nav>
-                <h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA ROLES</h2> 
+                <h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA PERMISOS</h2> 
 @endsection
 @section("contenido")
-    <input type="submit" value="" onclick = "location='/roles/create'" style="background-image: url('{{asset('assets/img/botonCrearRol.png')}}'); 
-                background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px; margin-top: 30px;" />
-    <table border="1">
-        <thead>
-            <td>Código</td>
-            <td>Nombre de Rol</td>
-            <td>Permisos</td>
-            <td>Modificar</td>
-        </thead>
-    @foreach($roles as $role)
-        <tr>
-            <td>{{$role->id}}</td>
-            <td>{{$role->nom_rol}}</td>
-            <td>LeerCartas     Notificaciones      Publicación </td>
-            <td> 
-                <a href="{{route('roles.show',$role->id)}}">Ver</a> 
-            </td>
-            
-        </tr>
+<input type="submit" value="Asignar rol" onclick = "location='/permisos/asignacion'">
+<table border="1">
+<thead>
+<td>Código</td>
+<td>nombre_rol</td>
+<td>Permisos</td>
+<td>Modificar</td>
+</thead>
+@foreach($roles  as $rol)
+
+    @foreach($rol->permisos as $permiso) 
+    <tr>
+    <td>{{$permiso->id}}</td>
+    <td>{{$rol->nom_rol}}</td>
+    <td>{{$permiso->nom_per}}</td>
+    <td> edit</td>
+  </tr>
     @endforeach
-    </table>
+
+</tr>
+@endforeach
+</table>
 @endsection

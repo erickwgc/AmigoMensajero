@@ -25,6 +25,9 @@
                       <li class="nav-item ">
                         <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
                       </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/pemisos">Permisos</a>
+                      </li>
                     </ul>
                   </div>
                 </nav>

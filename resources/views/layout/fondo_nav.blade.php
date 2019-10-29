@@ -20,10 +20,10 @@
 		
 		
         <script type="text/javascript" src="{!! asset('assets/js/bootstrap.js') !!}"></script>
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <style type="text/css">
             body{
                 background-image: url('{{asset('assets/img/fondo.png')}}');
@@ -48,7 +48,7 @@
 
                     <div class="btn-group" style="margin-left:350px;">
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="background-color: #C0FFA4; font-weight: bold; color: black; border-radius: 0px;">
-                          NombreUsuario
+                          {{Auth::user()->nom_usu}}
                         </button>
                         <div class="dropdown-menu" style="background-color: #C0FFA4;border-radius: 0px; ">
                           <a class="dropdown-item" href="#" style="font-size: 15px;color: black;">Configuración de mi Cuenta</a>

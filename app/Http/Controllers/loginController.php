@@ -68,9 +68,9 @@ class loginController extends Controller
 
         
         if (Auth::attempt($whitMail) || Auth::attempt($whitUser)) {
-            $user = Auth::user();
-            $rol = "";
-            foreach ($user->roles as $role) {
+                $user = Auth::user();
+                $rol = "";
+                foreach ($user->roles as $role) {
                 $rol  = $role->nom_rol ;
             }
             if( $rol = 'administrador'){
@@ -91,10 +91,7 @@ class loginController extends Controller
 
      public function cerrarSesion()
      {
-            //$user = Auth::user();
-           //Auth::logout();
             Session::flush();
-    
             return redirect('/');
     }
 

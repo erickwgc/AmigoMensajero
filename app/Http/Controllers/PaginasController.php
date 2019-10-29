@@ -27,13 +27,13 @@ class PaginasController extends Controller
         }
     
 
-    public function carta(){
-    	return view("carta");
-    }
+        public function carta(){
+    	    return view("carta");
+        }
 
-    public function boletin(){
-    	return view("boletin");
-    }
+        public function boletin(){
+    	    return view("boletin");
+        }
 
 
 }
