@@ -44,7 +44,8 @@
 
 <tr>
 <td id="idCampo">Descripcion del rol: </td>
-<td><input type="text" name="descripcion" required pattern="[A-Za-z0-9]{2,200}" title="Letras y numeros tamaño: 2-200 caracteres">
+<td><!--<input type="text" name="descripcion" required pattern="[A-Za-z0-9]{2,200}" title="Letras y numeros tamaño: 2-200 caracteres">-->
+<input type="text" name="descripcion" required pattern="[A-Za-z0-9]{2,200}" title="Letras y numeros tamaño: 2-200 caracteres">
 </td>
 </tr>
 

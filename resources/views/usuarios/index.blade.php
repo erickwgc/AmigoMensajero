@@ -66,7 +66,7 @@
                 background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px;">
     <br>
     
-    <table border="1">
+    <table border="1" class="table table-hover">
         <thead>
             <td>Código</td>
             <td>Nombre</td>

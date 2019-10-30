@@ -24,15 +24,6 @@ class UsersController extends Controller
      public function index(Request $request)
     {
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
-        $rol=array();
-        $roles=array();
-        foreach($usuarios as $usuario){
-            foreach($usuario->roles as $role){
-                $rol[]=$role->nom_rol;
-            }
-            $roles[]=$rol;
-            unset($rol);
-        }
         
         return view("usuarios.index",compact("usuarios","roles"));
     }
