@@ -30,34 +30,38 @@
         </ul>
       </div>
 </nav>
-      <div class="" style="color: white; font-weight: bold;">
+        <form action="/informacionPersonal/editar" method="post"> 
+        {{csrf_field()}}   
+        <div class="" style="color: white; font-weight: bold;">
               <div style="width: 50%;">
+                  <input type="text" name="id" value="{{Auth::user()->id}}" hidden>
                    
                    <div style="margin-top: 20px; text-align: center;">
                       <label style="margin-right: 37px;">Nombre</label>
-                      <input type="text" name="username">
+                      <input type="text" name="nom_usu" value="{{Auth::user()->nom_usu}}">
                    </div>
                    <div style="margin-top: 20px; text-align: center;">
                       <label style="margin-right: 37px;">Apellido</label>
-                      <input type="text" name="username">
+                      <input type="text" name="ape_usu" value="{{auth()->user()->ape_usu}}">
                    </div>
                    <div style="margin-top: 20px; text-align: center;">
                       <label style="margin-right: 47px;">Correo</label>
-                      <input type="text" name="username">
+                      <input type="text" name="email" value="{{auth()->user()->email}}">
                    </div>
                    <div style="margin-top: 20px; text-align: center;">
                       <label>Fecha de Nac.</label>
-                      <input type="text" name="username">
+                      <input type="text" name="fecha_nac" value="{{Auth::user()->fecha_nac}}">
                    </div>
                    <div style="margin-top: 20px; text-align: center;">
                       <label style="margin-right: 35px;">Telefono</label>
-                      <input type="text" name="username">
+                      <input type="text" name="tel_usu" value="{{Auth::user()->tel_usu}}">
                    </div>
+                   <!--
                    <div style="margin-top: 20px; text-align: center;">
                       <label style="margin-right: 35px;">Dirección</label>
-                      <input type="text" name="username">
+                      <input type="text" name="username" value="{{Auth::user()->nom_usu}}">
                    </div>
-                
+-->
               </div>
                
                 <div>
@@ -66,4 +70,7 @@
                 </div>
               
         </div>
+        </form>
+
+
 @endsection

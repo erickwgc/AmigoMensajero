@@ -103,7 +103,7 @@ input:checked + .slider:before {
                    </div>
                    <div style="margin-top: 20px; text-align: center;">
                       <label>Nombre de Usuario</label>
-                      <input type="text" name="username">
+                      <input type="text" name="username" value="{{Auth::user()->username}}">
                    </div>
                    <div style="text-align: center;">
                       <label style="margin-right: 63px;">Contraseña</label>
