@@ -37,7 +37,7 @@
           <td id="idCampo">Usuario</td>
           <td>
             <select name="user_id">
-                <option value="vacio">seleccionar</option>
+                <option value="vacio">    </option>
               @foreach($usuarios as $usuario)
                 <option value="{{$usuario->id}}">{{$usuario->nom_usu}} {{$usuario->ape_usu}} </option>
               @endforeach

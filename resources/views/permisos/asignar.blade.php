@@ -38,14 +38,15 @@
     <tr>
     <td>Rol</td>
     <td>
-      <select name="role_id">
+      <select name="role_id" >
+          <option value="vacio">    </option>
         @foreach($roles as $rol)
           <option value="{{$rol->id}}">{{$rol->nom_rol}} </option>
         @endforeach
       </select>
     </td>
     </tr>
-     <div  style="border:2px solid #ccc; overflow-y: scroll width:100px; height: 100px">
+     
     <tr>
     <td>Permisos</td>
       <td>
@@ -58,7 +59,7 @@
         @endforeach
       </td>
     </tr>
-     </div>
+     
     <th>
         <td colspan="2" align="center">
           <input type="submit" name="enviar" id="enviar" value="ASIGNAR"style= background-size: cover; height: 40px; width: 241px;margin-top: 50px; margin-left: 30px;>

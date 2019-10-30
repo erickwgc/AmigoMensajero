@@ -35,7 +35,7 @@
 @endsection
 @section("contenido")
 
-    <form id="formularioBuscadorCartas" action="{{ route('usuarios.index') }}"  method="get">
+    <form id="formularioBuscadorCartas" action="{{ route('correo.index') }}"  method="get">
       <div style="margin-left: 55px; background-color: white; width: 220px;">  
         <input id="buscar" name="buscar" type="text" placeholder="Buscar carta" aria-describedby="buscador" style="border: 0px;">
         <button type="submit" style=" background-color: white;">
@@ -74,12 +74,23 @@
     <div class="content">
         
         <div class="content-1">
-          
-          @foreach($cartas_todas as $carta)
-              <p> {{$carta->contenido}} &nbsp {{$carta->fecha}} &nbsp {{$carta->hora}}<p>
-              <p>-------------------------------------------<p> 
-          @endforeach
-          
+          @if(count($cartas_buscador) == 0)
+            @foreach($cartas_todas as $carta)
+              <aside class="cartaCompleta">
+              <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a><input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px;">
+              <p>-------------------------------------------<p>  
+            </aside>
+              
+            @endforeach
+            
+          @else
+            @foreach($cartas_buscador as $carta)
+              <aside class="cartaCompleta">
+              <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a><input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px;">
+              <p>-------------------------------------------<p>  
+            </aside>
+            @endforeach
+          @endif
         </table>
 <!--
           {{!! $cartas_verdes->links() !!}}    

@@ -37,9 +37,10 @@
 @section("contenido")
     <input type="submit" value="" onclick = "location='/roles/create'" style="background-image: url('{{asset('assets/img/botonCrearRol.png')}}'); 
                 background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px; margin-top: 30px;" />
-    <input type="submit" value="Asignar rol" onclick = "location='/permisos/asignacion'">
+
+    <input type="submit" value="Asignar Permiso" onclick = "location='/permisos/asignacion'">
     
-    <table border="1">
+    <table border="1" class="table table-hover">
         <thead>
             <td>Código</td>
             <td>Nombre de Rol</td>
@@ -57,10 +58,9 @@
                  @endforeach
               </td>
             <td> 
-                <a href="{{route('roles.show',$role->id)}}">Ver</a> 
-                <a href="#">Actualizar</a>
                 <a href="#">Eliminar</a>
-            
+                <a href="#">Editar</a>
+                <a href="{{route('roles.show',$role->id)}}">Ver</a> 
             </td>
             
         </tr>

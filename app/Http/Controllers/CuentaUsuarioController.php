@@ -22,7 +22,32 @@ class CuentaUsuarioController extends Controller
     {
         return view('cuentaUsuario.notificaciones');
     }
-    
+
+    public function eliminar(Request $request)
+    {
+        
+        $id=$request->id;
+        $usuario=User::findOrFail($id);
+        $usuario->delete();
+        return redirect("/login");
+    }
+
+    public function actualizar(Request $request)
+    {   
+        $id=$request->id;
+        
+        User::where('id',$id)->update([
+        'username'=>$request->username,
+        'password'=>$request->password,
+         ]);
+         if( $rol = 'administrador'){
+            return view('welcome',compact("user","rol"));
+            } 
+            if($rol != 'administrador'){
+            return view('usuarioGeneral.perfil' , compact("user","rol"));
+            } 
+    }
+
     public function update(Request $request)
     {   
         $id=$request->id;

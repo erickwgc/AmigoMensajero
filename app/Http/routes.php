@@ -24,7 +24,7 @@ Route::group(['middleware' => 'admin'], function () {
    Route::post('/roles/asignacion/unir',"RolesController@role_user");
    Route::resource('/roles',"RolesController");
    Route::get('/permisos/asignacion',"PermisosController@asignar");
-   Route::post('/permisos/asignacion/ui',"PermisosController@asignado");
+   Route::post('/ph permisos/asignacion/ui',"PermisosController@asignado");
    Route::resource('/permisos',"PermisosController"); 
   
 
@@ -38,10 +38,14 @@ Route::group(['middleware' => 'auth'],function () {
    Route::resource('/correo', "CorreoController");
 });
 
-//CORREO
+
+
 
 //cuentaUsuario
 Route::get('/configuracion',"CuentaUsuarioController@configuracion");
+Route::post('/configuracion/eliminar',"CuentaUsuarioController@eliminar");
+Route::post('/configuracion/usuario',"CuentaUsuarioController@actualizar");
+
 Route::get('/informacionPersonal',"CuentaUsuarioController@informacionPersonal");
 Route::post('/informacionPersonal/editar',"CuentaUsuarioController@update");
 Route::get('/notificaciones',"CuentaUsuarioController@notificaciones");

@@ -91,10 +91,11 @@ class PermisosController extends Controller
     
     }
     public function asignado(Request $request)
-    {
-        $rol=Role::findOrFail($request->role_id);
-        $rol->permisos()->sync($request->permisos);
-        
-        return view("permisos.index");
+    {   
+        if(($request->role_id != "vacio") && ($request->permisos != null) ){
+            $rol=Role::findOrFail($request->role_id);
+             $rol->permisos()->sync($request->permisos);
+        }
+        return $request->role_id;
     }
 }
