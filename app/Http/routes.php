@@ -38,7 +38,6 @@ Route::group(['middleware' => 'auth'],function () {
 Route::get('logout', ['as' => 'logout', 'uses' => 'loginController@cerrarSesion']);
 Route::get('/usuarioGeneral',"UsuarioGeneral@Inicio");
 Route::get('/', "PaginasController@inicio");
-  
 
 });
 
@@ -61,6 +60,9 @@ Route::get('/prueba', function () {
 Route::resource('correo', "CorreoController");
 //cuentaUsuario
 Route::get('/configuracion',"CuentaUsuarioController@configuracion");
+Route::post('/configuracion/eliminar',"CuentaUsuarioController@eliminar");
+Route::post('/configuracion/usuario',"CuentaUsuarioController@actualizar");
+
 Route::get('/informacionPersonal',"CuentaUsuarioController@informacionPersonal");
 Route::post('/informacionPersonal/editar',"CuentaUsuarioController@update");
 Route::get('/notificaciones',"CuentaUsuarioController@notificaciones");

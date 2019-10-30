@@ -92,33 +92,47 @@ input:checked + .slider:before {
         </ul>
       </div>
 </nav>
-        <div class="" style="color: white; font-weight: bold;">
-              <div style="width: 50%;">
+  <div class="" style="color: white; font-weight: bold;">
+      <div style="width: 50%;">
+          <div style="text-align: center;">
+                <label style="margin-left: -70px;margin-top: 20px;">Permitir Notificaciones &nbsp &nbsp &nbsp</label>
+                <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider round"></span>
+                </label>
+          </div>
+
+            <form action="/configuracion/usuario" method="post">
+            {{csrf_field()}} 
+            <input type="text" name="id" value="{{Auth::user()->id}}" hidden>   
+                  <div style="margin-top: 20px; text-align: center;">
+                        <label>Nombre de Usuario</label>
+                        <input type="text" name="username" value="{{Auth::user()->username}}">
+                  </div>
+                  
                    <div style="text-align: center;">
-                      <label style="margin-left: -70px;margin-top: 20px;">Permitir Notificaciones &nbsp &nbsp &nbsp</label>
-                      <label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider round"></span>
-                      </label>
-                   </div>
-                   <div style="margin-top: 20px; text-align: center;">
-                      <label>Nombre de Usuario</label>
-                      <input type="text" name="username" value="{{Auth::user()->username}}">
-                   </div>
-                   <div style="text-align: center;">
-                      <label style="margin-right: 63px;">Contraseña</label>
-                      <input type="password" name="password">
-                   </div>
-              </div>
-               
+                        <label style="margin-right: 63px;">Contraseña</label>
+                        <input type="password" name="password" value="{{Auth::user()->password}}">
+                  </div>
+    
                 <div>
-                  <input type="submit" value="" onclick = "location='/configuracion/editar'" style="background-image: url('{{asset('assets/img/botonEditar.png')}}'); 
-                    background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px; margin-top: 30px;" />
+                    <input type="submit" style="background-image: url('{{asset('assets/img/botonEditar.png')}}'); 
+                      background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px; margin-top: 30px;" />
                 </div>
-                <div>
-                  <input type="submit" value="" onclick = "location='/configuracion/eliminarMiCuenta'" style="background-image: url('{{asset('assets/img/botonEliminarMiCuenta.png')}}'); 
-                    background-size: contain; height: 40px; width: 220px;margin-left: 200px;margin-bottom: 10px; margin-top: 30px;" />
-                </div>     
-        </div>
+                
+            </form>
+
+            <div>      
+                    <form method="post" action="/configuracion/eliminar">
+                        {{csrf_field()}}
+                      <input type="text" name="id" value="{{Auth::user()->id}}" hidden> 
+                          <input type="submit" style="background-image: url('{{asset('assets/img/botonEliminarMiCuenta.png')}}'); 
+                            background-size: contain; height: 40px; width: 220px;margin-left: 200px;margin-bottom: 10px; margin-top: 30px;" />
+                    </form>
+              </div>
+    </div>
+                           
+
+</div>
 
 @endsection

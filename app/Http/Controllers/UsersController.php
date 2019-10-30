@@ -25,7 +25,7 @@ class UsersController extends Controller
     {
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
         
-        return view("usuarios.index",compact("usuarios","roles"));
+        return view("usuarios.index",compact("usuarios"));
     }
 
     /**
