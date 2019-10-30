@@ -31,14 +31,30 @@
                 <h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA CORREO</h2> 
 @endsection
 @section("contenido")
-<form class="form-inline" style="width:18.7%" action="{{ route('usuarios.index') }}"  method="get">
-    <input class="form-control mr-sm-2" id="buscar" name="buscar" type="text" placeholder="Buscar carta" aria-describedby="buscador">
-    <button type="submit" class="btn btn-warning">Buscar</button>
-</form>
 
+    <form id="formularioBuscadorCartas" action="{{ route('usuarios.index') }}"  method="get">
+      <div style="margin-left: 55px; background-color: white; width: 220px;">  
+        <input id="buscar" name="buscar" type="text" placeholder="Buscar carta" aria-describedby="buscador" style="border: 0px;">
+        <button type="submit" style=" background-color: white;">
+          <img id="lupa" src="{{asset('assets/img/lupa.png')}}" height="25px" width="30px"/>
+        </button>
+      </div>
+  </form>  
+<div class="btn-group" style="position: absolute; right:200px;">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="background-color: #A2F225; font-weight: bold; color: black; border-radius: 0px;">
+                          TEMÁTICA
+                        </button>
+                        <div class="dropdown-menu" style="background-color: white;border-radius: 0px;">
+                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;">Animales</a>
+                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;border-style: solid;">Familia</a>
+                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;border-style: solid;">Viaje</a>
+                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;">Colegio</a>
+                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;">Televisión</a>
+                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;">Amigos</a>
+                        </div>
+                      </div>
 
-<br>
-    
+ 
 <div id="contenedor">
     <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked" />
     <label for="tab-1" class="tab-label-1"><b>PRINCIPAL</b></label>
@@ -68,25 +84,37 @@
       </div>
         
         <div class="content-2">
+          
           @foreach($cartas_rojas as $carta)
-             <p> {{$carta->contenido}} &nbsp {{$carta->fecha}} &nbsp {{$carta->hora}}<p>
-             <p>-------------------------------------------<p>      
+          <aside class="cartaCompleta">
+              <img src="{{asset('assets/img/rojo.png')}}" height="5px" width="280px">
+             <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a><input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px;">
+             <p>-------------------------------------------<p>  
+          </aside>
+            
           @endforeach
           
         </div>
         
         <div class="content-3">
+          
           @foreach($cartas_amarillas as $carta)
-             <p> {{$carta->contenido}} &nbsp {{$carta->fecha}} &nbsp {{$carta->hora}}<p>
+          <aside class="cartaCompleta">  
+            <img src="{{asset('assets/img/amarillo.png')}}" height="5px" width="280px">
+             <aside id="contenidoCarta" onclick="alert('LeyendoCarta');">{{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}} </a> <input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 40px; width: 20px; height: 20px; ">
              <p>-------------------------------------------<p>      
+          </aside>
           @endforeach
               
         </div>
        
         <div class="content-4">
           @foreach($cartas_verdes as $carta)
-             <p> {{$carta->contenido}} &nbsp {{$carta->fecha}} &nbsp {{$carta->hora}}<p>
-             <p>-------------------------------------------<p>      
+             <aside class="cartaCompleta">
+              <img src="{{asset('assets/img/verde.png')}}" height="5px" width="280px">
+             <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a><input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px; ">
+             <p>-------------------------------------------<p>  
+          </aside>      
           @endforeach
   
         </div>
@@ -94,6 +122,8 @@
     </div>
 </div>
 
+ <input type="submit" value="" onclick = "location='#'" style="background-image: url('{{asset('assets/img/botonCrearBoletin.png')}}'); 
+              background-size: contain; height: 40px; width: 143px; right: 300px; position: absolute;" />
 @endsection
 
 @endif

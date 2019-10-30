@@ -5,10 +5,13 @@ use App\Role;
 
 
 Route::group(['middleware' => 'guest'], function () {
+<<<<<<< HEAD
 
    // Route::get('/', "PaginasController@inicio");
    // Route::get('/inicio', "PaginasController@inicio");
 //Route::get('/', "PaginasController@inicio");
+=======
+>>>>>>> 51b1d3364b0b9bffab92ce1a24b726e36f00d398
 Route::get('/inicio', "PaginasController@inicio");
 Route::get('/boletin', "PaginasController@boletin");
 Route::resource('/carta', "CartasController");
@@ -29,7 +32,11 @@ Route::group(['middleware' => 'admin'], function () {
 Route::resource('/usuarios',"UsersController");
 Route::get('delete/{id}', 'UsersController@destroy')->name('usuario.delete');
 Route::get('/usuarios/buscador',"UsuariosController@buscador");
+Route::get('/roles/asignacion',"RolesController@asignar");
+Route::post('/roles/asignacion/unir',"RolesController@role_user");
 Route::resource('/roles',"RolesController");
+
+
 Route::get('/AdminInicio',"AdminController@Inicio");
 });
 
@@ -59,5 +66,7 @@ Route::get('/prueba', function () {
 
 //CORREO
 Route::resource('correo', "CorreoController");
-
-
+//cuentaUsuario
+Route::get('/configuracion',"CuentaUsuarioController@configuracion");
+Route::get('/informacionPersonal',"CuentaUsuarioController@informacionPersonal");
+Route::get('/notificaciones',"CuentaUsuarioController@notificaciones");

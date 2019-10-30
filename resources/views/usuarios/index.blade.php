@@ -10,9 +10,13 @@
         <ul class="navbar-nav">
                       
           <li class="nav-item">
+<<<<<<< HEAD
 
               <a class="nav-link" href="http://localhost:8000/inicio" >Inicio</a>
 
+=======
+              <a class="nav-link" href="http://localhost:8000/inicio" >Inicio</a>
+>>>>>>> 51b1d3364b0b9bffab92ce1a24b726e36f00d398
           </li>
                         
           <li class="nav-item">
@@ -39,10 +43,21 @@
 
 @endsection
 @section("contenido")
+<!--
 <form class="form-inline" style="width:18.7%" action="{{ route('usuarios.index') }}"  method="get">
     <input class="form-control mr-sm-2" id="buscar" name="buscar" type="text" placeholder="Buscar usuario" aria-describedby="buscador">
     <button type="submit" class="btn btn-warning">Buscar</button>
-</form>
+</form>   -->
+  <form id="formularioBuscadorCartas" action="{{ route('usuarios.index') }}"  method="get">
+      <div style="position: absolute;right: 200px; background-color: white; width: 220px;">  
+        <input id="buscar" name="buscar" type="text" placeholder="Buscar usuario" aria-describedby="buscador" style="border: 0px;">
+        <button type="submit" style=" background-color: white;">
+          <img id="lupa" src="{{asset('assets/img/lupa.png')}}" height="25px" width="30px"/>
+        </button>
+      </div>
+  </form>  
+
+
 
 <!--
 <div class="col-8" style="width:30%">
@@ -53,16 +68,21 @@
 </div>
 -->
     <br>
-    <input type="submit" value="" onclick = "location='/usuarios/create'" style="background-image: url('{{asset('assets/img/botonCrearCuenta.png')}}'); 
-                background-size: contain; height: 40px; width: 141px;" />
+    <input type="submit" value="" onclick = "location='/usuarios/create'" 
+    style="background-image: url('{{asset('assets/img/botonCrearCuenta.png')}}'); 
+                background-size: contain; height: 40px; width: 143px; margin-top: 30px;margin-left: 200px; margin-bottom: 10px;" />
+   
+    <input type="submit" value="" onclick = "location='/roles/asignacion'" style="background-image: url('{{asset('assets/img/botonAsignarRoles.png')}}'); 
+                background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px;">
+    <br>
     
-
     <table border="1">
         <thead>
             <td>Código</td>
             <td>Nombre</td>
             <td>Apellido</td>
             <td>Correo</td>
+            <td>Roles</td>
             <td>Modificar</td>
         </thead>
     @foreach($usuarios as $usuario)
@@ -71,6 +91,15 @@
             <td>{{$usuario->nom_usu}}</td>
             <td>{{$usuario->ape_usu}}</td>
             <td>{{$usuario->email}}</td>
+
+            <td>
+              @php
+              foreach($usuario->roles as $role){
+              echo '<p>'. $role->nom_rol . '</p>';
+            }
+              @endphp
+            </td>
+            
             <td><a href="{{route('usuarios.edit',$usuario->id)}}">Editar</a> 
                 
                 <!--<form method="post" action="/usuarios/{{$usuario->id}}">
@@ -104,4 +133,4 @@
       })
     </script>
     
-@endsection
+@endsection     

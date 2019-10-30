@@ -24,7 +24,17 @@ class UsersController extends Controller
      public function index(Request $request)
     {
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
-        return view("usuarios.index",compact("usuarios"));
+        $rol=array();
+        $roles=array();
+        foreach($usuarios as $usuario){
+            foreach($usuario->roles as $role){
+                $rol[]=$role->nom_rol;
+            }
+            $roles[]=$rol;
+            unset($rol);
+        }
+        
+        return view("usuarios.index",compact("usuarios","roles"));
     }
 
     /**
@@ -46,11 +56,12 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        /*
         $nom_rol=$request->nom_rol;
         
         $rol=Role::where('nom_rol',$nom_rol)->first();
-        //echo $rol;
         
+        */
         $usuarios=new User();
         
         $usuarios->nom_usu=$request->nom_usu;
@@ -66,13 +77,11 @@ class UsersController extends Controller
 
         if ($clave==$claveConf) {
 
-            
-        
-
-
         $usuarios->password=crypt($clave,'');
         $usuarios->save();
+        /*
         $usuarios->roles()->attach($rol);
+        */
         return redirect("/usuarios");
        }else
        {
@@ -91,10 +100,13 @@ class UsersController extends Controller
 
         $usuario=User::findOrFail($id);
         
-        echo $usuario->roles;
+        $roles=$usuario->roles;
+        $roles_user=array();
+        foreach($roles as $rol){
+            $roles_user[]=$rol->nom_rol;
+        }
 
-        
-        //return view("usuarios.show",compact("usuario","role"));
+        return view("usuarios.show",compact("usuario","roles_user"));
     }
 
     /**
@@ -129,8 +141,9 @@ class UsersController extends Controller
         'fecha_nac'=>$request->fecha_nac,
         'tel_usu'=>$request->tel_usu,
          ]);
-
+        /*
         User::find($id)->roles()->sync([$request->role_id]);
+        */
         return redirect("/usuarios");
     }
 
