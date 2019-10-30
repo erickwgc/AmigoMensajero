@@ -30,9 +30,5 @@
         </ul>
       </div>
 </nav>
-
-            <h1>{{Auth::user()->id}}</h1>
-            <h2>{{Auth::user()->roles}}</h2>
-            <h3>{{Auth::user()->ape_usu}}</h3>
-            
+      <h2 style="color: white;">Esta es la vista de notificaciones</h2>
 @endsection

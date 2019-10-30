@@ -180,3 +180,11 @@ img.imagen{
 #fechaHoraCarta{
     margin-left: 350px;
 }
+.cartaCompleta{
+    width: 600px;
+}
+.cartaCompleta:hover{
+    background-color: #F4D3F8;
+    border-radius: 5px;
+    cursor: pointer;
+}

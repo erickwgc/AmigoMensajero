@@ -59,5 +59,7 @@ Route::get('/prueba', function () {
 
 //CORREO
 Route::resource('correo', "CorreoController");
-
-
+//cuentaUsuario
+Route::get('/configuracion',"CuentaUsuarioController@configuracion");
+Route::get('/informacionPersonal',"CuentaUsuarioController@informacionPersonal");
+Route::get('/notificaciones',"CuentaUsuarioController@notificaciones");
