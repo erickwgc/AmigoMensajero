@@ -35,24 +35,22 @@
                 <h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA PERMISOS</h2> 
 @endsection
 @section("contenido")
-<input type="submit" value="Asignar rol" onclick = "location='/permisos/asignacion'">
+
 <table border="1">
 <thead>
-<td>Código</td>
-<td>nombre_rol</td>
+<td>id_permiso</td>
 <td>Permisos</td>
-<td>Modificar</td>
-</thead>
-@foreach($roles  as $rol)
+<td>Descripcion</td>
 
-    @foreach($rol->permisos as $permiso) 
+</thead>
+  @foreach($permisos as $permiso) 
     <tr>
     <td>{{$permiso->id}}</td>
-    <td>{{$rol->nom_rol}}</td>
     <td>{{$permiso->nom_per}}</td>
-    <td> edit</td>
+    <td>{{$permiso->descripcion}}</td>
+  
   </tr>
-    @endforeach
+    
 
 </tr>
 @endforeach

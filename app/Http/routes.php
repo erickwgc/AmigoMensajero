@@ -26,7 +26,7 @@ Route::group(['middleware' => 'admin'], function () {
    Route::get('/permisos/asignacion',"PermisosController@asignar");
    Route::post('/permisos/asignacion/ui',"PermisosController@asignado");
    Route::resource('/permisos',"PermisosController"); 
-   Route::resource('correo', "CorreoController");
+  
 
 });
 
@@ -35,10 +35,11 @@ Route::group(['middleware' => 'auth'],function () {
    Route::get('logout', ['as' => 'logout', 'uses' => 'loginController@cerrarSesion']);
    Route::get('/usuarioGeneral',"UsuarioGeneral@Inicio");
    Route::get('/inicio', "PaginasController@inicio");
+   Route::resource('/correo', "CorreoController");
 });
 
 //CORREO
-Route::resource('correo', "CorreoController");
+
 //cuentaUsuario
 Route::get('/configuracion',"CuentaUsuarioController@configuracion");
 Route::get('/informacionPersonal',"CuentaUsuarioController@informacionPersonal");

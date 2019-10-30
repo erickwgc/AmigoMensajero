@@ -109,10 +109,16 @@ class RolesController extends Controller
     }
     
     public function role_user(Request $request){
-        $usuario=User::findOrFail($request->user_id);
-        $usuario->roles()->sync($request->roles);
-       
+        
+        if(($request->user_id != "vacio") && ($request->roles != null) ){
+            $usuario=User::findOrFail($request->user_id);
+            $usuario->roles()->sync($valor);
+
+        }
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
         return view("usuarios.index",compact("usuarios"));
     }
+
+   
+
 }

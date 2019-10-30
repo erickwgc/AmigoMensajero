@@ -17,8 +17,7 @@ class PermisosController extends Controller
     public function index()
     {
         $permisos=Permiso::all();
-        $roles = Role::all();
-        return view("permisos.index" , compact("permisos","roles"));
+        return view("permisos.index",compact("permisos"));
     }
 
     /**

@@ -23,7 +23,7 @@
                         <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
                       </li>
                       <li class="nav-item active">
-                          <a class="nav-link" href="http://localhost:8000/permisos" style="text-decoration: underline;">Permisoso<span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="http://localhost:8000/permisos" style="text-decoration: underline;">Permisoso</a>
                       </li>
                     </ul>
                   </div>

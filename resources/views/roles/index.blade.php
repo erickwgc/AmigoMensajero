@@ -25,7 +25,7 @@
                         <a class="nav-link" href="http://localhost:8000/roles" style="text-decoration: underline;">Roles</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/permisos">Usuarios</a>
+                        <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
                       </li>
                       
                     
@@ -37,6 +37,8 @@
 @section("contenido")
     <input type="submit" value="" onclick = "location='/roles/create'" style="background-image: url('{{asset('assets/img/botonCrearRol.png')}}'); 
                 background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px; margin-top: 30px;" />
+    <input type="submit" value="Asignar rol" onclick = "location='/permisos/asignacion'">
+    
     <table border="1">
         <thead>
             <td>Código</td>
@@ -48,9 +50,17 @@
         <tr>
             <td>{{$role->id}}</td>
             <td>{{$role->nom_rol}}</td>
-            <td>LeerCartas     Notificaciones      Publicación </td>
+            <td>
+                @foreach($role->permisos as $permiso)
+                   {{$permiso->nom_per}}
+                   <br>
+                 @endforeach
+              </td>
             <td> 
                 <a href="{{route('roles.show',$role->id)}}">Ver</a> 
+                <a href="#">Actualizar</a>
+                <a href="#">Eliminar</a>
+            
             </td>
             
         </tr>
