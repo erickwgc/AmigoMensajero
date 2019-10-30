@@ -37,6 +37,11 @@ Route::group(['middleware' => 'auth'],function () {
    Route::get('/inicio', "PaginasController@inicio");
 });
 
-
-
+//CORREO
+Route::resource('correo', "CorreoController");
+//cuentaUsuario
+Route::get('/configuracion',"CuentaUsuarioController@configuracion");
+Route::get('/informacionPersonal',"CuentaUsuarioController@informacionPersonal");
+Route::post('/informacionPersonal/editar',"CuentaUsuarioController@update");
+Route::get('/notificaciones',"CuentaUsuarioController@notificaciones");
 

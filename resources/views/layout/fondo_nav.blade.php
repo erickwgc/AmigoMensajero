@@ -48,16 +48,18 @@
 
                     <div class="btn-group" style="margin-left:350px;">
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="background-color: #C0FFA4; font-weight: bold; color: black; border-radius: 0px;">
-                          {{Auth::user()->nom_usu}}
+
+
+                          {{Auth::user()->nom_usu}} {{auth()->user()->ape_usu}}
                         </button>
                         <div class="dropdown-menu" style="background-color: #C0FFA4;border-radius: 0px; ">
-                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;">Configuración de mi Cuenta</a>
-                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;border-style: solid;">Información Personal</a>
-                          <a class="dropdown-item" href="#" style="font-size: 15px;color: black;border-style: solid;">Notificaciones</a>
+                          <a class="dropdown-item" href="/configuracion" style="font-size: 15px;color: black;">Configuración de mi Cuenta</a>
+                          <a class="dropdown-item" href="/informacionPersonal" style="font-size: 15px;color: black;border-style: solid;">Información Personal</a>
+                          <a class="dropdown-item" href="/notificaciones" style="font-size: 15px;color: black;border-style: solid;">Notificaciones</a>
                           <div class="dropdown-divider" style="border-style: solid;"></div>
                           <a class="dropdown-item" href="http://localhost:8000/logout" style="font-size: 15px;color: black;">Cerrar Sesión</a>
                         </div>
-                      </div>
+                    </div>
 
 
                 @endif

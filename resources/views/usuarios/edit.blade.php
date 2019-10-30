@@ -30,7 +30,7 @@
 @endsection
 @section("contenido")
 
-<form action="/usuarios/{{$usuario->id}}" method="post" >
+<form action="/informacionPersonal/editar" method="post" >
 <table style="background-color: transparent;margin: auto 25%;">
 
 <tr>
