@@ -37,4 +37,9 @@ class User extends Authenticatable
                     ->orWhere('email','LIKE','%' . $buscar . '%');
         
     }
+
+    public function getRolesList(){
+        return $this->roles->list('id')->all();
+    }
+
 }

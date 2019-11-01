@@ -2,7 +2,7 @@
 
 use App\User;
 use App\Role;
-
+use App\Pemiso;
 
 Route::group(['middleware' => 'guest'], function () {
    Route::get('/inicio', "PaginasController@inicio");
@@ -24,7 +24,7 @@ Route::group(['middleware' => 'admin'], function () {
    Route::post('/roles/asignacion/unir',"RolesController@role_user");
    Route::resource('/roles',"RolesController");
    Route::get('/permisos/asignacion',"PermisosController@asignar");
-   Route::post('/ph permisos/asignacion/ui',"PermisosController@asignado");
+   Route::post('/permisos/asignacion/ui',"PermisosController@asignado");
    Route::resource('/permisos',"PermisosController"); 
   
 
@@ -50,3 +50,15 @@ Route::get('/informacionPersonal',"CuentaUsuarioController@informacionPersonal")
 Route::post('/informacionPersonal/editar',"CuentaUsuarioController@update");
 Route::get('/notificaciones',"CuentaUsuarioController@notificaciones");
 
+Route::get('/prueba',function(){
+   $us = User::All();
+   $usuarios = User::has('roles')->get();
+   $rol = Role::find(1);
+   $user = $rol->usuarios[0];
+
+   
+   foreach($rol->permisos as $permiso){
+       $permis[] = $permiso->nom_per;
+   }
+   return $permis;
+});

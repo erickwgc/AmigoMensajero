@@ -94,7 +94,7 @@ class PermisosController extends Controller
     {   
         if(($request->role_id != "vacio") && ($request->permisos != null) ){
             $rol=Role::findOrFail($request->role_id);
-             $rol->permisos()->sync($request->permisos);
+             $rol->permisos()->attach($request->permisos);
         }
         return $request->role_id;
     }

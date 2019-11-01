@@ -59,7 +59,7 @@
               </td>
             <td> 
                 <a href="#">Eliminar</a>
-                <a href="#">Editar</a>
+                <a href="{{route('roles.edit',$role->id)}}">Editar</a>
                 <a href="{{route('roles.show',$role->id)}}">Ver</a> 
             </td>
             

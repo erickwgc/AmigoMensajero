@@ -39,7 +39,9 @@
             <select name="user_id">
                 <option value="vacio">    </option>
               @foreach($usuarios as $usuario)
-                <option value="{{$usuario->id}}">{{$usuario->nom_usu}} {{$usuario->ape_usu}} </option>
+               
+                    <option value="{{$usuario->id}}">{{$usuario->nom_usu}} {{$usuario->ape_usu}} </option>
+                
               @endforeach
             </select>
           </td>
@@ -50,7 +52,7 @@
             <td>
               @foreach($roles as $role)
               
-              <label for="rol" id="idCampo">
+              <label for="roles" id="idCampo">
                   <input type="checkbox" id="rol" name="roles[]" value="{{$role->id}}" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px;">&nbsp{{$role->nom_rol}}
               </label>
               <br>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\Permiso;
 use App\Role;
 use App\User;
 class RolesController extends Controller
@@ -63,7 +63,7 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        $rol = Role::findOrFail($id);
+         $rol = Role::findOrFail($id);
         return view("roles.show",compact("rol"));
     }
 
@@ -75,7 +75,15 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        
+        $rol = Role::findOrFail($id);
+        $permisos=Permiso::all();
+        foreach($rol->permisos as $permiso){
+            $permis[] = $permiso->nom_per;
+        }
+
+
+        return view("roles.edit",compact("rol","permisos","permis"));
+
     }
 
     /**
@@ -87,7 +95,9 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rol = Role::findOrFail($id);
+        $rol->permisos()->sync($request->permisos);
+        return redirect("/roles");    
     }
 
     /**
@@ -101,10 +111,10 @@ class RolesController extends Controller
         //
     }
     public function asignar(){
-        
+        $usrol = User::has('roles')->get();
         $usuarios=User::all();
         $roles=Role::all();
-        return view("roles.asignar",compact("usuarios","roles"));
+        return view("roles.asignar",compact("usuarios","roles","usrol"));
     
     }
     
@@ -112,7 +122,7 @@ class RolesController extends Controller
         
         if(($request->user_id != "vacio") && ($request->roles != null) ){
             $usuario=User::findOrFail($request->user_id);
-            $usuario->roles()->sync($valor);
+           $usuario->roles()->attach($request->roles);
 
         }
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);

@@ -17,4 +17,8 @@ class Role extends Model
     public function permisos(){
         return $this->belongsToMany('App\Permiso');
     }
+
+    public function getPermisosList(){
+        return $this->permisos->list('id')->all();
+    }
 }

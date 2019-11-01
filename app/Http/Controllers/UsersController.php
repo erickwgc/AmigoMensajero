@@ -110,7 +110,7 @@ class UsersController extends Controller
     {
         $roles=Role::all();
         $usuario=User::findOrFail($id);
-        return view("usuarios.edit",compact("usuario","roles"));
+        return view("usuarios.edit",compact("usuario"));
     }
 
     /**
