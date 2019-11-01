@@ -108,7 +108,9 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rol = Role::findOrFail($id);
+        $rol->permsisos()->detach();  
+        return redirect("/roles");  
     }
     public function asignar(){
         $usrol = User::has('roles')->get();
