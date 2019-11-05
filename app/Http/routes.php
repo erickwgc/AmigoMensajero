@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'],function () {
    Route::get('/usuarioGeneral',"UsuarioGeneral@Inicio");
    Route::get('/inicio', "PaginasController@inicio");
    Route::resource('/correo', "CorreoController");
+
 });
 
 
@@ -51,14 +52,7 @@ Route::post('/informacionPersonal/editar',"CuentaUsuarioController@update");
 Route::get('/notificaciones',"CuentaUsuarioController@notificaciones");
 
 Route::get('/prueba',function(){
-   $us = User::All();
-   $usuarios = User::has('roles')->get();
-   $rol = Role::find(1);
-   $user = $rol->usuarios[0];
-
+  
+   return( Auth::user()->getPermisos('crear usuario'));
    
-   foreach($rol->permisos as $permiso){
-       $permis[] = $permiso->nom_per;
-   }
-   return $permis;
 });

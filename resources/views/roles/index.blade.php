@@ -28,18 +28,19 @@
                         <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
                       </li>
                       
-                    
+                     
                     </ul>
                   </div>
                 </nav>
                 <h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA ROLES</h2> 
 @endsection
 @section("contenido")
+  @if(Auth::user()->getPermisos('crear rol'))
     <input type="submit" value="" onclick = "location='/roles/create'" style="background-image: url('{{asset('assets/img/botonCrearRol.png')}}'); 
                 background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px; margin-top: 30px;" />
 
     <input type="submit" value="Asignar Permiso" onclick = "location='/permisos/asignacion'">
-    
+  @endif   
     <table border="1" class="table table-hover">
         <thead>
             <td>Código</td>
@@ -58,9 +59,15 @@
                  @endforeach
               </td>
             <td> 
-                <a href="{{route('roles.delete',$role->id)}}">Eliminar</a>
-                <a href="{{route('roles.edit',$role->id)}}">Editar</a>
-                <a href="{{route('roles.show',$role->id)}}">Ver</a> 
+                @if(Auth::user()->getPermisos('eliminar rol'))
+                  <a href="#">Eliminar</a>
+                @endif
+                @if(Auth::user()->getPermisos('editar rol'))
+                  <a href="{{route('roles.edit',$role->id)}}">Editar</a>
+                @endif
+                @if(Auth::user()->getPermisos('ver rol'))
+                  <a href="{{route('roles.show',$role->id)}}">Ver</a> 
+                @endif
             </td>
             
         </tr>

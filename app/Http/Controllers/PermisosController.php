@@ -96,6 +96,6 @@ class PermisosController extends Controller
             $rol=Role::findOrFail($request->role_id);
             $rol->permisos()->attach($request->permisos);
         }
-        return $request->role_id;
+        return redirect("/roles");;
     }
 }

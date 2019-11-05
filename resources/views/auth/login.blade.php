@@ -11,7 +11,7 @@
                   <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                       <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/inicio">Inicio</a>
+                        <a class="nav-link" href="http://localhost:8000/">Inicio</a>
                       </li>
                       <li class="nav-item ">
                         <a class="nav-link" href="http://localhost:8000/carta">Escribe tu Carta</a>

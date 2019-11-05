@@ -42,4 +42,18 @@ class User extends Authenticatable
         return $this->roles->list('id')->all();
     }
 
+    public function getPermisos($permis){
+        $valor = 0;
+        foreach( $this->roles as $rol){
+            foreach($rol->permisos as $permiso ){
+                if($permiso->nom_per == $permis ){
+                    $valor = 1;
+                }
+            }
+        }
+        return $valor;
+    }
+    
 }
+
+

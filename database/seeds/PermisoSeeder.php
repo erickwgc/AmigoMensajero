@@ -28,8 +28,29 @@ class PermisoSeeder extends Seeder
     
         $permiso = new Permiso();
         $permiso->nom_per = "ver usuario";
-        $permiso->descripcion = "puede ver todos los usarios registrados";
+        $permiso->descripcion = "puede ver todos los usario registrado";
         $permiso->save();
-    
+
+        $permiso = new Permiso();
+        $permiso->nom_per = "eliminar rol";
+        $permiso->descripcion = "puede eliminar cualquier rol en el sistema";
+        $permiso->save();
+
+        $permiso = new Permiso();
+        $permiso->nom_per = "editar rol";
+        $permiso->descripcion = "puede editar cualquier rol en el sistema";
+        $permiso->save();
+
+        $permiso = new Permiso();
+        $permiso->nom_per = "crear rol";
+        $permiso->descripcion = "puede crear cualquier rol en el sistema";
+        $permiso->save();
+        
+        $permiso = new Permiso();
+        $permiso->nom_per = "ver rol";
+        $permiso->descripcion = "puede ver todos los rol registrado";
+        $permiso->save();
+
+        
     }
 }

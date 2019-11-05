@@ -61,14 +61,15 @@
 </div>
 -->
     <br>
+    @if(Auth::user()->getPermisos('crear usuario'))
     <input type="submit" value="" onclick = "location='/usuarios/create'" 
-    style="background-image: url('{{asset('assets/img/botonCrearCuenta.png')}}'); 
+      style="background-image: url('{{asset('assets/img/botonCrearCuenta.png')}}'); 
                 background-size: contain; height: 40px; width: 143px; margin-top: 30px;margin-left: 200px; margin-bottom: 10px;" />
-   
+
     <input type="submit" value="" onclick = "location='/roles/asignacion'" style="background-image: url('{{asset('assets/img/botonAsignarRoles.png')}}'); 
                 background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px;">
+     @endif  
     <br>
-    
     <table border="1" class="table table-hover">
         <thead>
             <td>Código</td>
