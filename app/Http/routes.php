@@ -26,7 +26,7 @@ Route::group(['middleware' => 'admin'], function () {
    Route::get('/permisos/asignacion',"PermisosController@asignar");
    Route::post('/permisos/asignacion/ui',"PermisosController@asignado");
    Route::resource('/permisos',"PermisosController"); 
-  
+   
 
 });
 
@@ -56,3 +56,4 @@ Route::get('/prueba',function(){
    return( Auth::user()->getPermisos('crear usuario'));
    
 });
+Route::get('/informacionProfesi',"InformacionProfeController@inforPorfesi");  

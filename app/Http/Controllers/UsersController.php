@@ -7,21 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 
+
 use App\User;
 
 use App\Role;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-   
-   
-   
-     public function index(Request $request)
+
+    public function index(Request $request)
     {
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
         
@@ -70,9 +64,7 @@ class UsersController extends Controller
 
         $usuarios->password=crypt($clave,'');
         $usuarios->save();
-        /*
-        $usuarios->roles()->attach($rol);
-        */
+
         return redirect("/usuarios");
        }else
        {
@@ -155,4 +147,8 @@ class UsersController extends Controller
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
         return view("usuarios.index",compact("usuarios"));
     }
+
+    public function inforPorfesi(){
+        return "rayos";
+    }    
 }
