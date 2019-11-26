@@ -61,8 +61,8 @@
          
            <div  id="cajaimagen" ondragenter="return enter(event)" ondragleave="return leave(event)" ondrop="return clonar(event)" >
                           <img class="imagen" src= "{{asset('assets/img/default/mama_coco.png')}}"  id="img" draggable="true" ondragstart="start(event)" ondragend="end(event)">
-                          <img class="imagen" src ="{{asset('assets/img/default/auto.png')}}" id = "img1 "  draggable="true" ondragstart="start(event)" ondragend="end(event)">
-                          <img class="imagen" src ="{{asset('assets/img/default/minecraft.png')}}" id = "img2 "  draggable="true" ondragstart="start(event)" ondragend="end(event)">
+                          <img class="imagen" src ="{{asset('assets/img/default/auto.png')}}" id = "img1"  draggable="true" ondragstart="start(event)" ondragend="end(event)">
+                          <img class="imagen" src ="{{asset('assets/img/default/minecraft.png')}}" id = "img2"  draggable="true" ondragstart="start(event)" ondragend="end(event)">
                           <img class="imagen" src ="{{asset('assets/img/default/Perro.png')}}" id = "img3"  draggable="true" ondragstart="start(event)" ondragend="end(event)">
 
           </div>
@@ -86,8 +86,7 @@
          -->
          <form action="/carta" method="post" enctype="multipart/form-data" name="form1" >
         {{csrf_field()}}
-         <input type="hidden" name="MAX_TAM" value="2097152">
-                <input type="file"  class= "eligir_archivos" name="mi_imagen[]" id="mi:_imagen[]" multiple="true" style="color: white;margin-left: 20px;margin-bottom: 20px; ">
+         <input type="file"  class= "eligir_archivos" name="mi_imagen[]" id="file-upload" multiple="true" style="color: white;margin-left: 20px;margin-bottom: 20px; ">
          <div class="contenedorPerrito" >
               <img src="{{asset('assets/img/perrito.png')}}" height="200px" width="300px" id="imagenPerrito" />
               
@@ -129,6 +128,48 @@
             </div>
         </div>
             
+            <script>
+    function readFile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+ 
+            reader.onload = function (e) {
+                var filePreview = document.createElement('img');
+                filePreview.id = 'file-preview';
+                //e.target.result contents the base64 data from the image uploaded
+                filePreview.src = e.target.result;
+                console.log(e.target.result);
+ 
+                var previewZone = document.getElementById('clonado');
+                
+                previewZone.appendChild(filePreview);
+                var img1 = document.getElementById('file-preview');
+                //img1.width=120;
+                //img1.height=120;
+                img1.className = "imagen";
+                img1.draggable = true;
+                img1.ondragstart=function start(e){
+                  e.dataTransfer.effecAllowed = 'move'; // Define el efecto como mover (Es el por defecto)
+            e.dataTransfer.setData("Data", e.target.id); // Coje el elemento que se va a mover
+            e.dataTransfer.setDragImage(e.target,0,0); // Define la imagen que se vera al ser arrastrado el elemento y por donde se coje el elemento que se va a mover (el raton aparece en la esquina sup_izq con 0,0)
+            e.target.style.opacity = '0.4';
+                };
+                img1.ondragend=function end(e){
+                  e.target.style.opacity = ''; // Pone la opacidad del elemento a 1           
+            e.dataTransfer.clearData("Data");
+                };
+            }
+ 
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+ 
+    var fileUpload = document.getElementById('file-upload');
+    fileUpload.onchange = function (e) {
+        readFile(e.srcElement);
+    }
+ 
+</script>
         @endsection 
         <script type="text/javascript" src="{!! asset('assets/js/mot_recon_voz.js') !!}" async></script>
         <script type="text/javascript" src="{!! asset('assets/js/vistaPrevia.js') !!}" async></script>

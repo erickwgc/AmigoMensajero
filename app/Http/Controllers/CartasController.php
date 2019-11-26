@@ -94,24 +94,48 @@ class CartasController extends Controller
 
          
             for ($i=0; $i < $total; $i++) {     
-                $imagenes = new Imagen();
+                 $imagenes = new Imagen();
+                $imagenSubida="true";
                 $tmp_name = $_FILES["mi_imagen"]["tmp_name"][$i];
                 $name = $_FILES["mi_imagen"]["name"][$i];
 
                 $tipo = $_FILES["mi_imagen"]["type"][$i];
+                $tamano=$_FILES["mi_imagen"]["size"][$i];
                 $imagenes->cod_car=$carta->id;
                 $imagenes->nombre=$name;
-                if (($_FILES["mi_imagen"]["type"][$i]== "image/gif")
-                || ($_FILES["mi_imagen"]["type"][$i] == "image/jpeg")
-                || ($_FILES["mi_imagen"]["type"][$i] == "image/jpg")
-                || ($_FILES["mi_imagen"]["type"][$i] == "image/png"))
-                {
-                $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/../uploads/';
-                move_uploaded_file($tmp_name, $carpeta_destino.$name);
-                $imagenes->ruta=$carpeta_destino;
-                $imagenes->tipo=$tipo;
-                $imagenes->save();
+
+                if ($_FILES["mi_imagen"]["size"][$i]>200000){
+                    $msg='<script language="javascript">alert(" El archivo es mayor que 200KB, debes reduzcirlo antes de subirlo");</script>';
+                $imagenSubida="false";
                 }
+
+
+                if (!($_FILES["mi_imagen"]["type"][$i]== "image/jpg"
+                || $_FILES["mi_imagen"]["type"][$i] == "image/png"
+                || $_FILES["mi_imagen"]["type"][$i] == "image/jpeg"
+                || $_FILES["mi_imagen"]["type"][$i] == "image/gif"))
+                {
+                $msg='<script language="javascript">alert(" Tu archivo tiene que ser JPG,PNG o GIF. Otros archivos no son permitidos");"</script>';
+                $imagenSubida="false";
+                }
+                
+                if($imagenSubida=="true"){
+                     $carpeta_destino = $_SERVER['DOCUMENT_ROOT'] . '/../uploads/';
+                      if(move_uploaded_file($tmp_name, $carpeta_destino.$name)){
+                        $imagenes->ruta=$carpeta_destino;
+                        $imagenes->tipo=$tipo;
+                        $imagenes->save();
+
+                        echo " Ha sido subido satisfactoriamente";  
+                      }else{
+                        echo " Error al subir el archivo";
+                      }
+                    }else{
+                      echo $msg;
+
+                 }
+                
+                
             }
             
         }
