@@ -1,7 +1,7 @@
 var recognition;
 var recognizing = false;
 if (!('webkitSpeechRecognition' in window)) {
-    alert("¡API no soportada!");
+    //alert("¡API no soportada!");
 } else {
     recognition = new webkitSpeechRecognition();
     recognition.lang = "es-VE";
