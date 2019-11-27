@@ -21,6 +21,8 @@ class CreateInformacionsTable extends Migration
             $table->string('formacion');
             $table->char('uni_egr',20);
             $table->string('logros');
+            $table->string('perfil');
+            $table->string('curiculon');
         });
     }
 
