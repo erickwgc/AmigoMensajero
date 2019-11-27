@@ -1,8 +1,7 @@
 <?php
 use App\User;
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+Illuminate\Http\Request;
 
 class PaginasController extends Controller
 {
