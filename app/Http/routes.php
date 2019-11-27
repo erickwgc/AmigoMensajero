@@ -5,14 +5,10 @@ use App\Role;
 
 
 Route::group(['middleware' => 'guest'], function () {
-<<<<<<< HEAD
-
-   // Route::get('/', "PaginasController@inicio");
+Route::get('/', "PaginasController@inicio");
    // Route::get('/inicio', "PaginasController@inicio");
 //Route::get('/', "PaginasController@inicio");
-=======
->>>>>>> 51b1d3364b0b9bffab92ce1a24b726e36f00d398
-Route::get('/inicio', "PaginasController@inicio");
+
 Route::get('/boletin', "PaginasController@boletin");
 Route::resource('/carta', "CartasController");
 Route::get('/login',"loginController@index");
