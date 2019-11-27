@@ -83,6 +83,7 @@ height: 350px;  /* Alto del contenido */
 padding: 0px 30px;
 z-index: 5;
 /*border-radius: 0 5px 5px 5px;*/
+overflow: scroll;
 }
 
 .content div {

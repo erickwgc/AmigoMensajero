@@ -113,7 +113,7 @@
                 background-size: contain; height: 89px; width: 190px; margin-left: 50px; position: absolute; top: 520px; " onclick="if">
               </div>
           </section> 
-           <section id="clonado" ondragenter="return enter(event)" ondragover="return over(event)" ondragleave="return leave(event)" ondrop="return clonar(event)">
+           <section id="clonado" ondragenter="return enter(event)" ondragover="return over(event)" ondragleave="return leave(event)" ondrop="return clonar(event)" style="overflow: scroll;">
               <output id="list" for="mi:_imagen[]"></output>
             </section>
       </form>
@@ -129,6 +129,7 @@
         </div>
             
             <script>
+            /*  
     function readFile(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -168,7 +169,85 @@
     fileUpload.onchange = function (e) {
         readFile(e.srcElement);
     }
+ */
+function openImage() { //Esta función validaría una imágen
+        
+      var input = this;
+      var file = input.files[0];
+      var fileName = input.value;
+      var maxSize = 1048576; //bytes
+      var extensions = new RegExp(/.jpg|.jpeg|.png|.gif/i); //Extensiones válidas
+
+      var error = {
+          state: false,
+          msg: ''
+      };
+
+      if (this.files && file) {
+
+          for (var i = fileName.length-1; i >= 0; i--) {
+
+              if (fileName[i] == '.') {
+
+                  var ext = fileName.substring(fileName[i],fileName.length);
+
+                  if (!extensions.test(ext)) {
+                      error.state = true;
+                      error.msg+= 'La extensión del archivo no es válida.<br>';
+                  }
+
+                  break;
+              }
+
+          }
+
+          if (file.size > maxSize) {
+              error.state = true;
+              error.msg += 'La imágen no puede ocupar más de '+maxSize/1048576+' MB.';
+          }
+
+          if (error.state) {
+              input.value = '';
+              document.getElementById("clonado").innerHTML = error.msg;
+              return;
+          } else {
+            document.getElementById("clonado").innerHTML = "";
+          }
+         
+          var reader = new FileReader();
+
+          reader.onload = function(e) {
+           //   document.getElementById("img").src = e.target.result;
+                var filePreview = document.createElement('img');
+                filePreview.id = 'file-preview';
+                //e.target.result contents the base64 data from the image uploaded
+                filePreview.src = e.target.result;
+                console.log(e.target.result);
  
+                var previewZone = document.getElementById('clonado');
+                
+                previewZone.appendChild(filePreview);
+                var img1 = document.getElementById('file-preview');
+                //img1.width=120;
+                //img1.height=120;
+                img1.className = "imagen";
+                img1.draggable = true;
+                img1.ondragstart=function start(e){
+                  e.dataTransfer.effecAllowed = 'move'; // Define el efecto como mover (Es el por defecto)
+            e.dataTransfer.setData("Data", e.target.id); // Coje el elemento que se va a mover
+            e.dataTransfer.setDragImage(e.target,0,0); // Define la imagen que se vera al ser arrastrado el elemento y por donde se coje el elemento que se va a mover (el raton aparece en la esquina sup_izq con 0,0)
+            e.target.style.opacity = '0.4';
+                };
+                img1.ondragend=function end(e){
+                  e.target.style.opacity = ''; // Pone la opacidad del elemento a 1           
+            e.dataTransfer.clearData("Data");
+                };
+
+          }
+          reader.readAsDataURL(this.files[0]);
+        }
+  }
+    document.getElementById("file-upload").addEventListener("change",openImage,false); //Añadimos un evento al input para que se dispare cuando el usuario seleccione otro archivo
 </script>
         @endsection 
         <script type="text/javascript" src="{!! asset('assets/js/mot_recon_voz.js') !!}" async></script>
