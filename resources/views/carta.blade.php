@@ -203,7 +203,7 @@ function openImage() { //Esta función validaría una imágen
 
           if (file.size > maxSize) {
               error.state = true;
-              error.msg += 'La imágen no puede ocupar más de '+maxSize/1048576+' MB.';
+              error.msg += 'La imágen no puede ocupar más de '+maxSize/200+' KB.';
           }
 
           if (error.state) {

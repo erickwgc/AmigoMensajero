@@ -39,7 +39,7 @@
 @endsection
 @section("contenido")
 
-<table border="1">
+<table border="1" class="table table-hover">
 <thead>
 <td>id_permiso</td>
 <td>Permisos</td>

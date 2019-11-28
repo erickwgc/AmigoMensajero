@@ -124,7 +124,7 @@ class RolesController extends Controller
         
         if(($request->user_id != "vacio") && ($request->roles != null) ){
             $usuario=User::findOrFail($request->user_id);
-           $usuario->roles()->attach($request->roles);
+           $usuario->roles()->sync($request->roles);
 
         }
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);

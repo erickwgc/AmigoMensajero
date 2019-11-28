@@ -24,6 +24,14 @@
                       <li class="nav-item active">
                         <a class="nav-link" href="http://localhost:8000/roles" style="text-decoration: underline;">Roles</a>
                       </li>
+                      
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/permisos" >Permisos</a>
+                      </li>
+                      
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/profesionales" >Profesionales</a>
+                      </li>
                     
                     </ul>
                   </div>
@@ -45,7 +53,7 @@
 <tr>
 <td id="idCampo">Descripcion del rol: </td>
 <td><!--<input type="text" name="descripcion" required pattern="[A-Za-z0-9]{2,200}" title="Letras y numeros tamaño: 2-200 caracteres">-->
-<input type="text" name="descripcion" required pattern="[A-Za-z0-9]{2,200}" title="Letras y numeros tamaño: 2-200 caracteres">
+<input type="text" name="descripcion"  >
 </td>
 </tr>
 

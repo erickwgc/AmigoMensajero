@@ -34,14 +34,22 @@
         </ul>  
       </div>
 </nav>
-<table border="1" class="table table-hover">
-    <thead>
-        <td>Código</td>
-        <td>Profesion</td>
-        <td>Nombre</td>
-        <td>Apellido</td>
+<h2 style="color: white;">ESTA ES LA VISTA  PARA GESTIONAR LOS PROFESIONALES </h2> 
+@endsection 
+
+@section("contenido")
+    
+    <table border="1" class="table table-hover">
+        <thead>
+            <td>Código</td>
+            <td>Profesion</td>
+            <td>Nombre</td>
+            <td>Apellido</td>
     </thead>
     <tr>
-        
+            <td>......</td>
+            <td>......</td>
+            <td>......</td>
+            <td>......</td>
     </tr>
 @endsection 

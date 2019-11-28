@@ -25,6 +25,9 @@
                       <li class="nav-item active">
                           <a class="nav-link" href="http://localhost:8000/permisos" style="text-decoration: underline;">Permisoso</a>
                       </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/profesiones">Profesiones</a>
+                      </li>
                     </ul>
                   </div>
                 </nav>
