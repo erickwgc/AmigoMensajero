@@ -148,7 +148,5 @@ class UsersController extends Controller
         return view("usuarios.index",compact("usuarios"));
     }
 
-    public function inforPorfesi(){
-        return "rayos";
-    }    
+    
 }
