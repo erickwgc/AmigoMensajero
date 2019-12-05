@@ -17,14 +17,20 @@ class MDadministrador
      */
     public function handle($request, Closure $next)
     {
+        $admin = false;
         $rol = "";
         if(Auth::check()){
             $user_id = \Auth::user();
                 foreach ($user_id->roles as $role) {
                     $rol  = $role->nom_rol ;
+                    if($rol == "administrador"){
+                        $admin = true;
+                    }
                 }
         }       
-       if($rol == 'administrador'){
+        
+
+        if($admin){
             return $next($request);
         }
         return redirect('login');

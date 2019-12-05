@@ -5,7 +5,7 @@ use App\Role;
 use App\Pemiso;
 
 Route::group(['middleware' => 'guest'], function () {
-   Route::get('/inicio', "PaginasController@inicio");
+   Route::get('/inicio', "PaginasController@inicio")->name('inicio');
    Route::get('/boletin', "PaginasController@boletin");
    Route::resource('/carta', "CartasController");
    Route::get('/login',"loginController@index");
@@ -18,7 +18,6 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'admin'], function () {
    Route::resource('/usuarios',"UsersController");
-   Route::get('delete/{id}', 'UsersController@destroy')->name('usuario.delete');
    //Route::get('/usuarios/buscador',"UsuariosController@buscador");
    Route::get('/roles/asignacion',"RolesController@asignar");
    Route::post('/roles/asignacion/unir',"RolesController@role_user");
@@ -43,7 +42,7 @@ Route::group(['middleware' => 'auth'],function () {
    Route::post('/informacionPersonal/editar',"CuentaUsuarioController@update");
    Route::get('/notificaciones',"CuentaUsuarioController@notificaciones");
 });
-
+//Route::post('/informacionPersonal/editar',"CuentaUsuarioController@update");
 
 
 

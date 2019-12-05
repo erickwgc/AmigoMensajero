@@ -17,10 +17,16 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        if(Auth::check()){
+            return redirect('inicio');
+        }
+        
         if (Auth::guard($guard)->check()) {
             return redirect('/');
         }
+       
 
         return $next($request);
     }
 }
+

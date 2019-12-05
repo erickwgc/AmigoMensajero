@@ -51,25 +51,24 @@ $(document).ready(function(){
 
 <tr>
 <td id="idCampo">Nombre: </td>
-<td><input type="text" name="nom_usu" placeholder="Nombre" id="nom_usu"   required pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,30}"
-         title="Solo letras. Tamaño mínimo: 3. Tamaño máximo: 30">
+<td><input type="text" name="nom_usu" placeholder="Nombre" id="nom_usu"  >
   
     {{csrf_field()}}
 </td>
 
 <td id="idCampo">Usuario: </td>
-<td><input type="text" name="usuario" pattern="^([a-z]+[0-9]{0,5}){5,12}$" required title="solo letras minusculas y con un numero opcionalmente de hasta 5 digitos : Tamaño 5-12" >
+<td><input type="text" name="usuario">
 </td>
 
 </tr>
 <tr>
 <td id="idCampo">Apellido: </td>
-<td><input type="text" name="ape_usu" required pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{3,64}" title="Tamaño minimo 3 caracteres y maximo 64 caracteres">
+<td><input type="text" name="ape_usu" >
 </td>
 
 <td id="idCampo">Contraseña: </td>
 <td><input type="password" name="contrasenia" id="contrasenia" placeholder="Contraseña"
-                  pattern="[A-Za-z0-9!?-]{8,12}" required title="letras Mayusculas,minusculas y caracteres  !?-. Tamaño  8-12" >
+                 >
 </td>
 
 
@@ -77,12 +76,12 @@ $(document).ready(function(){
 
 <tr>
 <td id="idCampo">Correo: </td>
-<td><input type="email" name="correo"  pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+<td><input type="email" name="correo"  >
 </td>
 
 <td id="idCampo">Confirmar Contraseña: </td>
 <td><input type="password" name="confirmcontrasenia" id="confirmcontrasenia" placeholder="Confirmar Contraseña"
-                  pattern="[A-Za-z0-9!?-]{8,12}" title="letras Mayusculas,minusculas y caracteres  !?-. Tamaño  8-12" required >
+                  >
 </td>
 
 
@@ -93,7 +92,7 @@ $(document).ready(function(){
 
 <tr>
 <td id="idCampo">Fecha nacimiento: </td>
-<td><input type="date" name="fecha_nac" required min="1550-02-20" max="2015-04-24">
+<td><input type="date" name="fecha_nac" >
 </td>
 
 <td id="idCampo"><span id="error1" style="margin-left: 50px;"></span></td>
@@ -102,7 +101,7 @@ $(document).ready(function(){
 
 <tr>
 <td id="idCampo">Telefono: </td>
-<td><input type="tel" name="tel_usu"  required  title="Solo numeros " >
+<td><input type="tel" name="tel_usu"   >
 </td>
 
 

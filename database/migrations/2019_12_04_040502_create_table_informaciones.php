@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInformacionsTable extends Migration
+class CreateTableInformaciones extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,12 @@ class CreateInformacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('informacions', function (Blueprint $table) {
-            $table->increments('cod_inf');
-            $table->integer('id_usu');
+        Schema::create('informaciones', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->char('especialidad',15);
-            $table->integer('ani_esp');
+            $table->integer('anio_esp');
             $table->string('experiencia');
             $table->string('formacion');
             $table->char('uni_egr',20);
@@ -31,8 +32,8 @@ class CreateInformacionsTable extends Migration
      *
      * @return void
      */
-    public function  down()
+    public function down()
     {
-        Schema::drop('informacions');
+        Schema::drop('informaciones');
     }
 }

@@ -112,7 +112,7 @@
                     @endif  
 
                     @endforeach
-                
+                    <a herf="{{route()}}">AñadirInformacion</a>
                 @endforeach
              </td>
              
