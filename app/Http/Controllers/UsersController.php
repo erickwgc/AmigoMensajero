@@ -95,7 +95,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-
+        
         $usuario=User::findOrFail($id);
         
         echo $usuario->roles;
