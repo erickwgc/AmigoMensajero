@@ -10,7 +10,7 @@
         width: 30%;
     }
     .contenido table{
-        width:70%;
+         width:70%;
         margin: 0 auto;
         background:#FFFFFF;
         }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Permiso;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+    	$this->call(RoleTableSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PermisoSeeder::class);
     }

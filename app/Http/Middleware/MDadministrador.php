@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 use App\User;
 use App\Role;
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
 class MDadministrador
 {
@@ -17,17 +16,15 @@ class MDadministrador
      */
     public function handle($request, Closure $next)
     {
-        $rol = "";
-        if(Auth::check()){
-            $user_id = \Auth::user();
-                foreach ($user_id->roles as $role) {
-                    $rol  = $role->nom_rol ;
-                }
-        }       
-       if($rol == 'administrador'){
-            return $next($request);
+        $user_id = \Auth::user();
+        $usuario = User::find($user_id->id)->roles()->where('nom_rol','administrador')->first();  
+        $id =  $usuario->pivot->role_id;
+        $rol = Role::find($id)->nom_rol;
+        if($rol != 'administrador'){
+            return redirect('login');
         }
-        return redirect('login');
+        
+        return $next($request);
     }
     
 }

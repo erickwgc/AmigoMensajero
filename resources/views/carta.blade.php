@@ -16,26 +16,37 @@
         </script>
         <link href="gspell/googiespell.css" type="text/css"
         rel="stylesheet" media="all" />
-
+      
         <!-- Bootstrap -->
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
         <link href="{{asset('assets/css/draganddrop.css')}}" rel="stylesheet">
         
         <script src="{!! asset('assets/js/dragandrop.js') !!}"></script>
+        <style type="text/css">
+          .atras{
+            /*position: relative;*/
+          }
+          .sobre {
+             /*position:absolute;
+             top:0px;
+             left:0px;
+             border:none;*/
+          }
+        </style>
     </head>
-    <body >
+    <body>
     @extends("layout.plantilla")
       @section("cabecera") 
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(255,192,0);">
                   
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
               
                   <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                       <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/">Inicio</a>
+                        <a class="nav-link" href="http://localhost:8000/inicio">Inicio</a>
                       </li>
                       <li class="nav-item active">
                         <a class="nav-link" href="http://localhost:8000/carta" style="text-decoration: underline;">Escribe tu Carta<span class="sr-only">(current)</span></a>
@@ -43,7 +54,7 @@
                       <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8000/boletin">Boletín</a>
                       </li>
-                     @if (Auth::guest())
+                      @if (Auth::guest())
                         
                     @else
                        <li class="nav-item">
@@ -56,8 +67,7 @@
                     </ul>
                   </div>
                 </nav> 
-
-             <div class="panelIzquierda">
+        <div class="panelIzquierda">
          
            <div  id="cajaimagen" ondragenter="return enter(event)" ondragleave="return leave(event)" ondrop="return clonar(event)" >
                           <img class="imagen" src= "{{asset('assets/img/default/mama_coco.png')}}"  id="img" draggable="true" ondragstart="start(event)" ondragend="end(event)">
@@ -203,7 +213,7 @@ function openImage() { //Esta función validaría una imágen
 
           if (file.size > maxSize) {
               error.state = true;
-              error.msg += 'La imágen no puede ocupar más de '+maxSize/1048576+' MB.';
+              error.msg += 'La imágen no puede ocupar más de '+maxSize/200+' KB.';
           }
 
           if (error.state) {

@@ -18,6 +18,8 @@ class CreateImagensTable extends Migration
             $table->string('nombre');
             $table->string('ruta');
             $table->string('tipo');
+
+
             $table->timestamps();
         });
     }

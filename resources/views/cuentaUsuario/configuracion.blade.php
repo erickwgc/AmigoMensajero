@@ -1,3 +1,6 @@
+@if (Auth::guest())
+  <script>window.location = "/login";</script>
+@else
 @extends("../layout/plantilla")
 <style type="text/css">
   .switch {
@@ -74,7 +77,7 @@ input:checked + .slider:before {
         <ul class="navbar-nav">
                       
           <li class="nav-item">
-              <a class="nav-link" href="http://localhost:8000/AdminInicio" >Inicio</a>
+              <a class="nav-link" href="http://localhost:8000/inicio" >Inicio</a>
           </li>
                         
           <li class="nav-item">
@@ -88,10 +91,17 @@ input:checked + .slider:before {
           <li class="nav-item ">
               <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
+          </li>
+          
+
+
                     
         </ul>
       </div>
 </nav>
+<h2 style="color: white;">Configuración de mi Cuenta</h2>
   <div class="" style="color: white; font-weight: bold;">
       <div style="width: 50%;">
           <div style="text-align: center;">
@@ -116,7 +126,7 @@ input:checked + .slider:before {
                   </div>
     
                 <div>
-                    <input type="submit" style="background-image: url('{{asset('assets/img/botonEditar.png')}}'); 
+                    <input type="submit" value=""style="background-image: url('{{asset('assets/img/botonEditar.png')}}'); 
                       background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px; margin-top: 30px;" />
                 </div>
                 
@@ -126,7 +136,7 @@ input:checked + .slider:before {
                     <form method="post" action="/configuracion/eliminar">
                         {{csrf_field()}}
                       <input type="text" name="id" value="{{Auth::user()->id}}" hidden> 
-                          <input type="submit" style="background-image: url('{{asset('assets/img/botonEliminarMiCuenta.png')}}'); 
+                          <input type="submit" value="" style="background-image: url('{{asset('assets/img/botonEliminarMiCuenta.png')}}'); 
                             background-size: contain; height: 40px; width: 220px;margin-left: 200px;margin-bottom: 10px; margin-top: 30px;" />
                     </form>
               </div>
@@ -136,3 +146,4 @@ input:checked + .slider:before {
 </div>
 
 @endsection
+@endif

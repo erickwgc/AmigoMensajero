@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Auth\Guard;
+
 use App\Http\Requests;
 use App\User;
 use App\Role;
 use Validator;
+
 class loginController extends Controller
 {
     
@@ -57,31 +58,29 @@ class loginController extends Controller
      */
     public function store(Request $request)
     {
+
+       //return "hola";
+
         $this->validate($request,[
 
             'correo_name'=>'required|string|min:3',
-            'contrasenia'=>'required',]);
-      
+            'contrasenia'=>'required',
+
+
+        ]);
 
         $whitMail = ['email' => $request->correo_name, 'password' => $request->contrasenia];
         $whitUser = ['username' => $request->correo_name, 'password' => $request->contrasenia];
 
         
         if (Auth::attempt($whitMail) || Auth::attempt($whitUser)) {
-                $user = Auth::user();
-                $rol = "";
-                foreach ($user->roles as $role) {
-                $rol  = $role->nom_rol ;
-            }
-            if( $rol = 'administrador'){
-            return view('welcome',compact("user","rol"));
-            } 
-            if($rol != 'administrador'){
-            return view('usuarioGeneral.perfil' , compact("user","rol"));
-            } 
-          
+
+
+
+            
+            return view('welcome');
         } else {
-            return 'no encontrado';
+            return redirect('/login');
         }
        
     }
@@ -91,9 +90,17 @@ class loginController extends Controller
 
      public function cerrarSesion()
      {
-            Session::flush();
-            return redirect('/');
-    }
+
+           // Cerramos la sesión
+        //Auth::logout();
+        
+        Session::flush();
+
+        // Volvemos al login y mostramos un mensaje indicando que se cerró la sesión
+        return redirect('/login');
+
+
+     }
 
 
 

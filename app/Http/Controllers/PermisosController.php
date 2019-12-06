@@ -14,8 +14,13 @@ class PermisosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->user() == null){
+            return view("auth.login");
+        }else{ 
+        $request->user()->autorizeRoles(['administrador']);
+        }
         $permisos=Permiso::all();
         return view("permisos.index",compact("permisos"));
     }
@@ -84,7 +89,12 @@ class PermisosController extends Controller
     {
         //
     }
-    public function asignar(){
+    public function asignar(Request $request){
+        if($request->user() == null){
+            return view("auth.login");
+        }else{ 
+        $request->user()->autorizeRoles(['administrador']);
+        }
        $permisos=Permiso::all();
        $roles = Role::all();
        return view("permisos.asignar",compact("permisos","roles"));
@@ -94,7 +104,7 @@ class PermisosController extends Controller
     {   
         if(($request->role_id != "vacio") && ($request->permisos != null) ){
             $rol=Role::findOrFail($request->role_id);
-            $rol->permisos()->attach($request->permisos);
+            $rol->permisos()->sync($request->permisos);
         }
         return redirect("/roles");;
     }

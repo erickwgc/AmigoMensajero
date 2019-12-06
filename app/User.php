@@ -6,6 +6,39 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    public function roles(){
+        return $this->belongsToMany('App\Role');
+    }
+
+    public function autorizeRoles($roles){
+        if($this->hasAnyRole($roles)){
+            return true;
+        }
+        abort(401,'Esta Sección no esta autorizada');
+    }
+
+    public function hasAnyRole($roles){
+        if(is_array($roles)){
+            foreach ($roles as $role) {
+                if($this->hasRole($role)){
+                    return true;
+                }    
+            }
+        }else{
+            if($this->hasRole($roles)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //validar si el usuario tiene ese rol
+    public function hasRole($role){
+        if($this->roles()->where('nom_rol',$role)->first()){
+            return true;
+        }
+        return false;
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -24,11 +57,7 @@ class User extends Authenticatable
         'password'
     ];
     
-    public function roles(){
-        //return $this->belongsToMany('App\Role','role_user','user_id','role_id');
-        return $this->belongsToMany('App\Role');
-
-    }
+    
     public function scopeBuscar($query,$buscar){   
         
         //return $query->where('nom_usu','LIKE','%' . $buscar . '%');
@@ -38,7 +67,10 @@ class User extends Authenticatable
         
     }
 
-    public function getRolesList(){
+
+
+
+     public function getRolesList(){
         return $this->roles->list('id')->all();
     }
 
@@ -53,10 +85,4 @@ class User extends Authenticatable
         }
         return $valor;
     }
-    
-    public function informaciones(){
-        return $this->hasMany('App\Informacion','id_usu');
-    }
 }
-
-

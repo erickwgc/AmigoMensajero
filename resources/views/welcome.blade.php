@@ -16,48 +16,45 @@
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
-              
+              @if (Auth::guest())
                   <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                      
-                      @if (Auth::guest())
                       <li class="nav-item active">
-                        <a class="nav-link" href="http://localhost:8000/" style="text-decoration: underline;">Inicio<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="http://localhost:8000/inicio" style="text-decoration: underline;">Inicio<span class="sr-only">(current)</span></a>
                       </li>
-                      
                       <li class="nav-item ">
                         <a class="nav-link" href="http://localhost:8000/carta">Escribe tu Carta</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8000/boletin">Boletín</a>
                       </li>
-                      @else  
+                       <!-- Authentication Links -->
+                    
+                        
+                    @else
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
                       <li class="nav-item active">
                         <a class="nav-link" href="http://localhost:8000/inicio" style="text-decoration: underline;">Inicio<span class="sr-only">(current)</span></a>
-                      </li>  
-                       
-                        <li class="nav-item">
-                          <a class="nav-link" href="http://localhost:8000/correo">Cartas de niños</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="http://localhost:8000/usuarios">Usuarios</a>
-                        </li>
-                        <li class="nav-item ">
-                          <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
-                        </li>
-                        <li class="nav-item ">
-                          <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
-                        </li>
-                        <li class="nav-item ">
-                          <a class="nav-link" href="http://localhost:8000/profesionales">Profesionales</a>
-                        </li>
+                      </li>
+                       <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8000/correo">Cartas de niños</a>
+                      </li>
+                       <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8000/usuarios">Usuarios</a>
+                      </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
+                      </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
+                      </li>
+                    @endif
                       
-                        @endif
                     </ul>
                   </div>
                 </nav>
-                <h2 style="color: white;">ESTA ES LA VISTA DE INICIO </h2>
-              
+                <h2 style="color: white;">ESTA ES LA VISTA DE INICIO</h2> 
       @endsection  
 
     </body>

@@ -28,9 +28,7 @@
                       <li class="nav-item active">
                         <a class="nav-link" href="http://localhost:8000/permisos" style="text-decoration: underline;">Permisos</a>
                       </li>
-                      <li class="nav-item ">
-                        <a class="nav-link" href="http://localhost:8000/profesionales" >Profesionales</a>
-                      </li>
+                     
                     
                     </ul>
                   </div>
@@ -41,9 +39,9 @@
 
 <table border="1">
 <thead>
-<td>id_permiso</td>
-<td>Permisos</td>
-<td>Descripcion</td>
+<td>  Id </td>
+<td>Permiso</td>
+<td>Descripción</td>
 
 </thead>
   @foreach($permisos as $permiso) 

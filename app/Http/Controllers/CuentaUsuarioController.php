@@ -38,7 +38,8 @@ class CuentaUsuarioController extends Controller
         
         User::where('id',$id)->update([
         'username'=>$request->username,
-        'password'=>$request->password,
+        'password'=>crypt($request->password,''),
+         
          ]);
          if( $rol = 'administrador'){
             return view('welcome',compact("user","rol"));

@@ -11,7 +11,7 @@
                       <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8000/inicio" >Inicio</a>
                       </li>
-
+                
                       <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8000/correo">Cartas de niños</a>
                       </li>    
@@ -23,20 +23,50 @@
                         <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
                       </li>
                       <li class="nav-item active">
-                          <a class="nav-link" href="http://localhost:8000/permisos" style="text-decoration: underline;">Permisoso</a>
+                          <a class="nav-link" href="http://localhost:8000/permisos" style="text-decoration: underline;">Permisos</a>
                       </li>
+                     
                     </ul>
                   </div>
                 </nav>
-                <h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA USUARIOS/crearusuario</h2> 
+                <h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA ROLES/asignar permisos</h2> 
 @endsection
 @section("contenido")
-<h1> asignacion de permisoso </h1>
+
 <form action="/permisos/asignacion/ui" method="post">
     {{csrf_field()}}
-    <table>
+
+
+    <div class="form-group">
+    <label for="exampleFormControlSelect1" style="color:#FFFFFF;margin-left: 2%;">Rol:</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="role_id" style="width:50%;margin-left: 10%;">
+        <option value="vacio">    </option>
+        @foreach($roles as $rol)
+        <option value="{{$rol->id}}">{{$rol->nom_rol}} </option>       
+         @endforeach
+    </select>
+  </div>
+<br>
+
+<label for="idCampo" style="color:#FFFFFF; margin-left: 2%;">Permisos</label> 
+  @foreach($permisos as $permiso)
+  <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+    <div class="form-group form-check" form="roles" id="idCampo"  style="margin-left: 10%;">
+        <input type="checkbox" class="form-check-input" id="rol" name="permisos[]" value="{{$permiso->id}}">
+        <label class="form-check-label" for="exampleCheck1">{{$permiso->nom_per}}</label>
+    </div>
+  </div>
+  @endforeach
+
+  <br>
+  <input type="submit" name="enviar" value="Guardar asignación" 
+      class="btn btn-warning" style="margin-left: 5%;">
+     
+
+    <!-- 
+    <table style="background-color: transparent;">
     <tr>
-    <td>Rol</td>
+    <td id="idCampo">Rol</td>
     <td>
       <select name="role_id" >
           <option value="vacio">    </option>
@@ -48,12 +78,13 @@
     </tr>
      
     <tr>
-    <td>Permisos</td>
+    <td id="idCampo">Permisos</td>
       <td>
+        <br>
         @foreach($permisos as $permiso)
         
-        <label for="permisos">
-            <input type="checkbox" id="permiso" name="permisos[]" value="{{$permiso->id}}">{{$permiso->nom_per}}
+        <label for="permisos" style="color: white;">
+            <input type="checkbox" id="permiso" name="permisos[]" value="{{$permiso->id}}" style=" margin-right: 10px;">{{$permiso->nom_per}}
         </label>
         <br>
         @endforeach
@@ -62,10 +93,12 @@
      
     <th>
         <td colspan="2" align="center">
-          <input type="submit" name="enviar" id="enviar" value="ASIGNAR"style= background-size: cover; height: 40px; width: 241px;margin-top: 50px; margin-left: 30px;>
+          <input type="submit" name="enviar" id="enviar" value=""style= "background-image: url('{{asset('assets/img/botonGuardarAsignacion.png')}}'); 
+                          background-size: cover; height: 40px; width: 241px;margin-top: 50px; margin-left: 30px;">
         </td>
     </th>
     
 </table>
+-->
 </form>
 @endsection

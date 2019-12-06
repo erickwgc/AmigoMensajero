@@ -1,38 +1,30 @@
 @extends("../layout/plantilla")
 @section("cabecera")
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(255,192,0);">
-                  
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-              
-                  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                      
-                      <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/inicio" >Inicio</a>
-                      </li>
-                      
-                      <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/correo">Cartas de niños</a>
-                      </li>     
-                      
-                      <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/usuarios">Usuarios</a>
-                      </li>
-                      
-                      <li class="nav-item active">
-                        <a class="nav-link" href="http://localhost:8000/roles" style="text-decoration: underline;">Roles</a>
-                      </li>
-                    
-                    </ul>
-                  </div>
-                </nav>
-                <h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA ROLES/crea roles</h2> 
+    @include("../roles/menu")
+    <h2 style="color: white;">ESTA ES LA VISTA DE ROLES/CREAR</h2> 
 @endsection
 @section("contenido")
-
+<br>
 <form action="/roles" method="post" style="background: transparent; width: 90%;">
+{{csrf_field()}}
+<div class="form-group row">
+    <label for="nombre_rol" class="col-sm-2 col-form-label" id="idCampo">Nombre de Rol: </label>
+    <div class="col-sm-10">
+      <input type="text" name="nom_rol" class="form-control" id="nombre_rol" style="width: 30%" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="descripcion_rol" class="col-sm-2 col-form-label" id="idCampo">Descripcion de Rol: </label>
+    <div class="col-sm-10">
+    <textarea class="form-control" name="descripcion" id="descripcion_rol" rows="4" style="width: 40%"></textarea>
+    </div>
+  </div>
+<br>
+  <input type="submit" value="Guardar Rol"  
+      class ="btn btn-warning" style="margin-left: 20%;">
+
+<!--
 <table style="font-size: 16px;font-weight: bold; background: transparent; width: 90%;margin: 20px auto;">
 
 <tr>
@@ -44,8 +36,12 @@
 
 <tr>
 <td id="idCampo">Descripcion del rol: </td>
-<td><!--<input type="text" name="descripcion" required pattern="[A-Za-z0-9]{2,200}" title="Letras y numeros tamaño: 2-200 caracteres">-->
-<input type="text" name="descripcion" required pattern="[A-Za-z0-9]{2,200}" title="Letras y numeros tamaño: 2-200 caracteres">
+<td>
+    
+-->
+<!--<input type="text" name="descripcion" required pattern="[A-Za-z0-9]{2,200}" title="Letras y numeros tamaño: 2-200 caracteres">-->
+<!--
+<input type="text" name="descripcion" required>
 </td>
 </tr>
 
@@ -56,5 +52,6 @@
 </td>
 </tr>
 </table>
+-->
 </form>
 @endsection

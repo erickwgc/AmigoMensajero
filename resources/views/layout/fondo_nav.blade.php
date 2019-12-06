@@ -19,6 +19,8 @@
 		<script src="../../../public/assets/js/jquery.validate.js"></script> 
 		
 		
+        
+        
         <script type="text/javascript" src="{!! asset('assets/js/bootstrap.js') !!}"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -41,12 +43,13 @@
                 <!-- Logotipo y titulo -->
                 <img src="{{asset('assets/img/avion.png')}}" height="80px" width="150px"><a class="navbar-brand" href="#" style="font-family: 'Concert One', cursive; font-size: 45px; color: white;">EL AMIGO MENSAJERO</a>
                 @if (Auth::guest())
-                    <button type="button" class="btn btn-success" data-toggle="modal" onclick="location.href='http://localhost:8000/login'" style="margin-left:350px; border:0px; padding: 0px;"><img src="{{asset('assets/img/botonIniciarSesion.png')}}" height="40px" width="200px"/></button>
-                @else             
-                   <!-- <button type="button" class="btn btn-success" data-toggle="modal" onclick="location.href='http://localhost:8000/logout'" style="margin-left:350px; border:0px; padding: 0px;"><img src="{{asset('assets/img/botonCerrarSesion.jpeg')}}" height="40px" width="200px"/></button>
-                        -->
+                        <button type="button" class="btn btn-success" data-toggle="modal" onclick="location.href='http://localhost:8000/login'" style="margin-left:350px; border:0px; padding: 0px;"><img src="{{asset('assets/img/botonIniciarSesion.png')}}" height="40px" width="200px"/></button>
+                    @else 
+                    <!--
+                       <button type="button" class="btn btn-success" data-toggle="modal" onclick="location.href='http://localhost:8000/logout'" style="margin-left:350px; border:0px; padding: 0px;"><img src="{{asset('assets/img/botonCerrarSesion.jpeg')}}" height="40px" width="200px"/></button>
 
-                    <div class="btn-group" style="margin-left:350px;">
+                       !-->
+                         <div class="btn-group" style="margin-left:350px;">
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="background-color: #C0FFA4; font-weight: bold; color: black; border-radius: 0px;">
 
 
@@ -60,9 +63,11 @@
                           <a class="dropdown-item" href="http://localhost:8000/logout" style="font-size: 15px;color: black;">Cerrar Sesión</a>
                         </div>
                     </div>
+                  @endif
+                
 
-
-                @endif
+                
+                <!-- Menú de Navegación -->
                  
             </header>
       

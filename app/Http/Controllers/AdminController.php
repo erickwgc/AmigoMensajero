@@ -6,11 +6,31 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+
 class AdminController extends Controller
 {
-    public function inicio()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
-        return view('administrador.inicio');
+        //$user = Auth::user();
+         if($request->user() == null){
+            return view("auth.login");
+        }else{ 
+        $request->user()->autorizeRoles(['administrador']);
+        }
+       
+        return view('administrador.index',compact('user'));
+    
     }
 
+  
+    public function store(Request $request)
+    {
+       
+    }
+  
 }

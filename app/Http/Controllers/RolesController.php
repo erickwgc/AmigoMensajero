@@ -14,18 +14,14 @@ class RolesController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     * 
-     * 
      */
-    
-    public function __construct()
-    {
-      //  $this->middleware('admin');
-    }   
-
-
-    public function index()
-    {
+    public function index(Request $request){
+        if($request->user() == null){
+            return view("auth.login");
+        }else{ 
+        $request->user()->autorizeRoles(['administrador']);
+        }
+        
         $roles=Role::all();
         return view("roles.index",compact("roles"));
     }
@@ -35,8 +31,14 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if($request->user() == null){
+            return view("auth.login");
+        }else{ 
+        $request->user()->autorizeRoles('administrador');
+        }
+        
         return view("roles.create");   
     }
 
@@ -73,8 +75,13 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
+        if($request->user() == null){
+            return view("auth.login");
+        }else{ 
+        $request->user()->autorizeRoles('administrador');
+        }
         $rol = Role::findOrFail($id);
         $permisos=Permiso::all();
         foreach($rol->permisos as $permiso){
@@ -83,7 +90,6 @@ class RolesController extends Controller
 
 
         return view("roles.edit",compact("rol","permisos","permis"));
-
     }
 
     /**
@@ -95,9 +101,9 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rol = Role::findOrFail($id);
+      $rol = Role::findOrFail($id);
         $rol->permisos()->sync($request->permisos);
-        return redirect("/roles");    
+        return redirect("/roles"); 
     }
 
     /**
@@ -110,27 +116,23 @@ class RolesController extends Controller
     {
         $rol = Role::findOrFail($id);
         $rol->permsisos()->detach();  
-        return redirect("/roles");  
+        return redirect("/roles"); 
     }
     public function asignar(){
-        $usrol = User::has('roles')->get();
+        //$usrol = User::has('roles')->get();
         $usuarios=User::all();
         $roles=Role::all();
-        return view("roles.asignar",compact("usuarios","roles","usrol"));
+        return view("roles.asignar",compact("usuarios","roles"));
     
     }
-    
     public function role_user(Request $request){
         
         if(($request->user_id != "vacio") && ($request->roles != null) ){
             $usuario=User::findOrFail($request->user_id);
-           $usuario->roles()->attach($request->roles);
+           $usuario->roles()->sync($request->roles);
 
         }
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
         return view("usuarios.index",compact("usuarios"));
     }
-
-   
-
 }

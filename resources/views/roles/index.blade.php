@@ -1,79 +1,39 @@
 @extends("../layout/plantilla")
 @section("cabecera")
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(255,192,0);">
-                  
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-              
-                  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                    
-                      <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/inicio" >Inicio</a>
-                      </li>
-                      
-                      <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/correo">Cartas de niños</a>
-                      </li>   
-                     
-                      <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/usuarios">Usuarios</a>
-                      </li>
-                      
-                      <li class="nav-item active">
-                        <a class="nav-link" href="http://localhost:8000/roles" style="text-decoration: underline;">Roles</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/profesionales">Profesionales</a>
-                      </li>
-                      
-                     
-                    </ul>
-                  </div>
-                </nav>
-                <h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA ROLES</h2> 
+    @include("../roles/menu")
+    <h2 style="color: white;">ESTA ES LA VISTA DE ROLES </h2> 
 @endsection
+
 @section("contenido")
   @if(Auth::user()->getPermisos('crear rol'))
-    <input type="submit" value="" onclick = "location='/roles/create'" style="background-image: url('{{asset('assets/img/botonCrearRol.png')}}'); 
-                background-size: contain; height: 40px; width: 143px;margin-left: 200px;margin-bottom: 10px; margin-top: 30px;" />
+    <!--
+    <input type="submit" value="" onclick = "location='/roles/create'"
+     style="background-image: url('{{asset('assets/img/botonCrearRol.png')}}'); 
+                background-size: contain; height: 40px; width: 143px;margin-left: 200px;
+                margin-bottom: 10px; margin-top: 30px;" />
+-->
+<br>
+    <input type="submit" name="enviar" value="Crear Rol" onclick = "location='/roles/create'"
+      class="btn btn-warning" style="margin-left: 15%;">
+      &nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="submit" value="Asignar Permiso"  onclick = "location='/permisos/asignacion'"
+      class ="btn btn-warning" style="margin-left: 15%;">
 
-    <input type="submit" value="Asignar Permiso" onclick = "location='/permisos/asignacion'">
+    <br><br>
+
   @endif   
-    <table border="1" class="table table-hover">
-        <thead>
-            <td>Código</td>
-            <td>Nombre de Rol</td>
-            <td>Permisos</td>
-            <td>Modificar</td>
-        </thead>
-    @foreach($roles as $role)
-        <tr>
-            <td>{{$role->id}}</td>
-            <td>{{$role->nom_rol}}</td>
-            <td>
-                @foreach($role->permisos as $permiso)
-                   {{$permiso->nom_per}}
-                   <br>
-                 @endforeach
-              </td>
-            <td> 
-                @if(Auth::user()->getPermisos('eliminar rol'))
-                  <a href="#">Eliminar</a>
-                @endif
-                @if(Auth::user()->getPermisos('editar rol'))
-                  <a href="{{route('roles.edit',$role->id)}}">Editar</a>
-                @endif
-                @if(Auth::user()->getPermisos('ver rol'))
-                  <a href="{{route('roles.show',$role->id)}}">Ver</a> 
-                @endif
-            </td>
-            
-        </tr>
-    @endforeach
-    </table>
+
+<!--TABLA DE ROLES-->
+  @include("../roles/tabla_roles")
+
+<!--MOSTRAR CON MODAL El ROL SELECCIONADO-->
+    @include("../roles/mostrar_rol")
+ <script>
+    var Mostrar = function(rol,descripcion)
+      {  
+        $('#nombre_rol').val(rol);
+        $('#descripcion_rol').val(descripcion);
+      }    
+    </script>
 @endsection
+

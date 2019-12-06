@@ -41,6 +41,8 @@ class CartasController extends Controller
      */
     public function store(Request $request)
     {
+
+       
         $carta= new Carta();
         $carta->autor=$request->campo_nombre;
         $carta->contenido=$request->contenido;
@@ -89,12 +91,13 @@ class CartasController extends Controller
         $carta->color_car=$resultado;
         $carta->save();
         
+        
         if($name = $_FILES["mi_imagen"]["name"][0] != null ){
             $total = count($_FILES["mi_imagen"]["name"]);
 
          
             for ($i=0; $i < $total; $i++) {     
-                 $imagenes = new Imagen();
+                $imagenes = new Imagen();
                 $imagenSubida="true";
                 $tmp_name = $_FILES["mi_imagen"]["tmp_name"][$i];
                 $name = $_FILES["mi_imagen"]["name"][$i];

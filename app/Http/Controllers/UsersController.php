@@ -7,18 +7,25 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 
-
 use App\User;
 
 use App\Role;
 
 class UsersController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
+        if($request->user() == null){
+            return view("auth.login");
+        }else{ 
+        $request->user()->autorizeRoles(['administrador']);
+        }
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
-        
         return view("usuarios.index",compact("usuarios"));
     }
 
@@ -27,8 +34,13 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+         if($request->user() == null){
+            return view("auth.login");
+        }else{ 
+        $request->user()->autorizeRoles(['administrador']);
+        }
         $roles=Role::all();
         return view("usuarios.create",compact("roles"));
     }
@@ -41,12 +53,11 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        /*
-        $nom_rol=$request->nom_rol;
+        //$nom_rol=$request->nom_rol;
         
-        $rol=Role::where('nom_rol',$nom_rol)->first();
+        //$rol=Role::where('nom_rol',$nom_rol)->first();
+        //echo $rol;
         
-        */
         $usuarios=new User();
         
         $usuarios->nom_usu=$request->nom_usu;
@@ -62,9 +73,13 @@ class UsersController extends Controller
 
         if ($clave==$claveConf) {
 
+            
+        
+
+
         $usuarios->password=crypt($clave,'');
         $usuarios->save();
-
+        $usuarios->roles()->attach($rol);
         return redirect("/usuarios");
        }else
        {
@@ -80,16 +95,13 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-
+        
         $usuario=User::findOrFail($id);
         
-        $roles=$usuario->roles;
-        $roles_user=array();
-        foreach($roles as $rol){
-            $roles_user[]=$rol->nom_rol;
-        }
+        echo $usuario->roles;
 
-        return view("usuarios.show",compact("usuario","roles_user"));
+        
+        //return view("usuarios.show",compact("usuario","role"));
     }
 
     /**
@@ -98,8 +110,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
+        if($request->user() == null){
+            return view("auth.login");
+        }else{ 
+        $request->user()->autorizeRoles(['administrador']);
+        }
         $roles=Role::all();
         $usuario=User::findOrFail($id);
         return view("usuarios.edit",compact("usuario"));
@@ -124,9 +141,8 @@ class UsersController extends Controller
         'fecha_nac'=>$request->fecha_nac,
         'tel_usu'=>$request->tel_usu,
          ]);
-        /*
-        User::find($id)->roles()->sync([$request->role_id]);
-        */
+
+       // User::find($id)->roles()->sync([$request->role_id]);
         return redirect("/usuarios");
     }
 
@@ -147,6 +163,4 @@ class UsersController extends Controller
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
         return view("usuarios.index",compact("usuarios"));
     }
-
-    
 }

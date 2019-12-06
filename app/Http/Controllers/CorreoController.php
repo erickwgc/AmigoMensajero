@@ -15,7 +15,12 @@ class CorreoController extends Controller
      */
     public function index(Request $request)
     {
-        $cartas_buscador=Carta::Buscar($request->buscar)->paginate(10);
+        if($request->user() == null){
+            return view("auth.login");
+        }else{ 
+        $request->user()->autorizeRoles(['administrador']);
+        }
+       $cartas_buscador=Carta::Buscar($request->buscar)->paginate(10);
 
         $cartas_todas=Carta::all();
 

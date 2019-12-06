@@ -1,3 +1,6 @@
+@if (Auth::guest())
+  <script>window.location = "/login";</script>
+@else
 @extends("../layout/plantilla")
 @section("cabecera")
 @endsection
@@ -12,7 +15,7 @@
         <ul class="navbar-nav">
                       
           <li class="nav-item">
-              <a class="nav-link" href="http://localhost:8000/AdminInicio" >Inicio</a>
+              <a class="nav-link" href="http://localhost:8000/inicio" >Inicio</a>
           </li>
                         
           <li class="nav-item">
@@ -26,10 +29,17 @@
           <li class="nav-item ">
               <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
           </li>
-                    
+            
+          <li class="nav-item ">
+            <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
+         </li>
+            
+        
+        
         </ul>
       </div>
 </nav>
+<h2 style="color: white;">Información Personal</h2>
         <form action="/informacionPersonal/editar" method="post"> 
         {{csrf_field()}}   
         <div class="" style="color: white; font-weight: bold;">
@@ -74,3 +84,4 @@
 
 
 @endsection
+@endif

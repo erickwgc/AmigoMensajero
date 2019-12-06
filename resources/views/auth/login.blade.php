@@ -11,16 +11,15 @@
                   <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                       <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/">Inicio</a>
+                        <a class="nav-link" href="http://localhost:8000/inicio">Inicio</a>
                       </li>
                       <li class="nav-item ">
                         <a class="nav-link" href="http://localhost:8000/carta">Escribe tu Carta</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8000/boletin">Boletín</a>
-					  </li>
-
-					  @if (Auth::guest())
+                      </li>
+                     @if (Auth::guest())
                         
                     @else
                        <li class="nav-item">
@@ -34,15 +33,18 @@
                     </ul>
                   </div>
                 </nav>
-		 
-			<div class="panel panel-heading" style="text-align: center;">
+ 
+
+     
+	
+	      <div class="panel panel-heading" style="text-align: center;">
 		 
 		    <img src="{{asset('assets/img/circuloUsuario.png')}}" style="width: 40%; margin-top: 20px;">
 		 </div>
 		 <center>
 		 	<div class="panel-body">
 		  
-		      <form method="post" action ="{{ route('login')}}" style="background-color: transparent;" id="campos">
+		      <form method="post" action ="{{ route('loginValidar')}}" style="background-color: transparent;" id="campos">
 			       {{ csrf_field()}}
  
 
@@ -76,9 +78,9 @@
 			
 		 
 		 </div>
-	   
 		 </center>
 		 
+	   
 	
 	
 
