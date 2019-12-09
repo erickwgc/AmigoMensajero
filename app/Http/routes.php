@@ -22,6 +22,7 @@ Route::get('/inicio', "PaginasController@inicio");
 
 Route::resource('/carta', "CartasController");
 Route::get('/boletin', "PaginasController@boletin");
+Route::resource('/informacion',"InformacionController");
 
 
 //USUARIOS
@@ -76,3 +77,4 @@ Route::resource('/correo', "CorreoController");
    Route::post('/informacionPersonal/editar',"CuentaUsuarioController@update");
    Route::get('/notificaciones',"CuentaUsuarioController@notificaciones");
 
+ 

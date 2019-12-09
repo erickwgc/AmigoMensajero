@@ -97,7 +97,7 @@
                 </form>
                 -->
                 <a href="{{route('usuario.delete', $usuario->id)}}">Eliminar</a>
-               
+                <a href="{{route('informacion.create',$usuario->id)}}">Informacion</a>  
             </td>
              
         </tr>

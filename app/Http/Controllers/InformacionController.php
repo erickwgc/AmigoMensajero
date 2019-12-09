@@ -8,5 +8,12 @@ use App\Http\Requests;
 
 class InformacionController extends Controller
 {
-    //
+    public function index(){
+
+    }
+    public function create(){
+
+        return view("informacion.create");
+    }
+    
 }
