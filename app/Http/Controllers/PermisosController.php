@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Permiso;
+use App\Notificacion;
 use App\Role;
 class PermisosController extends Controller
 {
@@ -16,13 +17,14 @@ class PermisosController extends Controller
      */
     public function index(Request $request)
     {
+         $notificaciones=Notificacion::Notificacion("0")->paginate(10);
         if($request->user() == null){
-            return view("auth.login");
+            return view("auth.login",compact("notificaciones"));
         }else{ 
         $request->user()->autorizeRoles(['administrador']);
         }
         $permisos=Permiso::all();
-        return view("permisos.index",compact("permisos"));
+        return view("permisos.index",compact("permisos","notificaciones"));
     }
 
     /**
@@ -89,15 +91,17 @@ class PermisosController extends Controller
     {
         //
     }
-    public function asignar(Request $request){
+    public function asignar(Request $request)
+    {
+         $notificaciones=Notificacion::Notificacion("0")->paginate(10);
         if($request->user() == null){
-            return view("auth.login");
+            return view("auth.login",compact("notificaciones"));
         }else{ 
         $request->user()->autorizeRoles(['administrador']);
         }
        $permisos=Permiso::all();
        $roles = Role::all();
-       return view("permisos.asignar",compact("permisos","roles"));
+       return view("permisos.asignar",compact("permisos","roles","notificaciones"));
     
     }
     public function asignado(Request $request)

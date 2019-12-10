@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Carta;
 use App\Notificacion;
-class CorreoController extends Controller
+class BoletinController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,23 +16,43 @@ class CorreoController extends Controller
      */
     public function index(Request $request)
     {
-        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
-        if($request->user() == null){
-            return view("auth.login");
-        }else{ 
-        $request->user()->autorizeRoles(['administrador']);
-        }
-       $cartas_buscador=Carta::Buscar($request->buscar)->paginate(10);
+        /*
+        $lista = array(1,1,2,3,4,4,4,5,6,7,7,8,9,10,10);
+        $resultado= array_unique($lista);
+        $a= array(1,2,3);
+        $b= array(4,5,6);
+        $c= array(7,8,9);
+        $res=array_merge($a,$b,$c);
+        */
 
-        $cartas_todas=Carta::all();
+        $todas_cartas=array_merge(
+                    $request->cont_principal_rojas,
+                    $request->cont_principal_amarillas,
+                    $request->cont_principal_verdes,
+                    $request->cont_cartas_rojas,
+                    $request->cont_cartas_amarillas,
+                    $request->cont_cartas_verdes);
 
-        $cartas_rojas=Carta::Cartas("Rojo")->paginate(10);
+    //    $todas_cartas=array_unique($todas_cartas);
+       
+        dd($todas_cartas);
+        /*
+        for($i=0;$i < count($todas_cartas);$i++){
+           echo  $todas_cartas[$i];
+        }*/
         
-        $cartas_amarillas=Carta::Cartas("Amarillo")->paginate(10);
-        
-        $cartas_verdes=Carta::Cartas("Verde")->paginate(10);
+        //dd($resultado);
+        /*
+        dd($request->cont_cartas_rojas);
+        dd($request->cont_cartas_amarillas);
+        dd($request->cont_cartas_verdes);
 
-        return view("correo.index",compact("cartas_buscador","cartas_todas","cartas_rojas","cartas_amarillas","cartas_verdes","notificaciones"));
+        dd($request->cont_principal_rojas);
+        dd($request->cont_principal_amarillas);
+        dd($request->cont_principal_verdes);
+        */
+        
+        //return view('boletin.index');
     }
 
     /**
@@ -100,6 +120,4 @@ class CorreoController extends Controller
     {
         //
     }
-
-   
 }

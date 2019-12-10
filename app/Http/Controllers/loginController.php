@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\User;
 use App\Role;
+use App\Notificacion;
 use Validator;
 
 class loginController extends Controller
@@ -59,6 +60,8 @@ class loginController extends Controller
     public function store(Request $request)
     {
 
+        $notificaciones =Notificacion::Notificacion("0")->paginate(10);
+
        //return "hola";
 
         $this->validate($request,[
@@ -78,7 +81,7 @@ class loginController extends Controller
 
 
             
-            return view('welcome');
+            return view('welcome',compact("notificaciones"));
         } else {
             return redirect('/login');
         }

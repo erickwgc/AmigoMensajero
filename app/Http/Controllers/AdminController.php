@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Notificacion;
 
 
 class AdminController extends Controller
@@ -17,13 +18,14 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         //$user = Auth::user();
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
          if($request->user() == null){
             return view("auth.login");
         }else{ 
         $request->user()->autorizeRoles(['administrador']);
         }
        
-        return view('administrador.index',compact('user'));
+        return view('administrador.index',compact('user','notificaciones'));
     
     }
 

@@ -45,9 +45,13 @@
 <tr><td colspan="2" align="center">
     <!--<input type="submit" name="enviar" value="Enviar">
     -->
-    
+    <!--
       <input type="submit" name="enviar" id="enviar" value=""  style="background-image: url('{{asset('assets/img/botonEditarCuenta.png')}}'); 
                   background-size: contain; height: 40px; width: 189px;margin-top: 50px;">
+-->
+<br>
+<input type="submit" name="enviar" value="Editar Cuenta" 
+      class="btn btn-warning" style="margin-left: 20%; width:10em;">
   
     </td></tr>
 </table>

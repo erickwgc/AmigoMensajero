@@ -49,6 +49,8 @@
                        <button type="button" class="btn btn-success" data-toggle="modal" onclick="location.href='http://localhost:8000/logout'" style="margin-left:350px; border:0px; padding: 0px;"><img src="{{asset('assets/img/botonCerrarSesion.jpeg')}}" height="40px" width="200px"/></button>
 
                        !-->
+
+
                          <div class="btn-group" style="margin-left:350px;">
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="background-color: #C0FFA4; font-weight: bold; color: black; border-radius: 0px;">
 
@@ -58,11 +60,86 @@
                         <div class="dropdown-menu" style="background-color: #C0FFA4;border-radius: 0px; ">
                           <a class="dropdown-item" href="/configuracion" style="font-size: 15px;color: black;">Configuración de mi Cuenta</a>
                           <a class="dropdown-item" href="/informacionPersonal" style="font-size: 15px;color: black;border-style: solid;">Información Personal</a>
-                          <a class="dropdown-item" href="/notificaciones" style="font-size: 15px;color: black;border-style: solid;">Notificaciones</a>
+                          <a class="dropdown-item" href="/notificaciones" style="font-size: 15px;color: black;border-style: solid;">Notificaciones
+
+    
+
+                           @php
+
+                            $conta=0;
+                            foreach($notificaciones as $notificacion){
+                               
+                               $k=$notificacion->leido;
+                               $color=$notificacion->color;
+                               
+                               if(($k=="0")&&($color=="Rojo"))
+                               {
+                                    $conta++;
+                               }
+
+                            }
+
+                           if($conta==0)
+                           {
+                              
+                             
+                           }else
+                           {
+                              echo("<p color:red;>$conta</p>");  
+                           }
+
+                       @endphp 
+
+                      
+
+                          </a>
                           <div class="dropdown-divider" style="border-style: solid;"></div>
                           <a class="dropdown-item" href="http://localhost:8000/logout" style="font-size: 15px;color: black;">Cerrar Sesión</a>
                         </div>
+
+
+
                     </div>
+
+                     <a style="background-color: white;" href="/notificaciones">
+
+
+                      <button type="button" class="btn btn-success" data-toggle="modal" onclick="location.href='http://localhost:8000/login'" style= "border:0px; padding: 0px;"><img src="{{asset('assets/img/notificacion.jpg')}}" height="35px" width="35px"/></button>
+
+
+                      @php
+
+                            $conta=0;
+                            foreach($notificaciones as $notificacion){
+                               
+                               $k=$notificacion->leido;
+                               $color=$notificacion->color;
+                               
+                               if(($k=="0")&&($color=="Rojo"))
+                               {
+                                    $conta++;
+                               }
+
+                            }
+
+                           if($conta==0)
+                           {
+                              
+                             
+                           }else
+                           {
+                               echo '<a style="color: red ">'.("(".$conta.")").'</a>'; 
+                              
+
+                           }
+
+                       @endphp 
+
+
+
+
+                     </a>
+
                   @endif
                 
 

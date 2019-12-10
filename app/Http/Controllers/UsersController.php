@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 
 use App\User;
-
+use App\Notificacion;
 use App\Role;
 
 class UsersController extends Controller
@@ -20,13 +20,14 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
         if($request->user() == null){
-            return view("auth.login");
+            return view("auth.login","notificaciones");
         }else{ 
         $request->user()->autorizeRoles(['administrador']);
         }
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
-        return view("usuarios.index",compact("usuarios"));
+        return view("usuarios.index",compact("usuarios","notificaciones"));
     }
 
     /**
@@ -36,13 +37,14 @@ class UsersController extends Controller
      */
     public function create(Request $request)
     {
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
          if($request->user() == null){
             return view("auth.login");
         }else{ 
         $request->user()->autorizeRoles(['administrador']);
         }
         $roles=Role::all();
-        return view("usuarios.create",compact("roles"));
+        return view("usuarios.create",compact("roles","notificaciones"));
     }
 
     /**
@@ -75,11 +77,9 @@ class UsersController extends Controller
 
             
         
-
-
         $usuarios->password=crypt($clave,'');
         $usuarios->save();
-        $usuarios->roles()->attach($rol);
+        //$usuarios->roles()->attach($rol);
         return redirect("/usuarios");
        }else
        {
@@ -112,14 +112,15 @@ class UsersController extends Controller
      */
     public function edit($id, Request $request)
     {
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
         if($request->user() == null){
-            return view("auth.login");
+            return view("auth.login",compact("notificaciones"));
         }else{ 
         $request->user()->autorizeRoles(['administrador']);
         }
         $roles=Role::all();
         $usuario=User::findOrFail($id);
-        return view("usuarios.edit",compact("usuario"));
+        return view("usuarios.edit",compact("usuario","notificaciones"));
     }
 
     /**
@@ -154,13 +155,13 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
         $usuario=User::findOrFail($id);
         $usuario->delete();
         return redirect("/usuarios");
     }
     public function buscador(Request $request){
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
-        return view("usuarios.index",compact("usuarios"));
+        return view("usuarios.index",compact("usuarios","notificaciones"));
     }
 }

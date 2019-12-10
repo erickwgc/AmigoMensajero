@@ -10,6 +10,7 @@ use Validator;
 use App\Carta;
 use App\Imagen;
 use Carbon\Carbon;
+use App\Notificacion;
 
 class CartasController extends Controller
 {
@@ -20,7 +21,8 @@ class CartasController extends Controller
      */
     public function index()
     {
-        return view('carta', compact("carta"));
+         $notificaciones=Notificacion::Notificacion("0")->paginate(10);
+        return view('carta', compact("carta","notificaciones"));
     }
 
     /**
@@ -42,6 +44,8 @@ class CartasController extends Controller
     public function store(Request $request)
     {
 
+        $notificacion=new Notificacion();
+        $notificacion->contenido=$request->contenido;
        
         $carta= new Carta();
         $carta->autor=$request->campo_nombre;
@@ -52,7 +56,7 @@ class CartasController extends Controller
  
         $contenido=strtoupper($request->contenido);
         $palabra_texto=explode(" ", $contenido);
-        $array_peligrosas = array("MATAR", "MUERTE", "MORIRME", "SANGRE","MATANZA","ASESINAR","APUÃ‘ALAR");
+        $array_peligrosas = array("MATAR","MUERTE", "MORIRME", "SANGRE","MATANZA","ASESINAR","APUÃ‘ALAR");
         $array_correctas = array("ESTUDIO","LEER","CANTAR","REZAR","AGRADECER","DIOS","AMOR");
      
         //$array_normales = array("familia","casa","padre","madre","hermanos","navidad");
@@ -90,6 +94,10 @@ class CartasController extends Controller
     //FIN
         $carta->color_car=$resultado;
         $carta->save();
+
+        $notificacion->leido=0;
+        $notificacion->color=$resultado;
+        $notificacion->save();
         
         
         if($name = $_FILES["mi_imagen"]["name"][0] != null ){

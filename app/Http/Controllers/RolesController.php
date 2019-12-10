@@ -5,25 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+
 use App\Permiso;
 use App\Role;
+use App\Notificacion;
 use App\User;
+
+
 class RolesController extends Controller
 {
+   
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request){
+    public function index(Request $request)
+    {
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
         if($request->user() == null){
-            return view("auth.login");
+            return view("auth.login",compact("notificaciones"));
         }else{ 
         $request->user()->autorizeRoles(['administrador']);
         }
         
         $roles=Role::all();
-        return view("roles.index",compact("roles"));
+        return view("roles.index",compact("roles","notificaciones"));
     }
 
     /**
@@ -33,13 +40,14 @@ class RolesController extends Controller
      */
     public function create(Request $request)
     {
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
         if($request->user() == null){
-            return view("auth.login");
+            return view("auth.login",compact("notificaciones"));
         }else{ 
         $request->user()->autorizeRoles('administrador');
         }
         
-        return view("roles.create");   
+        return view("roles.create",compact("notificaciones"));   
     }
 
     /**
@@ -65,8 +73,9 @@ class RolesController extends Controller
      */
     public function show($id)
     {
+         $notificaciones=Notificacion::Notificacion("0")->paginate(10);
          $rol = Role::findOrFail($id);
-        return view("roles.show",compact("rol"));
+        return view("roles.show",compact("rol","notificaciones"));
     }
 
     /**
@@ -77,8 +86,9 @@ class RolesController extends Controller
      */
     public function edit($id, Request $request)
     {
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
         if($request->user() == null){
-            return view("auth.login");
+            return view("auth.login",compact("notificaciones"));
         }else{ 
         $request->user()->autorizeRoles('administrador');
         }
@@ -89,7 +99,7 @@ class RolesController extends Controller
         }
 
 
-        return view("roles.edit",compact("rol","permisos","permis"));
+        return view("roles.edit",compact("rol","permisos","permis","notificaciones"));
     }
 
     /**
@@ -120,12 +130,14 @@ class RolesController extends Controller
     }
     public function asignar(){
         //$usrol = User::has('roles')->get();
+         $notificaciones=Notificacion::Notificacion("0")->paginate(10);
         $usuarios=User::all();
         $roles=Role::all();
-        return view("roles.asignar",compact("usuarios","roles"));
+        return view("roles.asignar",compact("usuarios","roles","notificaciones"));
     
     }
     public function role_user(Request $request){
+         $notificaciones=Notificacion::Notificacion("0")->paginate(10);
         
         if(($request->user_id != "vacio") && ($request->roles != null) ){
             $usuario=User::findOrFail($request->user_id);
@@ -133,6 +145,6 @@ class RolesController extends Controller
 
         }
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
-        return view("usuarios.index",compact("usuarios"));
+        return view("usuarios.index",compact("usuarios","notificaciones"));
     }
 }

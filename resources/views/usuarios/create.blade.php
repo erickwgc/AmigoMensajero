@@ -28,7 +28,7 @@ $(document).ready(function(){
 </td>
 
 <td id="idCampo">Usuario: </td>
-<td><input type="text" class="form-control" name="usuario"  placeholder="Usuario" pattern="^([a-z]+[0-9]{0,5}){5,12}$" required title="solo letras minusculas y con un numero opcionalmente de hasta 5 digitos : Tamaño 5-12" >
+<td><input type="text" class="form-control" name="usuario"  placeholder="Usuario"  required title="no puede dejar vacio" >
 </td>
 
 </tr>
@@ -39,7 +39,7 @@ $(document).ready(function(){
 
 <td id="idCampo">Contraseña: </td>
 <td><input type="password" class="form-control" name="contrasenia" id="contrasenia" placeholder="Contraseña"
-                  pattern="[A-Za-z0-9!?-]{8,12}" required title="letras Mayusculas,minusculas y caracteres  !?-. Tamaño  8-12" >
+                  pattern="[A-Za-z0-9!?-]{4,15}" required title="letras Mayusculas,minusculas y caracteres  !?-. Tamaño  4-15" >
 </td>
 </tr>
 
@@ -50,7 +50,7 @@ $(document).ready(function(){
 
 <td id="idCampo">Confirmar Contraseña: </td>
 <td><input type="password" class="form-control" name="confirmcontrasenia" id="confirmcontrasenia" placeholder="Confirmar Contraseña"
-                  pattern="[A-Za-z0-9!?-]{8,12}" title="letras Mayusculas,minusculas y caracteres  !?-. Tamaño  8-12" required >
+                  pattern="[A-Za-z0-9!?-]{4,15}" title="letras Mayusculas,minusculas y caracteres  !?-. Tamaño  4-15" required >
 </td>
 
 </tr>
