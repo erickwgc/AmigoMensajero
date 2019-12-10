@@ -50,12 +50,12 @@ Route::post('/loginValidar',[
 
  
  Route::get('/roles/asignacion',"RolesController@asignar");
-   Route::post('/roles/asignacion/unir',"RolesController@role_user");
-Route::resource('/roles',"RolesController");
+ Route::post('/roles/asignacion/unir',"RolesController@role_user");
+ Route::resource('/roles',"RolesController");
   
 
 
-     Route::get('/permisos/asignacion',"PermisosController@asignar");
+   Route::get('/permisos/asignacion',"PermisosController@asignar");
    Route::post('/permisos/asignacion/ui',"PermisosController@asignado");
    Route::resource('/permisos',"PermisosController"); 
 
@@ -69,7 +69,12 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('logout', ['as' =>'logout', 'uses' => 'loginController@cerrarSesion']);
 });
 Route::resource('/correo', "CorreoController");
-   Route::get('/configuracion',"CuentaUsuarioController@configuracion");
+
+Route::resource('/crear/boletin', "BoletinController");
+
+Route::post('correo/crear/boletin', "BoletinController@index");
+
+Route::get('/configuracion',"CuentaUsuarioController@configuracion");
    Route::post('/configuracion/eliminar',"CuentaUsuarioController@eliminar");
    Route::post('/configuracion/usuario',"CuentaUsuarioController@actualizar");
    Route::get('/informacionPersonal',"CuentaUsuarioController@informacionPersonal");

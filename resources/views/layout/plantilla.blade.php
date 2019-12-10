@@ -25,6 +25,8 @@
             font-weight: bold;
             
         }
+
+        
 /*CSS PARA LA LLEGADA DE LOS CORREOS */
 
 #contenedor {

@@ -75,11 +75,9 @@ class UsersController extends Controller
 
             
         
-
-
         $usuarios->password=crypt($clave,'');
         $usuarios->save();
-        $usuarios->roles()->attach($rol);
+        //$usuarios->roles()->attach($rol);
         return redirect("/usuarios");
        }else
        {
