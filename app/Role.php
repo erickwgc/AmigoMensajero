@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
-{
+{   /*
     protected $fillable = ["nom_rol","descripcion"];
     
     public function usuarios(){
@@ -19,5 +19,6 @@ class Role extends Model
 
     public function getPermisosList(){
         return $this->permisos->list('id')->all();
-    }
+
+    }*/
 }

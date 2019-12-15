@@ -19,6 +19,8 @@ class CreateCartasTable extends Migration
             $table->string('fecha');
             $table->string('hora');
             $table->string('color_car');
+            $table->boolean('leida');
+            $table->boolean('atendida');
             $table->timestamps();
         });
     }

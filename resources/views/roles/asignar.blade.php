@@ -25,6 +25,9 @@
                       <li class="nav-item ">
                         <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
                       </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/crearBoletin">Edición de Boletines</a>
+                      </li>
                       
                     </ul>
                   </div>
@@ -57,7 +60,7 @@
               @foreach($roles as $role)
               
               <label for="roles" id="idCampo">
-                  <input type="checkbox" id="rol" name="roles[]" value="{{$role->id}}" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px;">&nbsp{{$role->nom_rol}}
+                  <input type="checkbox" id="rol" name="roles[]" value="{{$role->id}}" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px;">&nbsp{{$role->name}}
               </label>
               <br>
               @endforeach

@@ -23,4 +23,7 @@ class Carta extends Model
                      ->orWhere('contenido','LIKE','%' . $buscar . '%');
         
     }
+    public function scopeGetCarta($query,$id){
+        return $query->where('cod_car',$id);
+    }
 }

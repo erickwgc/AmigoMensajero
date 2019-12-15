@@ -33,15 +33,19 @@
 
    <div class="form-group">
     <label for="contenido"><b>Contenido de la carta</b></label>
-    <textarea  readonly class="form-control" id="contenido" rows="3"></textarea>
+    <textarea  readonly class="form-control" id="contenido" rows="5" style="resize: none;"></textarea>
   </div>
+  
    
       
     </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+    <div class="modal-footer">
+      
+     
+       
+        <button type="button" class="btn btn-primary" data-dismiss="modal">cerrar</button>
         
-      </div>
+    
     </div>
   </div>
 </div>

@@ -12,7 +12,7 @@
         <a class="nav-link" href="http://localhost:8000/inicio" >Inicio</a>
         </li>
         <li class="nav-item active">
-        <a class="nav-link" href="http://localhost:8000/correo" style="text-decoration: underline;">Carta de niños</a>
+        <a class="nav-link" href="http://localhost:8000/correo" style="text-decoration: underline;">Cartas de niños</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="http://localhost:8000/usuarios" >Usuarios<span class="sr-only">(current)</span></a>
@@ -24,8 +24,9 @@
         <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
         </li>
         <li class="nav-item ">
-        <a class="nav-link" href="http://localhost:8000/profesionales">Profesionales</a>
-        </li>
+                        <a class="nav-link" href="http://localhost:8000/crearBoletin">Edición de Boletines</a>
+                      </li>
+       
     </ul>
     </div>
 </nav>

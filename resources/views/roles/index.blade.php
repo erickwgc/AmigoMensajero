@@ -19,7 +19,7 @@
                        <a class="nav-link" href="http://localhost:8000/correo">Cartas de niños</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8000/usuarios" >Usuarios<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="http://localhost:8000/usuarios" >Usuarios</a>
                       </li>
                       <li class="nav-item active">
                         <a class="nav-link" href="http://localhost:8000/roles" style="text-decoration: underline;">Roles<span class="sr-only">(current)</span></a>
@@ -27,6 +27,9 @@
                       <li class="nav-item ">
             <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
           </li>
+          <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/crearBoletin">Edición de Boletines</a>
+                      </li>
                     </ul>
                   </div>
                 </nav>
@@ -48,17 +51,18 @@
     @foreach($roles as $role)
         <tr>
             <td>{{$role->id}}</td>
-            <td>{{$role->nom_rol}}</td>
+            <td>{{$role->name}}</td>
             <td>
-                 @foreach($role->permisos as $permiso)
-                   {{$permiso->nom_per}}
+                 @foreach($role->permissions as $permiso)
+                   {{$permiso->name}}
                    <br>
                  @endforeach
              </td>
             <td> 
-                <a href="{{route('roles.show',$role->id)}}">Ver</a>
-                <a href="{{route('roles.edit',$role->id)}}">Editar</a>
-                <a href="#">Eliminar</a></td>
+              
+                <a href="http://localhost:8000/roles/ <?php echo $role->id; ?>">Ver</a>
+                <a href="http://localhost:8000/roles/ <?php echo $role->id; ?> /edit">Editar</a>
+                <a href="http://localhost:8000/roles/delete/ <?php echo $role->id; ?>">Eliminar</a></td>
             
              
         </tr>

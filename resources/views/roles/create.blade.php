@@ -22,10 +22,13 @@
                         <a class="nav-link" href="http://localhost:8000/usuarios">Usuarios</a>
                       </li>
                        <li class="nav-item active">
-                        <a class="nav-link" href="http://localhost:8000/roles" style="text-decoration: underline;">Roles</a>
+                        <a class="nav-link" href="http://localhost:8000/roles" style="text-decoration: underline;">Roles<span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item ">
                         <a class="nav-link" href="http://localhost:8000/permisos" >Permisos</a>
+                      </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/crearBoletin">Edición de Boletines</a>
                       </li>
                     </ul>
                   </div>

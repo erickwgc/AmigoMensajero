@@ -1,52 +1,40 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>AMIGO MENSAJERO</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AMIGO MENSAJERO</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
-        <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/estilo-plantilla.css')}}">
-         <script type="text/javascript" src="{!! asset('assets/js/jquery-3.4.1.min.js') !!}"></script>
-        <script type="text/javascript" src="{!! asset('assets/js/util.js') !!}"></script>
-        <script type="text/javascript" src="{!! asset('assets/js/scrollspy.js') !!}"></script>
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/docs.min.css')}}">
+     <!-- Bootstrap -->   
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/estilo-plantilla.css')}}">
+    <script type="text/javascript" src="{!! asset('assets/js/jquery-3.4.1.min.js') !!}"></script>
 
-		<!-- pligin para validaciones-->
-    <!--
-		<script type="text/javascript" src="../../../public/assets/js/libreriaValidacion.js"></script>
-		<script src="../../../public/assets/js/validacionesMin.js"></script>
-		<script src="../../../public/assets/js/jquery.validate.js"></script> 
-		
-		!-->
-        
-        
-        <script type="text/javascript" src="{!! asset('assets/js/bootstrap.js') !!}"></script>
+    <!-- pligin para validaciones-->
+    <script type="text/javascript" src="../../../public/assets/js/libreriaValidacion.js"></script>
+    <script src="../../../public/assets/js/validacionesMin.js"></script>
+    <script src="../../../public/assets/js/jquery.validate.js"></script> 
+    <script type="text/javascript" src="{!! asset('assets/js/bootstrap.js') !!}"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <style type="text/css">
+    
+            <style type="text/css">
             body{
                 background-image: url('{{asset('assets/img/fondo.png')}}');
                 background-size: cover;
                 height: 800px;
-            }
-           
+            }    
         </style>
-		
-
 
     </head>
     <body>
-            <header>
+      <header>
                 <!-- Logotipo y titulo -->
-                <img src="{{asset('assets/img/avion.png')}}" height="80px" width="150px"><a class="navbar-brand" href="#" style="font-family: 'Concert One', cursive; font-size: 45px; color: white;">EL AMIGO MENSAJERO</a>
+               <img src="{{asset('assets/img/avion.png')}}" height="80px" width="150px"><a class="navbar-brand" href="#" style="font-family: 'Concert One', cursive; font-size: 45px; color: white;">EL AMIGO MENSAJERO</a>
                 @if (Auth::guest())
                         <button type="button" class="btn btn-success" data-toggle="modal" onclick="location.href='http://localhost:8000/login'" style="margin-left:350px; border:0px; padding: 0px;"><img src="{{asset('assets/img/botonIniciarSesion.png')}}" height="40px" width="200px"/></button>
                     @else 
@@ -65,11 +53,10 @@
                           <a class="dropdown-item" href="/informacionPersonal" style="font-size: 15px;color: black;border-style: solid;">Información Personal</a>
                           <a class="dropdown-item" href="/notificaciones" style="font-size: 15px;color: black;border-style: solid;">Notificaciones
 
+                          
                            @php
-
                             $conta=0;
-                            foreach($notificaciones as $notificacion){
-                               
+                            foreach($notificaciones as $notificacion){         
                                $k=$notificacion->leido;
                                $color=$notificacion->color;
                                
@@ -91,13 +78,13 @@
 
                        @endphp 
 
+
                           </a>
                           <div class="dropdown-divider" style="border-style: solid;"></div>
                           <a class="dropdown-item" href="http://localhost:8000/logout" style="font-size: 15px;color: black;">Cerrar Sesión</a>
                         </div>
                     </div>
-                    
-                    <a style="background-color: white;" href="/notificaciones">
+                       <a style="background-color: white;" href="/notificaciones">
 
 
                       <button type="button" class="btn btn-success" data-toggle="modal" onclick="location.href='http://localhost:8000/login'" style= "border:0px; padding: 0px; margin-right: -20px;"><img src="{{asset('assets/img/notificacion.jpg')}}" height="35px" width="45px"/></button>
@@ -135,13 +122,56 @@
 
 
                      </a>
+
                   @endif
-      
-                
-                <!-- Menú de Navegación -->
-                 
             </header>
-      
+			<nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(255,192,0);">
+                  
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                 <!-- Authentication Links -->
+                    @if (Auth::guest())
+                  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8000/inicio">Inicio</a>
+                      </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/carta">Escribe tu Carta</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8000/boletin">Boletín</a>
+                      </li>
+                    
+                        
+                    @else
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8000/inicio">Inicio</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8000/correo">Cartas de niños</a>
+                      </li>
+                       <li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8000/usuarios">Usuarios</a>
+                      </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
+                      </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
+                      </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/crearBoletin">Edición de Boletines</a>
+                      </li>
+                    @endif
+                      
+                    </ul>
+                  </div>
+                </nav>
+               <h2 style="color: white;">No tiene los permisos suficientes para ésta sección</h2> 
 
     </body>
 </html>

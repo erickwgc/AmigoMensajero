@@ -14,6 +14,7 @@ class MDadministrador
      * @param  \Closure  $next
      * @return mixed
      */
+    /*
     public function handle($request, Closure $next)
     {
         $user_id = \Auth::user();
@@ -26,5 +27,6 @@ class MDadministrador
         
         return $next($request);
     }
-    
+
+    */
 }

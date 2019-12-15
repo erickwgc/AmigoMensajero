@@ -25,6 +25,9 @@
                       <li class="nav-item active">
                           <a class="nav-link" href="http://localhost:8000/permisos" style="text-decoration: underline;">Permisos</a>
                       </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/crearBoletin">Edición de Boletines</a>
+                      </li>
                      
                     </ul>
                   </div>
@@ -42,7 +45,7 @@
       <select name="role_id" >
           <option value="vacio">    </option>
         @foreach($roles as $rol)
-          <option value="{{$rol->id}}">{{$rol->nom_rol}} </option>
+          <option value="{{$rol->id}}">{{$rol->name}} </option>
         @endforeach
       </select>
     </td>
@@ -55,7 +58,7 @@
         @foreach($permisos as $permiso)
         
         <label for="permisos" style="color: white;">
-            <input type="checkbox" id="permiso" name="permisos[]" value="{{$permiso->id}}" style=" margin-right: 10px;">{{$permiso->nom_per}}
+            <input type="checkbox" id="permiso" name="permisos[]" value="{{$permiso->id}}" style=" margin-right: 10px;">{{$permiso->name}}
         </label>
         <br>
         @endforeach

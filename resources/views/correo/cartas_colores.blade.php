@@ -8,7 +8,7 @@
     data-toggle="modal" data-target="#exampleModal">[ver carta]</a> 
 
     <aside id="contenidoCarta"> {{$carta->contenido}} </aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}
-    </a><input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px;">
+    </a><input type="checkbox" name="cont_principal_rojas[]" value="{{$carta->cod_car}}" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px;">
     
     <p>-------------------------------------------<p> 
     </aside>
@@ -21,7 +21,7 @@
     <a href="#" onClick="Mostrar( '{{$carta->autor}}','{{$carta->hora}}','{{$carta->fecha}}','{{$carta->contenido}}' );" data-toggle="modal" 
     data-target="#exampleModal">[ver carta]</a>
    
-    <aside id="contenidoCarta" onclick="alert('LeyendoCarta');">{{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}} </a> <input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 40px; width: 20px; height: 20px; ">
+    <aside id="contenidoCarta" onclick="alert('LeyendoCarta');">{{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}} </a> <input type="checkbox" name="cont_principal_amarillas[]" value="{{$carta->cod_car}}" style="position: relative !important; visibility: visible !important; margin-left: 40px; width: 20px; height: 20px; ">
     <p>-------------------------------------------<p>      
     </aside>
 @endif
@@ -32,7 +32,7 @@
     <a href="#" onClick="Mostrar( '{{$carta->autor}}','{{$carta->hora}}','{{$carta->fecha}}','{{$carta->contenido}}' );" data-toggle="modal" 
     data-target="#exampleModal">[ver carta]</a>
 
-    <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a><input type="checkbox" 
+    <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a><input type="checkbox" name="cont_principal_verdes[]" value="{{$carta->cod_car}}"
     style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px; ">
     <p>-------------------------------------------<p>
   

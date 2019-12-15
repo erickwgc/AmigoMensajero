@@ -17,19 +17,19 @@
                         <a class="nav-link" href="http://localhost:8000/correo">Cartas de niños</a>
                       </li>    
                      
-                      <li class="nav-item active">
-                        <a class="nav-link" href="http://localhost:8000/usuarios" style="text-decoration: underline;">Usuarios<span class="sr-only">(current)</span></a>
-                      </li>
                       <li class="nav-item ">
-                        <a class="nav-link" href="http://localhost:8000/roles">Roles</a>
+                        <a class="nav-link" href="http://localhost:8000/usuarios" >Usuarios</a>
+                      </li>
+                      <li class="nav-item active">
+                        <a class="nav-link" href="http://localhost:8000/roles" style="text-decoration: underline;">Roles<span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item ">
                         <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
                       </li>
-
                       <li class="nav-item ">
-                        <a class="nav-link" href="http://localhost:8000/profesionales">Profesionales</a>
+                        <a class="nav-link" href="http://localhost:8000/crearBoletin">Edición de Boletines</a>
                       </li>
+                      
                     </ul>
                   </div>
                 </nav>
@@ -46,7 +46,7 @@
     <td>
       <select name="role_id" >
          
-            <option value="{{$rol->id}}">{{$rol->nom_rol}} </option>
+            <option value="{{$rol->id}}">{{$rol->name}} </option>
       </select>
     </td>
     </tr>
@@ -58,7 +58,7 @@
         
         <label for="permisos">
             <input type="checkbox" id="permiso" name="permisos[]" value="{{$permiso->id}}"
-            {{in_array($permiso->nom_per,$permis)?"checked":""}}>{{$permiso->nom_per}}
+            {{in_array($permiso->name,$permis)?"checked":""}}>{{$permiso->name}}
         </label>
         <br>
         @endforeach

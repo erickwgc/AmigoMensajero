@@ -2,10 +2,14 @@
 
 namespace App;
 
+use Caffeinated\Shinobi\Traits\ShinobiTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    
+    use ShinobiTrait;
+    /*
     public function roles(){
         return $this->belongsToMany('App\Role');
     }
@@ -69,7 +73,7 @@ class User extends Authenticatable
 
 
 
-
+    /*
      public function getRolesList(){
         return $this->roles->list('id')->all();
     }
@@ -84,5 +88,5 @@ class User extends Authenticatable
             }
         }
         return $valor;
-    }
+    }*/
 }

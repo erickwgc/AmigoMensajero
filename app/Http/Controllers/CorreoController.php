@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Carta;
+use App\Notificacion;
 class CorreoController extends Controller
 {
     /**
@@ -15,10 +16,14 @@ class CorreoController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->user() == null){
+        /*if($request->user() == null){
             return view("auth.login");
         }else{ 
         $request->user()->autorizeRoles(['administrador']);
+        }*/
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
+         if(\Auth::user()->can('ver_correo')==false){
+            return view("errors.403",compact("notificaciones"));
         }
        $cartas_buscador=Carta::Buscar($request->buscar)->paginate(10);
 
@@ -30,7 +35,7 @@ class CorreoController extends Controller
         
         $cartas_verdes=Carta::Cartas("Verde")->paginate(10);
 
-        return view("correo.index",compact("cartas_buscador","cartas_todas","cartas_rojas","cartas_amarillas","cartas_verdes"));
+        return view("correo.index",compact("cartas_buscador","cartas_todas","cartas_rojas","cartas_amarillas","cartas_verdes","notificaciones"));
     }
 
     /**
@@ -97,5 +102,28 @@ class CorreoController extends Controller
     public function destroy($id)
     {
         //
+    }
+     public function generarNuevaInformacion(Request $request)
+    {
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
+      if(\Auth::user()->can('generar_informacion')==false){
+            return view("errors.403",compact("notificaciones"));
+        }
+        $a=(array)($request->cont_principal_rojas);
+        $b=(array)($request->cont_principal_amarillas);
+        $c=(array)($request->cont_principal_verdes);
+        $d=(array)($request->cont_cartas_rojas);
+        $e=(array)($request->cont_cartas_amarillas);
+        $f=(array)($request->cont_cartas_verdes);
+
+    $todas_cartas=array_merge($a,$b,$c,$d,$e,$f);
+    $todas_cartas=array_unique($todas_cartas);
+        
+
+       $cartas=array();
+        for($i=0;$i < count($todas_cartas);$i++){
+           $cartas[]=Carta::GetCarta($todas_cartas[$i])->get();
+        }
+        return view('correo.generarContenido', compact("cartas","notificaciones"));
     }
 }

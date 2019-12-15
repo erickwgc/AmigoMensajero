@@ -29,19 +29,18 @@
                       <li class="nav-item ">
             <a class="nav-link" href="http://localhost:8000/permisos">Permisos</a>
           </li>
+          <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/crearBoletin">Edición de Boletines</a>
+                      </li>
                     </ul>
+
                   </div>
                 </nav>
                 <h2 style="color: white;">ESTA ES LA VISTA DE AMINISTRADOR-PESTAÑA USUARIOS</h2> 
 @endsection
 @section("contenido")
-<!--
-<form class="form-inline" style="width:18.7%" action="{{ route('usuarios.index') }}"  method="get">
-    <input class="form-control mr-sm-2" id="buscar" name="buscar" type="text" placeholder="Buscar usuario" aria-describedby="buscador">
-    <button type="submit" class="btn btn-warning">Buscar</button>
-</form>
-!-->
-<form id="formularioBuscadorCartas" action="{{ route('usuarios.index') }}"  method="get">
+
+<form id="formularioBuscadorCartas" action="/usuarios"  method="get">
       <div style="position: absolute;right: 200px; background-color: white; width: 220px;">  
         <input id="buscar" name="buscar" type="text" placeholder="Buscar usuario" aria-describedby="buscador" style="border: 0px;">
         <button type="submit" style=" background-color: white;">
@@ -82,13 +81,13 @@
             <td>
               @php
               foreach($usuario->roles as $role){
-              echo '<p>'. $role->nom_rol . '</p>';
+              echo '<p>'. $role->name . '</p>';
                }
               @endphp
             </td>
             <td>
-              <a href="{{route('usuarios.show',$usuario->id)}}">Ver </a>
-              <a href="{{route('usuarios.edit',$usuario->id)}}">Editar</a> 
+              <a href="http://localhost:8000/usuarios/ <?php echo $usuario->id; ?>">Ver </a>
+              <a href="http://localhost:8000/usuarios/ <?php echo $usuario->id; ?> /edit">Editar</a> 
                 
                 <!--<form method="post" action="/usuarios/{{$usuario->id}}">
                     {{csrf_field()}}
@@ -96,7 +95,7 @@
                     <input type="submit" value="Eliminar">
                 </form>
                 -->
-                <a href="{{route('usuario.delete', $usuario->id)}}">Eliminar</a>
+              <a href="http://localhost:8000/usuarios/delete/ <?php echo $usuario->id; ?>">Eliminar</a>
                
             </td>
              

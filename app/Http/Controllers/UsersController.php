@@ -9,8 +9,9 @@ use App\Http\Requests;
 
 use App\User;
 
-use App\Role;
-
+use Caffeinated\Shinobi\Models\Role;
+use Caffeinated\Shinobi\Models\Permission;
+use App\Notificacion;
 class UsersController extends Controller
 {
     /**
@@ -19,14 +20,18 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {/*
         if($request->user() == null){
             return view("auth.login");
         }else{ 
         $request->user()->autorizeRoles(['administrador']);
+        }*/
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
+        if(\Auth::user()->can('ver_usuario')==false){
+            return view("errors.403",compact("notificaciones"));
         }
         $usuarios=User::buscar($request->buscar)->orderBy('id','DESC')->paginate(10);
-        return view("usuarios.index",compact("usuarios"));
+        return view("usuarios.index",compact("usuarios","notificaciones"));
     }
 
     /**
@@ -35,14 +40,19 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {
+    {   
+    /*
          if($request->user() == null){
             return view("auth.login");
         }else{ 
         $request->user()->autorizeRoles(['administrador']);
+        }*/
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
+     if(\Auth::user()->can('crear_usuario')==false){
+            return view("errors.403",compact("notificaciones"));
         }
         $roles=Role::all();
-        return view("usuarios.create",compact("roles"));
+        return view("usuarios.create",compact("roles","notificaciones"));
     }
 
     /**
@@ -57,7 +67,10 @@ class UsersController extends Controller
         
         //$rol=Role::where('nom_rol',$nom_rol)->first();
         //echo $rol;
-        
+        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
+        if(\Auth::user()->can('crear_usuario')==false){
+            return view("errors.403",compact("notificaciones"));
+        }
         $usuarios=new User();
         
         $usuarios->nom_usu=$request->nom_usu;
@@ -79,7 +92,7 @@ class UsersController extends Controller
 
         $usuarios->password=crypt($clave,'');
         $usuarios->save();
-        $usuarios->roles()->attach($rol);
+       
         return redirect("/usuarios");
        }else
        {
@@ -95,13 +108,17 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        
+       $notificaciones=Notificacion::Notificacion("0")->paginate(10);
+
+        if(\Auth::user()->can('ver_usuario')==false){
+            return view("errors.403",compact("notificaciones"));
+        }
         $usuario=User::findOrFail($id);
         
-        echo $usuario->roles;
+        $role= $usuario->roles;
 
         
-        //return view("usuarios.show",compact("usuario","role"));
+        return view("usuarios.show",compact("usuario","role","notificaciones"));
     }
 
     /**
@@ -112,14 +129,21 @@ class UsersController extends Controller
      */
     public function edit($id, Request $request)
     {
+       $notificaciones=Notificacion::Notificacion("0")->paginate(10);
+
+        if(\Auth::user()->can('editar_usuario')==false){
+            return view("errors.403",compact("notificaciones"));
+        }
+    /*
         if($request->user() == null){
             return view("auth.login");
         }else{ 
         $request->user()->autorizeRoles(['administrador']);
-        }
+        }*/
+        //$notificaciones=Notificacion::Notificacion("0")->paginate(10);
         $roles=Role::all();
         $usuario=User::findOrFail($id);
-        return view("usuarios.edit",compact("usuario"));
+        return view("usuarios.edit",compact("usuario","notificaciones"));
     }
 
     /**
@@ -154,7 +178,12 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        
+       $notificaciones=Notificacion::Notificacion("0")->paginate(10);
+
+        if(\Auth::user()->can('eliminar_usuario')==false){
+            return view("errors.403",compact("notificaciones"));
+        }
+        //$notificaciones=Notificacion::Notificacion("0")->paginate(10);
         $usuario=User::findOrFail($id);
         $usuario->delete();
         return redirect("/usuarios");

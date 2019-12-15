@@ -12,6 +12,7 @@ use App\Http\Requests;
 use App\User;
 use App\Role;
 use Validator;
+use App\Notificacion;
 
 class loginController extends Controller
 {
@@ -60,7 +61,7 @@ class loginController extends Controller
     {
 
        //return "hola";
-
+         $notificaciones =Notificacion::Notificacion("0")->paginate(10);
         $this->validate($request,[
 
             'correo_name'=>'required|string|min:3',
@@ -78,7 +79,7 @@ class loginController extends Controller
 
 
             
-            return view('welcome');
+            return view('welcome',compact("notificaciones"));
         } else {
             return redirect('/login');
         }

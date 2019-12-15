@@ -3,8 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePermisosTable extends Migration
-
+class CreateNotificacionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +12,12 @@ class CreatePermisosTable extends Migration
      */
     public function up()
     {
-        Schema::create('permisos', function (Blueprint $table) {
+        Schema::create('notificacions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nom_per');
-            $table->string('descripcion');
+            $table->string('contenido');
+            $table->integer('leido');
+            $table->string('color');
+     
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreatePermisosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('permisos');
+        Schema::drop('notificacions');
     }
 }

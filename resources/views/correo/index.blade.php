@@ -8,7 +8,7 @@
 @endsection
 @section("contenido")
 
-    <form id="formularioBuscadorCartas" action="{{ route('correo.index') }}"  method="get">
+    <form id="formularioBuscadorCartas" action="/correo"  method="get">
       <div style="margin-left: 55px; background-color: white; width: 220px;">  
         <input id="buscar" name="buscar" type="text" placeholder="Buscar carta" aria-describedby="buscador" style="border: 0px;">
         <button type="submit" style=" background-color: white;">
@@ -32,7 +32,8 @@
       </div>
     </div>
 
-
+<form action="correo/generarNuevaInformacion" method="POST">
+  {{csrf_field()}}
 <div id="contenedor">
     <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked" />
     <label for="tab-1" class="tab-label-1"><b>PRINCIPAL</b></label>
@@ -75,7 +76,8 @@
               <img src="{{asset('assets/img/rojo.png')}}" height="5px" width="280px">
               <a href="#" onClick="Mostrar( '{{$carta->autor}}','{{$carta->hora}}','{{$carta->fecha}}','{{$carta->contenido}}' );"
             data-toggle="modal" data-target="#exampleModal">[ver carta]</a>
-              <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a><input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px;">
+              <aside id="contenidoCarta"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a>
+              <input type="checkbox" name="cont_cartas_rojas[]" value="{{$carta->cod_car}}" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px;">
               <p>-------------------------------------------<p>  
           </aside>
             
@@ -93,7 +95,7 @@
           <a href="#" onClick="Mostrar( '{{$carta->autor}}','{{$carta->hora}}','{{$carta->fecha}}', '{{$carta->contenido}}' );"
             data-toggle="modal" data-target="#exampleModal">[ver carta]</a>
  
-            <aside id="contenidoCarta" onclick="alert('LeyendoCarta');">{{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}} </a> <input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 40px; width: 20px; height: 20px; ">
+            <aside id="contenidoCarta" onclick="alert('LeyendoCarta');">{{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}} </a> <input type="checkbox" name="cont_cartas_amarillas[]" value="{{$carta->cod_car}}" style="position: relative !important; visibility: visible !important; margin-left: 40px; width: 20px; height: 20px; ">
             <p>-------------------------------------------<p>      
         </aside>
         @endforeach
@@ -108,7 +110,7 @@
             <img src="{{asset('assets/img/verde.png')}}" height="5px" width="280px">
             <a href="#" onClick="Mostrar( '{{$carta->autor}}','{{$carta->hora}}','{{$carta->fecha}}','{{$carta->contenido}}' );"
             data-toggle="modal" data-target="#exampleModal">[ver carta]</a>
-            <aside id="contenidoCarta" onClick="alert('hola')"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a><input type="checkbox" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px; ">
+            <aside id="contenidoCarta" onClick="alert('hola')"> {{$carta->contenido}}</aside><a id="fechaHoraCarta">{{$carta->fecha}} &nbsp {{$carta->hora}}</a><input type="checkbox" name="cont_cartas_verdes[]" value="{{$carta->cod_car}}" style="position: relative !important; visibility: visible !important; margin-left: 20px; width: 20px; height: 20px; ">
             <p>-------------------------------------------<p>  
         </aside>      
         @endforeach
@@ -121,14 +123,15 @@
               background-size: contain; height: 40px; width: 143px; right: 300px; position: absolute;" />
 -->
 <br>
-  <input type="submit" name="enviar" value="Crear Boletin" onClick="alert('hola')"
-      class="btn btn-warning" style="margin-left: 50%; width:10em;">
-
+  
+  <input type="submit" value="" onclick = "location='/correo'" style="background-image: url('{{asset('assets/img/botonGenerarContenido.png')}}'); 
+                background-size: contain; 
+                height: 45px; width: 233px;margin-left: 750px;margin-bottom: 0px; margin-top: -20px;"  >
     
     <!--MOSTRAR CON MODAL LA CARTA SELECCIONADA-->
     @include("../correo/mostrar_carta")
 
-
+   </form>
 
     <script>
   

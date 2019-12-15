@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Http\Requests;
-use Caffeinated\Shinobi\Models\Role;
-use Caffeinated\Shinobi\Models\Permission;
-use App\Notificacion;
 
-class PermisosController extends Controller
+use App\Http\Requests;
+use App\Carta;
+use App\Notificacion;
+class BoletinesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,17 +16,16 @@ class PermisosController extends Controller
      */
     public function index(Request $request)
     {
-       /* if($request->user() == null){
+        /*if($request->user() == null){
             return view("auth.login");
         }else{ 
         $request->user()->autorizeRoles(['administrador']);
         }*/
         $notificaciones=Notificacion::Notificacion("0")->paginate(10);
-        if(\Auth::user()->can('ver_lista_permisos')==false){
+        if(\Auth::user()->can('crear_boletin')==false){
             return view("errors.403",compact("notificaciones"));
         }
-        $permisos=Permission::all();
-        return view("permisos.index",compact("permisos","notificaciones"));
+       return view("boletines.index",compact("notificaciones"));
     }
 
     /**
@@ -60,6 +57,7 @@ class PermisosController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**
@@ -94,28 +92,5 @@ class PermisosController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function asignar(Request $request){
-      /*  if($request->user() == null){
-            return view("auth.login");
-        }else{ 
-        $request->user()->autorizeRoles(['administrador']);
-        }*/
-        $notificaciones=Notificacion::Notificacion("0")->paginate(10);
-       if(\Auth::user()->can('asignar_permiso')==false){
-            return view("errors.403",compact("notificaciones"));
-        }
-       $permisos=Permission::all();
-       $roles = Role::all();
-       return view("permisos.asignar",compact("permisos","roles","notificaciones"));
-    
-    }
-    public function asignado(Request $request)
-    {   
-        if(($request->role_id != "vacio") && ($request->permisos != null) ){
-            $rol=Role::findOrFail($request->role_id);
-            $rol->permissions()->sync($request->permisos);
-        }
-        return redirect("/roles");
     }
 }

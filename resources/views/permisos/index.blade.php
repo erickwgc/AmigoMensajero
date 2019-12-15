@@ -28,6 +28,9 @@
                       <li class="nav-item active">
                         <a class="nav-link" href="http://localhost:8000/permisos" style="text-decoration: underline;">Permisos</a>
                       </li>
+                      <li class="nav-item ">
+                        <a class="nav-link" href="http://localhost:8000/crearBoletin">Edición de Boletines</a>
+                      </li>
                      
                     
                     </ul>
@@ -47,8 +50,8 @@
   @foreach($permisos as $permiso) 
     <tr>
     <td>{{$permiso->id}}</td>
-    <td>{{$permiso->nom_per}}</td>
-    <td>{{$permiso->descripcion}}</td>
+    <td>{{$permiso->name}}</td>
+    <td>{{$permiso->description}}</td>
   
   </tr>
     
